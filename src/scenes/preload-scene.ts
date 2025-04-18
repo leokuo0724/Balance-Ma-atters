@@ -19,6 +19,10 @@ export class PreloadScene extends Phaser.Scene {
 
     const graphics = new Phaser.GameObjects.Graphics(this);
     this._drawSmallLibraSetBg(graphics);
+    this._drawRulerIndicator(graphics, TEXTURE_KEY.RULER_INDICATOR_YELLOW);
+    this._drawRulerIndicator(graphics, TEXTURE_KEY.RULER_INDICATOR_BLUE);
+    this._drawRulerIndicator(graphics, TEXTURE_KEY.RULER_INDICATOR_RED);
+    this._drawRulerIndicator(graphics, TEXTURE_KEY.RULER_INDICATOR_GREEN);
   }
 
   create() {
@@ -32,5 +36,25 @@ export class PreloadScene extends Phaser.Scene {
       .fillStyle(hexToDecimal(COLOR_KEY.BEIGE_2), 1)
       .fillRoundedRect(0, 0, width, height, 4);
     graphics.generateTexture(TEXTURE_KEY.SMALL_LIBRA_SET_BG, width, height);
+  }
+
+  private _drawRulerIndicator(
+    graphics: Phaser.GameObjects.Graphics,
+    key: string,
+  ) {
+    const keyColorMap = {
+      [TEXTURE_KEY.RULER_INDICATOR_YELLOW]: COLOR_KEY.YELLOW_6,
+      [TEXTURE_KEY.RULER_INDICATOR_BLUE]: COLOR_KEY.BLUE_6,
+      [TEXTURE_KEY.RULER_INDICATOR_RED]: COLOR_KEY.RED_6,
+      [TEXTURE_KEY.RULER_INDICATOR_GREEN]: COLOR_KEY.GREEN_6,
+    };
+    const color = keyColorMap[key];
+    const width = 6;
+    const height = 18;
+    graphics.clear();
+    graphics
+      .fillStyle(hexToDecimal(color), 1)
+      .fillRoundedRect(0, 0, width, height, 2);
+    graphics.generateTexture(key, width, height);
   }
 }

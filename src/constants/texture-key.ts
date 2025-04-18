@@ -12,4 +12,8 @@ export const TEXTURE_KEY = {
   LOCK: "lock.png",
 
   SMALL_LIBRA_SET_BG: "small-libra-set-bg",
+  RULER_INDICATOR_YELLOW: "ruler-indicator-yellow",
+  RULER_INDICATOR_BLUE: "ruler-indicator-blue",
+  RULER_INDICATOR_RED: "ruler-indicator-red",
+  RULER_INDICATOR_GREEN: "ruler-indicator-green",
 };

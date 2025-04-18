@@ -1,0 +1,32 @@
+export const tweensAsync = (
+  scene: Phaser.Scene,
+  config: Phaser.Types.Tweens.TweenBuilderConfig,
+) => {
+  return new Promise<void>((resolve) => {
+    scene.tweens.add({
+      ...config,
+      onComplete: () => {
+        resolve();
+      },
+    });
+  });
+};
+
+export const delayedCallAsync = (scene: Phaser.Scene, delay: number) => {
+  return new Promise<void>((resolve) => {
+    scene.time.delayedCall(delay, () => {
+      resolve();
+    });
+  });
+};
+
+export const playAnimAsync = (
+  anims: Phaser.Animations.AnimationState,
+  key: string,
+) => {
+  return new Promise<void>((resolve) => {
+    anims.play(key).once("animationcomplete", () => {
+      resolve();
+    });
+  });
+};
