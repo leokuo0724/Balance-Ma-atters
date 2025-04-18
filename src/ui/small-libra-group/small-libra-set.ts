@@ -9,11 +9,12 @@ const unitWidth = adjustedIndicatorWidth / 4 / 2;
 export class SmallLibraSet extends Phaser.GameObjects.Container {
   // Props
   private value = 0;
+  private locked = true;
 
   // UI
   private _indicator: Phaser.GameObjects.Image;
   private _bar: Phaser.GameObjects.Rectangle;
-  // private _rightBar: Phaser.GameObjects.Rectangle;
+  private _lockCover: LockCover;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y);
@@ -54,14 +55,12 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
     this._bar = scene.add
       .rectangle(0, 14, 0, 8, hexToDecimal(COLOR_KEY.YELLOW_6))
       .setOrigin(0, 0.5);
-    // this._rightBar = scene.add
-    //   .rectangle(0, 14, 0, 8, hexToDecimal(COLOR_KEY.YELLOW_6))
-    //   .setOrigin(0, 0.5);
     this._indicator = scene.add.image(
       0,
       14,
       TEXTURE_KEY.RULER_INDICATOR_YELLOW,
     );
+    this._lockCover = new LockCover(scene, 0, 0).setVisible(this.locked);
 
     this.add([
       bg,
@@ -72,8 +71,21 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
       this._bar,
       ruler,
       this._indicator,
+      this._lockCover,
     ]);
     this.setSize(libraSetWidth, libraSetHeight);
+  }
+
+  public async unlock() {
+    if (!this.locked) return;
+    this.locked = false;
+    await tweensAsync(this.scene, {
+      targets: this._lockCover,
+      alpha: 0,
+      y: "+=8",
+      duration: 400,
+    });
+    this._lockCover.setVisible(false);
   }
 
   public async updateValue(value: number) {
@@ -83,15 +95,33 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
       ease: Phaser.Math.Easing.Bounce.Out,
     };
 
-    tweensAsync(this.scene, {
-      targets: this._bar,
-      width: value * unitWidth,
-      ...commonConfig,
-    });
-    tweensAsync(this.scene, {
-      targets: this._indicator,
-      x: value * unitWidth,
-      ...commonConfig,
-    });
+    await Promise.all([
+      tweensAsync(this.scene, {
+        targets: this._bar,
+        width: value * unitWidth,
+        ...commonConfig,
+      }),
+      tweensAsync(this.scene, {
+        targets: this._indicator,
+        x: value * unitWidth,
+        ...commonConfig,
+      }),
+    ]);
+  }
+}
+
+class LockCover extends Phaser.GameObjects.Container {
+  constructor(scene: Phaser.Scene, x: number, y: number) {
+    super(scene, x, y);
+    scene.add.existing(this);
+
+    const bg = scene.add.image(0, 0, TEXTURE_KEY.SMALL_LIBRA_SET_BG_2);
+    const lockIcon = scene.add.image(
+      0,
+      0,
+      ATLAS_KEY.UI_COMPONENT,
+      TEXTURE_KEY.LOCK,
+    );
+    this.add([bg, lockIcon]);
   }
 }

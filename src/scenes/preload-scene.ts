@@ -18,7 +18,8 @@ export class PreloadScene extends Phaser.Scene {
     this.load.atlas(ATLAS_KEY.UI_COMPONENT, uiComponentPng, uiComponentJson);
 
     const graphics = new Phaser.GameObjects.Graphics(this);
-    this._drawSmallLibraSetBg(graphics);
+    this._drawSmallLibraSetBg(graphics, TEXTURE_KEY.SMALL_LIBRA_SET_BG);
+    this._drawSmallLibraSetBg(graphics, TEXTURE_KEY.SMALL_LIBRA_SET_BG_2);
     this._drawRulerIndicator(graphics, TEXTURE_KEY.RULER_INDICATOR_YELLOW);
     this._drawRulerIndicator(graphics, TEXTURE_KEY.RULER_INDICATOR_BLUE);
     this._drawRulerIndicator(graphics, TEXTURE_KEY.RULER_INDICATOR_RED);
@@ -29,13 +30,21 @@ export class PreloadScene extends Phaser.Scene {
     this.scene.start(SCENE_KEY.GAME);
   }
 
-  private _drawSmallLibraSetBg(graphics: Phaser.GameObjects.Graphics) {
+  private _drawSmallLibraSetBg(
+    graphics: Phaser.GameObjects.Graphics,
+    key: string,
+  ) {
+    const keyColorMap = {
+      [TEXTURE_KEY.SMALL_LIBRA_SET_BG]: COLOR_KEY.BEIGE_2,
+      [TEXTURE_KEY.SMALL_LIBRA_SET_BG_2]: COLOR_KEY.BEIGE_4,
+    };
+
     graphics.clear();
     const [width, height] = SIZE.SMALL_LIBRA_SET;
     graphics
-      .fillStyle(hexToDecimal(COLOR_KEY.BEIGE_2), 1)
+      .fillStyle(hexToDecimal(keyColorMap[key]), 1)
       .fillRoundedRect(0, 0, width, height, 4);
-    graphics.generateTexture(TEXTURE_KEY.SMALL_LIBRA_SET_BG, width, height);
+    graphics.generateTexture(key, width, height);
   }
 
   private _drawRulerIndicator(
