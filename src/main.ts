@@ -2,7 +2,7 @@ import Phaser from "phaser";
 import "~/style.css";
 
 import { COLOR_KEY } from "./constants";
-import { BootScene, PreloadScene } from "./scenes";
+import { BootScene, GameScene, PreloadScene } from "./scenes";
 
 const config = {
   type: Phaser.AUTO,
@@ -14,7 +14,7 @@ const config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [BootScene, PreloadScene],
+  scene: [BootScene, PreloadScene, GameScene],
 };
 
 export default new Phaser.Game(config);

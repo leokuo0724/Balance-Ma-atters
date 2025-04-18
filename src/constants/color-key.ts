@@ -5,4 +5,6 @@ export const COLOR_KEY = {
 
   BROWN_8: "#604536",
   BROWN_9: "#442d26",
-};
+} as const;
+
+export type TColorKey = (typeof COLOR_KEY)[keyof typeof COLOR_KEY];
