@@ -1,1 +1,2 @@
-export { PreloadScene } from "./preload-scene";
+export * from "./preload-scene";
+export * from "./boot-scene";

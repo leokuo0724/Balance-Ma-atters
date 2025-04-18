@@ -1,9 +1,9 @@
+import { SCENE_KEY } from "~/constants";
+
 export class PreloadScene extends Phaser.Scene {
   constructor() {
-    super({ key: "preload" });
+    super({ key: SCENE_KEY.PRELOAD });
   }
 
-  preload() {
-    console.log("PreloadScene: preload");
-  }
+  preload() {}
 }
