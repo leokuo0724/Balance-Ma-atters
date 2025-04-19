@@ -24,4 +24,6 @@ export const TEXTURE_KEY = {
   LARGE_LIBRA_INDICATOR_BG: "large-libra-indicator-bg",
   LARGE_LIBRA_BOX_BG: "large-libra-box-bg",
   LARGE_LIBRA_BOX_BG_2: "large-libra-box-bg-2",
+
+  CARD_DECK: "card-deck",
 };

@@ -4,6 +4,7 @@ export const COLOR_KEY = {
   BEIGE_4: "#c4b1a6",
 
   BROWN_3: "#9c8973",
+  BROWN_4: "#937e69",
   BROWN_8: "#604536",
   BROWN_9: "#442d26",
 

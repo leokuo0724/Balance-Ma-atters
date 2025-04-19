@@ -1,6 +1,7 @@
 import { Maat } from "~/characters";
 import { DEPTH, POSITION, SCENE_KEY, SIZE } from "~/constants";
 import { Ground, LargeLibraGroup, SmallLibraGroup } from "~/ui";
+import { CardDeckGroup } from "~/ui/card-deck-group";
 import { getCanvasSize } from "~/utils";
 
 export class GameScene extends Phaser.Scene {
@@ -26,5 +27,10 @@ export class GameScene extends Phaser.Scene {
     new Maat(this, 360, POSITION.CHARACTER_BASELINE_Y).setDepth(
       DEPTH.CHARACTER,
     );
+    new CardDeckGroup(
+      this,
+      SIZE.CARD[0] / 2 + 96,
+      canvasHeight / 2 - SIZE.CARD[1] / 2 - 20,
+    ).setDepth(DEPTH.CARD_DECK);
   }
 }

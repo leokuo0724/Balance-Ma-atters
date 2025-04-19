@@ -49,6 +49,13 @@ export class PreloadScene extends Phaser.Scene {
       6,
       COLOR_KEY.BROWN_9,
     );
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.CARD_DECK,
+      ...SIZE.CARD,
+      8,
+      COLOR_KEY.BROWN_4,
+    );
   }
 
   create() {
