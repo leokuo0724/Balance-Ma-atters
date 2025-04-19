@@ -30,7 +30,7 @@ export class GameScene extends Phaser.Scene {
     new CardDeckGroup(
       this,
       SIZE.CARD[0] / 2 + 96,
-      canvasHeight / 2 - SIZE.CARD[1] / 2 - 20,
+      canvasHeight / 2 - SIZE.CARD[1] / 2 - 12,
     ).setDepth(DEPTH.CARD_DECK);
   }
 }

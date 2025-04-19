@@ -31,6 +31,27 @@
 					}
 				},
 				{
+					"filename": "card-top.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 141,
+						"h": 170
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 141,
+						"h": 170
+					},
+					"frame": {
+						"x": 144,
+						"y": 1,
+						"w": 141,
+						"h": 170
+					}
+				},
+				{
 					"filename": "balanced-display-box.png",
 					"rotated": false,
 					"trimmed": false,
@@ -91,27 +112,6 @@
 						"y": 239,
 						"w": 164,
 						"h": 10
-					}
-				},
-				{
-					"filename": "card-top.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 141,
-						"h": 170
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 141,
-						"h": 170
-					},
-					"frame": {
-						"x": 144,
-						"y": 1,
-						"w": 141,
-						"h": 170
 					}
 				},
 				{
@@ -220,6 +220,27 @@
 					}
 				},
 				{
+					"filename": "shield-icon.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 36
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 36
+					},
+					"frame": {
+						"x": 237,
+						"y": 173,
+						"w": 30,
+						"h": 36
+					}
+				},
+				{
 					"filename": "libra-yellow.png",
 					"rotated": false,
 					"trimmed": false,
@@ -234,8 +255,8 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 237,
-						"y": 173,
+						"x": 239,
+						"y": 211,
 						"w": 22,
 						"h": 22
 					}
@@ -255,8 +276,8 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 239,
-						"y": 197,
+						"x": 263,
+						"y": 211,
 						"w": 18,
 						"h": 22
 					}
@@ -267,6 +288,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:958245c76ddf3fad2b2bc0a4cfe0d65b:e998c51a3c3402af4f90e8ac7f40bbb3:531d510bb7e47c5a7810ed876d840ed4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:7a8340b6948aaaf96b5e84f5a5606c6a:bcc49865f76bac6af9bfe6a6ba495445:531d510bb7e47c5a7810ed876d840ed4$"
 	}
 }

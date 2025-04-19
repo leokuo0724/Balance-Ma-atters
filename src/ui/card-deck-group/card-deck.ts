@@ -1,4 +1,5 @@
 import { TEXTURE_KEY } from "~/constants";
+import { EBalanceType } from "~/type";
 
 import { Card } from "../card/card";
 
@@ -29,6 +30,22 @@ export class CardDeck extends Phaser.GameObjects.Container {
       this.scene,
       this._worldX + this.x - FLOATING_SPACE,
       this._worldY + this.y - FLOATING_SPACE,
+      {
+        damage: 1,
+        shield: 0,
+        title: "Fist",
+        description: "A fist for justice",
+        balances: [
+          {
+            type: EBalanceType.PHY,
+            value: 1,
+          },
+          {
+            type: EBalanceType.ATK,
+            value: 1,
+          },
+        ],
+      },
     );
   }
 }

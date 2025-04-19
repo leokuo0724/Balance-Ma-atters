@@ -15,6 +15,7 @@ export const TEXTURE_KEY = {
   BLOOD_BAR_BOX: "blood-bar-box.png",
   CARD_BG: "card-bg.png",
   CARD_TOP: "card-top.png",
+  SHIELD_ICON: "shield-icon.png",
 
   SMALL_LIBRA_SET_BG: "small-libra-set-bg",
   SMALL_LIBRA_SET_BG_2: "small-libra-set-bg-2",
