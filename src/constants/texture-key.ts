@@ -17,4 +17,8 @@ export const TEXTURE_KEY = {
   RULER_INDICATOR_BLUE: "ruler-indicator-blue",
   RULER_INDICATOR_RED: "ruler-indicator-red",
   RULER_INDICATOR_GREEN: "ruler-indicator-green",
+
+  LARGE_LIBRA_INDICATOR_BG: "large-libra-indicator-bg",
+  LARGE_LIBRA_BOX_BG: "large-libra-box-bg",
+  LARGE_LIBRA_BOX_BG_2: "large-libra-box-bg-2",
 };

@@ -8,8 +8,8 @@ const unitWidth = adjustedIndicatorWidth / 4 / 2;
 
 export class SmallLibraSet extends Phaser.GameObjects.Container {
   // Props
-  private value = 0;
-  private locked = true;
+  private _value = 0;
+  private _locked = true;
 
   // UI
   private _indicator: Phaser.GameObjects.Image;
@@ -60,7 +60,7 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
       14,
       TEXTURE_KEY.RULER_INDICATOR_YELLOW,
     );
-    this._lockCover = new LockCover(scene, 0, 0).setVisible(this.locked);
+    this._lockCover = new LockCover(scene, 0, 0).setVisible(this._locked);
 
     this.add([
       bg,
@@ -77,8 +77,8 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
   }
 
   public async unlock() {
-    if (!this.locked) return;
-    this.locked = false;
+    if (!this._locked) return;
+    this._locked = false;
     await tweensAsync(this.scene, {
       targets: this._lockCover,
       alpha: 0,
@@ -89,7 +89,7 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
   }
 
   public async updateValue(value: number) {
-    if (this.value === value) return;
+    if (this._value === value) return;
     const commonConfig = {
       duration: 800,
       ease: Phaser.Math.Easing.Bounce.Out,
@@ -107,6 +107,7 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
         ...commonConfig,
       }),
     ]);
+    this._value = value;
   }
 }
 

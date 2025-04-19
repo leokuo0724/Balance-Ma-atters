@@ -12,6 +12,20 @@ export const tweensAsync = (
   });
 };
 
+export const tweensCounterAsync = (
+  scene: Phaser.Scene,
+  config: Phaser.Types.Tweens.NumberTweenBuilderConfig,
+) => {
+  return new Promise<void>((resolve) => {
+    scene.tweens.addCounter({
+      ...config,
+      onComplete: () => {
+        resolve();
+      },
+    });
+  });
+};
+
 export const delayedCallAsync = (scene: Phaser.Scene, delay: number) => {
   return new Promise<void>((resolve) => {
     scene.time.delayedCall(delay, () => {

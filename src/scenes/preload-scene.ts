@@ -5,6 +5,7 @@ import {
   COLOR_KEY,
   SCENE_KEY,
   SIZE,
+  TColorKey,
   TEXTURE_KEY,
 } from "~/constants";
 import { hexToDecimal } from "~/utils";
@@ -24,6 +25,28 @@ export class PreloadScene extends Phaser.Scene {
     this._drawRulerIndicator(graphics, TEXTURE_KEY.RULER_INDICATOR_BLUE);
     this._drawRulerIndicator(graphics, TEXTURE_KEY.RULER_INDICATOR_RED);
     this._drawRulerIndicator(graphics, TEXTURE_KEY.RULER_INDICATOR_GREEN);
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.LARGE_LIBRA_INDICATOR_BG,
+      ...SIZE.LARGE_LIBRA_INDICATOR,
+      4,
+      COLOR_KEY.BEIGE_4,
+    );
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.LARGE_LIBRA_BOX_BG,
+      ...SIZE.LARGE_LIBRA_BOX,
+      8,
+      COLOR_KEY.BROWN_8,
+    );
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.LARGE_LIBRA_BOX_BG_2,
+      44,
+      42,
+      6,
+      COLOR_KEY.BROWN_9,
+    );
   }
 
   create() {
@@ -64,6 +87,21 @@ export class PreloadScene extends Phaser.Scene {
     graphics
       .fillStyle(hexToDecimal(color), 1)
       .fillRoundedRect(0, 0, width, height, 2);
+    graphics.generateTexture(key, width, height);
+  }
+
+  private _drawRoundedRect(
+    graphics: Phaser.GameObjects.Graphics,
+    key: string,
+    width: number,
+    height: number,
+    radius: number,
+    color: TColorKey,
+  ) {
+    graphics.clear();
+    graphics
+      .fillStyle(hexToDecimal(color), 1)
+      .fillRoundedRect(0, 0, width, height, radius);
     graphics.generateTexture(key, width, height);
   }
 }
