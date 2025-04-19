@@ -1,4 +1,5 @@
 import { SIZE } from "~/constants";
+import { GameManager } from "~/manager";
 import { EBalanceSetType } from "~/type";
 
 import { SmallLibraSet } from "./small-libra-set";
@@ -8,6 +9,7 @@ export class SmallLibraGroup extends Phaser.GameObjects.Container {
     super(scene, x, y);
     scene.add.existing(this);
 
+    const gm = GameManager.getInstance();
     const [_, height] = SIZE.SMALL_LIBRA_SET;
     const PADDING_Y = 8;
     [
@@ -23,6 +25,7 @@ export class SmallLibraGroup extends Phaser.GameObjects.Container {
         type,
       );
       this.add(libraSet);
+      gm.setupBalanceSet(type, libraSet);
     });
   }
 }

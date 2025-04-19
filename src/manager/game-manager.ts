@@ -1,7 +1,9 @@
 import { Maat } from "~/characters";
 import { EVENT_KEY } from "~/constants";
-import { Card } from "~/ui";
+import { EBalanceSetType } from "~/type";
+import { Card, LargeLibraGroup } from "~/ui";
 import { CardDeck } from "~/ui/card-deck-group/card-deck";
+import { SmallLibraSet } from "~/ui/small-libra-group/small-libra-set";
 import { shuffleArray } from "~/utils/math.utility";
 
 const DEFAULT_AVAILABLE_CARD_IDS = [
@@ -31,6 +33,15 @@ export class GameManager {
   public cardDecks: CardDeck[] = [];
   public maat: Maat | null = null;
 
+  // balance_set
+  public largeLibraGroup: LargeLibraGroup | null = null;
+  public balanceSetMap: Record<EBalanceSetType, SmallLibraSet | null> = {
+    [EBalanceSetType.PHY_MAG]: null,
+    [EBalanceSetType.DEF_ATK]: null,
+    [EBalanceSetType.SHT_LNG]: null,
+    [EBalanceSetType.DUT_FIR]: null,
+  };
+
   private static instance: GameManager;
   private constructor() {}
   static getInstance(): GameManager {
@@ -40,6 +51,7 @@ export class GameManager {
     return GameManager.instance;
   }
 
+  // Initialize
   public setupMaat(maat: Maat) {
     this.maat = maat;
     this.maat.updateBloodBar(
@@ -48,6 +60,12 @@ export class GameManager {
       DEFAULT_MAAT_DATA.BLOOD,
     );
     this.maat.updateShield(DEFAULT_MAAT_DATA.SHIELD);
+  }
+  public setupBalanceSet(type: EBalanceSetType, set: SmallLibraSet) {
+    this.balanceSetMap[type] = set;
+  }
+  public setupLargeLibraGroup(libra: LargeLibraGroup) {
+    this.largeLibraGroup = libra;
   }
 
   public addCardDecks(deck: CardDeck) {

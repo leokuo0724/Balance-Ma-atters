@@ -24,7 +24,11 @@ export class GameScene extends Phaser.Scene {
       libraSetHeight / 2 + MARGIN_Y,
     ).setDepth(DEPTH.LIBRA_SET);
 
-    new LargeLibraGroup(this, canvasWidth / 2, 72).setDepth(DEPTH.LIBRA_SET);
+    const largeLibraGroup = new LargeLibraGroup(
+      this,
+      canvasWidth / 2,
+      72,
+    ).setDepth(DEPTH.LIBRA_SET);
     const maat = new Maat(this, 360, POSITION.CHARACTER_BASELINE_Y).setDepth(
       DEPTH.CHARACTER,
     );
@@ -41,5 +45,6 @@ export class GameScene extends Phaser.Scene {
     gm.shuffleAvailableCardIds(this);
     gm.drawCards(this);
     gm.setupMaat(maat);
+    gm.setupLargeLibraGroup(largeLibraGroup);
   }
 }

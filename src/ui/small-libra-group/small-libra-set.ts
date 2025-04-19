@@ -1,5 +1,5 @@
 import { ATLAS_KEY, COLOR_KEY, FONT_KEY, SIZE, TEXTURE_KEY } from "~/constants";
-import { EBalanceSetType, EBalanceType } from "~/type";
+import { EBalanceSetType } from "~/type";
 import {
   getBalanceLeftRightSet,
   getBalanceLongText,
