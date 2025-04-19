@@ -8,13 +8,15 @@ export class Maat extends Phaser.GameObjects.Container implements IBlood {
   public totalBlood: number = 0;
   public currentBlood: number = 0;
 
+  private _maatSprite: MaatSprite;
+
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y);
     scene.add.existing(this);
 
-    const maatSprite = new MaatSprite(scene, 0, 0);
+    this._maatSprite = new MaatSprite(scene, 0, 0);
     this.bloodBar = new BloodBar(scene, 0, 14);
-    this.add([maatSprite, this.bloodBar]);
+    this.add([this._maatSprite, this.bloodBar]);
   }
 
   public updateBloodBar(from: number, to: number, total: number): void {

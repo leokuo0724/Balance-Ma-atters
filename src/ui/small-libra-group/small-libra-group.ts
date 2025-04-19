@@ -11,6 +11,11 @@ export class SmallLibraGroup extends Phaser.GameObjects.Container {
     const PADDING_Y = 8;
     const phyMagLibraSet = new SmallLibraSet(scene, 0, 0);
     const atkDefLibraSet = new SmallLibraSet(scene, 0, height + PADDING_Y);
-    this.add([phyMagLibraSet, atkDefLibraSet]);
+    this.add([
+      phyMagLibraSet,
+      atkDefLibraSet,
+      new SmallLibraSet(scene, 0, height * 2 + PADDING_Y * 2),
+      new SmallLibraSet(scene, 0, height * 3 + PADDING_Y * 3),
+    ]);
   }
 }
