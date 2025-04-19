@@ -4,8 +4,7 @@ import { BloodBar } from "~/ui";
 import { ShieldGroup } from "~/ui/shield-group";
 import { hexToDecimal } from "~/utils";
 
-import { IBlood, ITarget } from "../interfaces";
-import { IShield } from "../interfaces/IShield";
+import { IBlood, IShield, ITarget } from "../interfaces";
 import { MaatSprite } from "./maat-sprite";
 
 export class Maat
