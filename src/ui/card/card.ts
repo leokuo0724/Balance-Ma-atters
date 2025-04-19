@@ -167,7 +167,6 @@ export class Card extends Phaser.GameObjects.Container {
     this.scene.input.on("drag", this._onDrag);
 
     this._onDragEnd = (pointer: Phaser.Input.Pointer, gameObject: any) => {
-      console.log("end");
       if (gameObject !== this) return;
       this._startDragging = false;
       if (this._dragTarget) {

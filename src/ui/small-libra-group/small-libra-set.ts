@@ -189,10 +189,6 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
       -MAX_SMALL_LIBRA_STEPS,
       MAX_SMALL_LIBRA_STEPS,
     );
-    if (this.balanceSetType === EBalanceSetType.DEF_ATK) {
-      console.log(this._value);
-    }
-
     await Promise.all([
       tweensAsync(this.scene, {
         targets: this._bar,
