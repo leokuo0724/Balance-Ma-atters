@@ -1,0 +1,110 @@
+{
+  "o_00000": {
+    "id": "o_00000",
+    "name": "Jackal",
+    "blood": 10,
+    "moves": [
+      {
+        "action": "damage",
+        "value": 1
+      },
+      null,
+      {
+        "action": "damage",
+        "value": 2
+      },
+      null
+    ]
+  },
+  "o_00001": {
+    "id": "o_00001",
+    "name": "Desert Tortoise",
+    "blood": 20,
+    "moves": [
+      {
+        "action": "shield",
+        "value": 5
+      },
+      null,
+      {
+        "action": "damage",
+        "value": 5
+      },
+      null
+    ]
+  },
+  "o_00002": {
+    "id": "o_00002",
+    "name": "R\u00fcppell's fox",
+    "blood": 15,
+    "moves": [
+      null,
+      {
+        "action": "heal",
+        "value": 2
+      },
+      null,
+      {
+        "action": "damage",
+        "value": 5
+      }
+    ]
+  },
+  "o_00003": {
+    "id": "o_00003",
+    "name": "Meerkat",
+    "blood": 30,
+    "moves": [
+      {
+        "action": "random_balance",
+        "value": 1
+      },
+      {
+        "action": "random_balance",
+        "value": 1
+      },
+      {
+        "action": "random_balance",
+        "value": 1
+      },
+      {
+        "action": "random_balance",
+        "value": 1
+      }
+    ]
+  },
+  "o_00004": {
+    "id": "o_00004",
+    "name": "Snake",
+    "blood": 20,
+    "moves": [
+      {
+        "action": "damage",
+        "value": 3
+      },
+      null,
+      {
+        "action": "damage",
+        "value": 3
+      },
+      null
+    ]
+  },
+  "o_00005": {
+    "id": "o_00005",
+    "name": "Apophis",
+    "blood": 50,
+    "moves": [
+      null,
+      {
+        "action": "summon",
+        "value": 0
+      },
+      null,
+      {
+        "action": "venom",
+        "value": 3
+      }
+    ]
+  }
+}
