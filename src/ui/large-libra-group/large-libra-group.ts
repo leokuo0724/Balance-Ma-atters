@@ -1,7 +1,12 @@
 import { COLOR_KEY, EVENT_KEY, FONT_KEY, SIZE, TEXTURE_KEY } from "~/constants";
 import { GameManager } from "~/manager";
 import { TCardBalance } from "~/type";
-import { getIsRightLibraValue, tweensAsync, tweensCounterAsync } from "~/utils";
+import {
+  getIsRightLibraValue,
+  isNil,
+  tweensAsync,
+  tweensCounterAsync,
+} from "~/utils";
 
 import {
   BalancedDisplay,
@@ -12,6 +17,7 @@ import { LargeLibraIndicator } from "./large-libra-indicator";
 export class LargeLibraGroup extends Phaser.GameObjects.Container {
   private _jackpotValue = 0;
   private _balanceValue = 0;
+  private _tempBalanceValue: number | null = null;
 
   private _displayValue: Phaser.GameObjects.Text;
   private _largeLibraIndicator: LargeLibraIndicator;
@@ -50,10 +56,10 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
     this.scene.events.on(
       EVENT_KEY.ON_CARD_DRAG,
       async ({ balances }: { balances: TCardBalance[] }) => {
-        const currentValue = this._balanceValue;
+        this._tempBalanceValue = this._balanceValue;
         const diff = this._gatherBalanceDiff(balances);
         await this.updateBalanceValue(
-          currentValue + diff,
+          this._balanceValue + diff,
           gm.getHalfTotalLibraValue(),
         );
       },
@@ -61,12 +67,12 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
     this.scene.events.on(
       EVENT_KEY.ON_CARD_DRAG_CANCEL,
       async ({ balances }: { balances: TCardBalance[] }) => {
-        const currentValue = this._balanceValue;
-        const diff = this._gatherBalanceDiff(balances);
+        if (isNil(this._tempBalanceValue)) return;
         await this.updateBalanceValue(
-          currentValue - diff,
+          this._tempBalanceValue,
           gm.getHalfTotalLibraValue(),
         );
+        this._tempBalanceValue = null;
       },
     );
   }
@@ -87,7 +93,8 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
   }
 
   public async updateBalanceValue(value: number, halfTotal: number) {
-    this._balanceValue = value;
+    // TODO: Imbalance punishment
+    this._balanceValue = Phaser.Math.Clamp(value, -halfTotal, halfTotal);
     this._balancedDisplay.updateVisibility(this._balanceValue === 0);
     const rect = await this._largeLibraIndicator.updateDisplay(
       value,

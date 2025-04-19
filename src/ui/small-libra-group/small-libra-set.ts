@@ -13,6 +13,7 @@ import {
   getBalanceLongText,
   getBalanceSetColor,
   hexToDecimal,
+  isNil,
   tweensAsync,
 } from "~/utils";
 
@@ -39,6 +40,7 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
   private _value = 0;
   public locked = false;
   public balanceSetType: EBalanceSetType;
+  private _tempValue: number | null = null;
 
   // UI
   private _indicator: Phaser.GameObjects.Image;
@@ -125,18 +127,17 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
       EVENT_KEY.ON_CARD_DRAG,
       ({ balances }: { balances: TCardBalance[] }) => {
         if (this.locked) return;
-        const currentValue = this._value;
+        this._tempValue = this._value;
         const diff = this._gatherBalanceDiff(balances);
-        this.updateValue(currentValue + diff);
+        this.updateValue(this._value + diff);
       },
     );
     this.scene.events.on(
       EVENT_KEY.ON_CARD_DRAG_CANCEL,
       ({ balances }: { balances: TCardBalance[] }) => {
-        if (this.locked) return;
-        const currentValue = this._value;
-        const diff = this._gatherBalanceDiff(balances);
-        this.updateValue(currentValue - diff);
+        if (this.locked || isNil(this._tempValue)) return;
+        this.updateValue(this._tempValue);
+        this._tempValue = null;
       },
     );
   }
@@ -176,7 +177,12 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
       ease: Phaser.Math.Easing.Bounce.Out,
     };
 
-    this._value = value;
+    // TODO: Imbalance punishment
+    this._value = Phaser.Math.Clamp(
+      value,
+      -MAX_SMALL_LIBRA_STEPS,
+      MAX_SMALL_LIBRA_STEPS,
+    );
     await Promise.all([
       tweensAsync(this.scene, {
         targets: this._bar,
