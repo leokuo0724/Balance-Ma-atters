@@ -1,4 +1,5 @@
 import { COLOR_KEY } from "~/constants";
+import { TCardMetadata } from "~/type";
 import { BloodBar } from "~/ui";
 import { ShieldGroup } from "~/ui/shield-group";
 import { hexToDecimal } from "~/utils";
@@ -42,12 +43,22 @@ export class Maat
   public updateShield(value: number): void {
     this.shieldGroup.updateValue(value);
     this.currentShield = value;
-    this.shieldGroup.setVisible(value > 0);
   }
 
   public markAsCovered(isCovered: boolean) {
     this._maatSprite.setTint(
       isCovered ? hexToDecimal(COLOR_KEY.RED_6) : 0xffffff,
     );
+  }
+
+  public applyCardEffect(card: TCardMetadata) {
+    // damage
+    if (card.damage && card.damage > 0) {
+    }
+    // shield
+    if (card.shield > 0) {
+      this.shieldGroup.updateValue(card.shield);
+      this.currentShield += card.shield;
+    }
   }
 }

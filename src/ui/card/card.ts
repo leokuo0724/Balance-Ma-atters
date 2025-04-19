@@ -170,7 +170,7 @@ export class Card extends Phaser.GameObjects.Container {
     this._onDragEnd = (pointer: Phaser.Input.Pointer, gameObject: any) => {
       if (gameObject !== this) return;
       if (this._dragTarget) {
-        console.log(this._dragTarget);
+        this._dragTarget.applyCardEffect(this.metadata);
         this._dragTarget.markAsCovered(false);
         this._dragTarget = null;
         this.destroy(true);

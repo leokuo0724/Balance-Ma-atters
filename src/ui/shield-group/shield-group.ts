@@ -27,5 +27,6 @@ export class ShieldGroup extends Phaser.GameObjects.Container {
 
   public updateValue(value: number) {
     this._displayValue.setText(value.toString());
+    this.setVisible(value > 0);
   }
 }
