@@ -4,3 +4,4 @@ export * from "./background";
 export * from "./blood-bar";
 export * from "./card";
 export * from "./card-deck-group";
+export * from "./shield-group";

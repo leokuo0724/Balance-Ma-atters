@@ -48,6 +48,9 @@ export class GameManager {
     [EBalanceSetType.DUT_FIR]: null,
   };
 
+  // game info
+  public level: number = 0;
+
   private static instance: GameManager;
   private constructor() {}
   static getInstance(): GameManager {

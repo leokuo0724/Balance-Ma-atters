@@ -1,12 +1,9 @@
-import { COLOR_KEY } from "~/constants";
 import { TCardMetadata } from "~/type";
 import { BloodBar, ShieldGroup } from "~/ui";
-import { hexToDecimal } from "~/utils";
 
 import { IBlood, IShield, ITarget } from "../interfaces";
-import { MaatSprite } from "./maat-sprite";
 
-export class Maat
+export class Opponent
   extends Phaser.GameObjects.Container
   implements IBlood, IShield, ITarget
 {
@@ -17,18 +14,15 @@ export class Maat
   public shieldGroup: ShieldGroup;
   public currentShield: number = 0;
 
-  public belong: "self" | "opponent" = "self";
-
-  private _maatSprite: MaatSprite;
+  public belong: "self" | "opponent" = "opponent";
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y);
     scene.add.existing(this);
 
-    this._maatSprite = new MaatSprite(scene, 0, 0);
     this.bloodBar = new BloodBar(scene, 0, 14);
-    this.shieldGroup = new ShieldGroup(scene, 84, 14);
-    this.add([this._maatSprite, this.bloodBar, this.shieldGroup]);
+    this.shieldGroup = new ShieldGroup(scene, -84, 14);
+    this.add([this.bloodBar, this.shieldGroup]);
     this.setSize(120, 180); // TODO: modify size
   }
 
@@ -43,17 +37,30 @@ export class Maat
     this.currentShield = value;
   }
 
-  public markAsCovered(isCovered: boolean) {
-    this._maatSprite.setTint(
-      isCovered ? hexToDecimal(COLOR_KEY.RED_6) : 0xffffff,
-    );
-  }
+  public markAsCovered(isCovered: boolean) {}
 
   public applyCardEffect(card: TCardMetadata) {
-    // should only apply shield
-    if (card.shield > 0) {
-      this.shieldGroup.updateValue(card.shield);
-      this.currentShield += card.shield;
+    if (card.damage && card.damage > 0) {
+      // TODO: check balanced
+      // TODO: check effects
+
+      // check if shield is available
+      if (this.currentShield > 0) {
+        this.currentShield -= card.damage;
+        this.shieldGroup.updateValue(this.currentShield);
+        if (this.currentShield < 0) {
+          this.currentBlood += this.currentShield; // currentBlood will be negative
+          this.shieldGroup.updateValue(0);
+          this.currentShield = 0;
+        }
+      } else {
+        this.currentBlood -= card.damage;
+        this.bloodBar.updateBlood(
+          this.currentBlood + card.damage,
+          this.currentBlood,
+          this.totalBlood,
+        );
+      }
     }
   }
 }
