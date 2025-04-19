@@ -1,0 +1,525 @@
+{
+  "c_00000": {
+    "id": "c_00000",
+    "title": "Fist",
+    "description": "A perfectly punch.\nRight in the face.",
+    "damage": 2,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "PHY",
+        "value": 1
+      },
+      {
+        "type": "ATK",
+        "value": 1
+      },
+      {
+        "type": "SHT",
+        "value": 1
+      }
+    ],
+    "effects": [],
+    "target": "ops"
+  },
+  "c_00001": {
+    "id": "c_00001",
+    "title": "Huge Fist",
+    "description": "Big, heavy punch.\nRight in the face.",
+    "damage": 3,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "PHY",
+        "value": 2
+      },
+      {
+        "type": "ATK",
+        "value": 1
+      },
+      {
+        "type": "SHT",
+        "value": 1
+      }
+    ],
+    "effects": [],
+    "target": "ops"
+  },
+  "c_00002": {
+    "id": "c_00002",
+    "title": "Dust Fist",
+    "description": "Damages and applies\nQuicksand.",
+    "damage": 1,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "MAG",
+        "value": 1
+      },
+      {
+        "type": "ATK",
+        "value": 1
+      },
+      {
+        "type": "SHT",
+        "value": 1
+      },
+      {
+        "type": "DUT",
+        "value": 2
+      }
+    ],
+    "effects": [
+      {
+        "type": "quicksand",
+        "value": 1
+      }
+    ],
+    "target": "ops"
+  },
+  "c_00003": {
+    "id": "c_00003",
+    "title": "Fire Fist",
+    "description": "Damages and ignites\nthe enemy.",
+    "damage": 1,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "MAG",
+        "value": 1
+      },
+      {
+        "type": "ATK",
+        "value": 1
+      },
+      {
+        "type": "SHT",
+        "value": 1
+      },
+      {
+        "type": "FIR",
+        "value": 1
+      }
+    ],
+    "effects": [
+      {
+        "type": "firing",
+        "value": 1
+      }
+    ],
+    "target": "ops"
+  },
+  "c_00004": {
+    "id": "c_00004",
+    "title": "Feather Power",
+    "description": "Basic magical attack.",
+    "damage": 2,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "MAG",
+        "value": 1
+      },
+      {
+        "type": "ATK",
+        "value": 1
+      },
+      {
+        "type": "LNG",
+        "value": 1
+      }
+    ],
+    "effects": [],
+    "target": "ops"
+  },
+  "c_00005": {
+    "id": "c_00005",
+    "title": "Dust Power",
+    "description": "Applies Quicksand\nto the enemy.",
+    "damage": 1,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "MAG",
+        "value": 1
+      },
+      {
+        "type": "ATK",
+        "value": 1
+      },
+      {
+        "type": "LNG",
+        "value": 2
+      },
+      {
+        "type": "DUT",
+        "value": 1
+      }
+    ],
+    "effects": [
+      {
+        "type": "quicksand",
+        "value": 1
+      }
+    ],
+    "target": "ops"
+  },
+  "c_00006": {
+    "id": "c_00006",
+    "title": "Fire Power",
+    "description": "Deals fire damage\nand ignites.",
+    "damage": 1,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "MAG",
+        "value": 1
+      },
+      {
+        "type": "ATK",
+        "value": 1
+      },
+      {
+        "type": "LNG",
+        "value": 2
+      },
+      {
+        "type": "FIR",
+        "value": 1
+      }
+    ],
+    "effects": [
+      {
+        "type": "firing",
+        "value": 1
+      }
+    ],
+    "target": "ops"
+  },
+  "c_00007": {
+    "id": "c_00007",
+    "title": "Leeching Blade",
+    "description": "Heals 50% of\ndamage dealt.",
+    "damage": 2,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "PHY",
+        "value": 2
+      },
+      {
+        "type": "ATK",
+        "value": 2
+      },
+      {
+        "type": "SHT",
+        "value": 1
+      }
+    ],
+    "effects": [
+      {
+        "type": "absorb",
+        "value": 1
+      }
+    ],
+    "target": "ops"
+  },
+  "c_00008": {
+    "id": "c_00008",
+    "title": "Libra Strike (R)",
+    "description": "Deals damage\nbased on libra right value.",
+    "damage": null,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "PHY",
+        "value": 1
+      },
+      {
+        "type": "ATK",
+        "value": 2
+      },
+      {
+        "type": "SHT",
+        "value": 1
+      }
+    ],
+    "effects": [
+      {
+        "type": "right_libra_attack",
+        "value": 1
+      }
+    ],
+    "target": "ops"
+  },
+  "c_00009": {
+    "id": "c_00009",
+    "title": "Shield",
+    "description": "Applies shield.",
+    "damage": null,
+    "shield": 2,
+    "balances": [
+      {
+        "type": "PHY",
+        "value": 1
+      },
+      {
+        "type": "DEF",
+        "value": 1
+      }
+    ],
+    "effects": [],
+    "target": "self"
+  },
+  "c_00010": {
+    "id": "c_00010",
+    "title": "Steel Shield",
+    "description": "Applies huge shield.",
+    "damage": null,
+    "shield": 4,
+    "balances": [
+      {
+        "type": "PHY",
+        "value": 2
+      },
+      {
+        "type": "DEF",
+        "value": 3
+      }
+    ],
+    "effects": [],
+    "target": "self"
+  },
+  "c_00011": {
+    "id": "c_00011",
+    "title": "Hedgehog Shield",
+    "description": "Applies shield.\nReflects damage to attacker.",
+    "damage": null,
+    "shield": 2,
+    "balances": [
+      {
+        "type": "PHY",
+        "value": 2
+      },
+      {
+        "type": "DEF",
+        "value": 3
+      }
+    ],
+    "effects": [
+      {
+        "type": "counter_attack",
+        "value": 1
+      }
+    ],
+    "target": "self"
+  },
+  "c_00012": {
+    "id": "c_00012",
+    "title": "Dust Shelter",
+    "description": "Applies Quicksand\non hit.",
+    "damage": null,
+    "shield": 2,
+    "balances": [
+      {
+        "type": "MAG",
+        "value": 1
+      },
+      {
+        "type": "DEF",
+        "value": 3
+      },
+      {
+        "type": "DUT",
+        "value": 1
+      }
+    ],
+    "effects": [
+      {
+        "type": "counter_quicksand",
+        "value": 1
+      }
+    ],
+    "target": "self"
+  },
+  "c_00013": {
+    "id": "c_00013",
+    "title": "Fire Shelter",
+    "description": "Ignites attacker on hit.",
+    "damage": null,
+    "shield": 2,
+    "balances": [
+      {
+        "type": "MAG",
+        "value": 1
+      },
+      {
+        "type": "DEF",
+        "value": 3
+      },
+      {
+        "type": "FIR",
+        "value": 1
+      }
+    ],
+    "effects": [
+      {
+        "type": "counter_firing",
+        "value": 1
+      }
+    ],
+    "target": "self"
+  },
+  "c_00014": {
+    "id": "c_00014",
+    "title": "Shield Throw",
+    "description": "Consumes shield to\ndeal damage.",
+    "damage": null,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "PHY",
+        "value": 2
+      },
+      {
+        "type": "ATK",
+        "value": 1
+      },
+      {
+        "type": "LNG",
+        "value": 3
+      }
+    ],
+    "effects": [
+      {
+        "type": "shield_attack",
+        "value": 1
+      }
+    ],
+    "target": "ops"
+  },
+  "c_00015": {
+    "id": "c_00015",
+    "title": "Libra Shield (L)",
+    "description": "Applies shield\nbased on libra left value.",
+    "damage": null,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "MAG",
+        "value": 1
+      },
+      {
+        "type": "DEF",
+        "value": 2
+      },
+      {
+        "type": "SHT",
+        "value": 1
+      }
+    ],
+    "effects": [
+      {
+        "type": "left_libra_shield",
+        "value": 1
+      }
+    ],
+    "target": "ops"
+  },
+  "c_00016": {
+    "id": "c_00016",
+    "title": "Dust Guard",
+    "description": "Applies 50%\nchage to dodge.",
+    "damage": null,
+    "shield": 2,
+    "balances": [
+      {
+        "type": "MAG",
+        "value": 1
+      },
+      {
+        "type": "DUT",
+        "value": 1
+      }
+    ],
+    "effects": [
+      {
+        "type": "dodge",
+        "value": 1
+      }
+    ],
+    "target": "self"
+  },
+  "c_00017": {
+    "id": "c_00017",
+    "title": "Dust Disruption",
+    "description": "Enemy deals\n50% less damage.",
+    "damage": null,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "MAG",
+        "value": 1
+      },
+      {
+        "type": "DUT",
+        "value": 1
+      }
+    ],
+    "effects": [
+      {
+        "type": "weaken",
+        "value": 1
+      }
+    ],
+    "target": "ops"
+  },
+  "c_00018": {
+    "id": "c_00018",
+    "title": "Rageflame",
+    "description": "Next hit must be\na critical strike.",
+    "damage": null,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "ATK",
+        "value": 1
+      },
+      {
+        "type": "FIR",
+        "value": 1
+      }
+    ],
+    "effects": [
+      {
+        "type": "next_critical",
+        "value": 1
+      }
+    ],
+    "target": "self"
+  },
+  "c_00019": {
+    "id": "c_00019",
+    "title": "Flame of Clarity",
+    "description": "Removes all effects.",
+    "damage": null,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "ATK",
+        "value": 1
+      },
+      {
+        "type": "FIR",
+        "value": 1
+      }
+    ],
+    "effects": [
+      {
+        "type": "purify",
+        "value": 1
+      }
+    ],
+    "target": "self"
+  }
+}

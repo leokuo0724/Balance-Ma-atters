@@ -30,30 +30,7 @@ export class CardDeck extends Phaser.GameObjects.Container {
       this.scene,
       this._worldX + this.x - FLOATING_SPACE,
       this._worldY + this.y - FLOATING_SPACE,
-      {
-        damage: 1,
-        shield: 0,
-        title: "Fist",
-        description: "A fist for justice",
-        balances: [
-          {
-            type: EBalanceType.PHY,
-            value: 1,
-          },
-          {
-            type: EBalanceType.ATK,
-            value: 1,
-          },
-          {
-            type: EBalanceType.LNG,
-            value: 1,
-          },
-          {
-            type: EBalanceType.DUT,
-            value: 2,
-          },
-        ],
-      },
+      "c_00001",
     );
   }
 }

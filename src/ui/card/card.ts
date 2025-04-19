@@ -6,6 +6,7 @@ import {
   SIZE,
   TEXTURE_KEY,
 } from "~/constants";
+import { WikiManager } from "~/manager";
 import { TCardMetadata } from "~/type";
 
 import { BalanceLabel } from "./balance-label";
@@ -15,17 +16,15 @@ export class Card extends Phaser.GameObjects.Container {
   private _origY: number;
   public metadata: TCardMetadata;
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    metadata: TCardMetadata, // FIXME: pass id to search data
-  ) {
+  constructor(scene: Phaser.Scene, x: number, y: number, id: string) {
     super(scene, x, y);
     scene.add.existing(this);
     this._origX = x;
     this._origY = y;
-    this.metadata = metadata;
+    // FIXME:
+
+    const wm = WikiManager.getInstance();
+    this.metadata = wm.queryCardData(id);
 
     const [cardWidth, cardHeight] = SIZE.CARD;
     const LEFT = -cardWidth / 2 + 8;
@@ -44,27 +43,32 @@ export class Card extends Phaser.GameObjects.Container {
       TEXTURE_KEY.CARD_TOP,
     );
     const titleLabel = scene.add
-      .text(LEFT, 32, metadata.title, {
+      .text(LEFT, 32, this.metadata.title, {
         fontFamily: FONT_KEY.JERSEY_25,
         fontSize: 18,
         color: COLOR_KEY.BEIGE_2,
         align: "left",
       })
       .setOrigin(0, 0.5);
-    const descriptionLabel = scene.add.text(LEFT, 44, metadata.description, {
-      fontFamily: FONT_KEY.JERSEY_25,
-      fontSize: 16,
-      color: COLOR_KEY.BEIGE_4,
-      align: "left",
-    });
-    const isShield = metadata.shield > 0;
+    const descriptionLabel = scene.add.text(
+      LEFT,
+      44,
+      this.metadata.description,
+      {
+        fontFamily: FONT_KEY.JERSEY_25,
+        fontSize: 16,
+        color: COLOR_KEY.BEIGE_4,
+        align: "left",
+      },
+    );
+    const isShield = this.metadata.shield > 0;
     const valueLabel = scene.add
       .text(
         LEFT + 12,
         TOP + 14,
         isShield
-          ? metadata.shield.toString()
-          : (metadata.damage?.toString() ?? "?"),
+          ? this.metadata.shield.toString()
+          : (this.metadata.damage?.toString() ?? "?"),
         {
           fontFamily: FONT_KEY.JERSEY_25,
           fontSize: 44,
@@ -75,7 +79,7 @@ export class Card extends Phaser.GameObjects.Container {
       .setOrigin(0.5);
 
     this.add([bg, cover, titleLabel, descriptionLabel, valueLabel]);
-    metadata.balances.forEach((balance, index) => {
+    this.metadata.balances.forEach((balance, index) => {
       const rowNum = Math.floor(index / 2);
       const colNum = index % 2;
       const balanceLabel = new BalanceLabel(
