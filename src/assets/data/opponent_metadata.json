@@ -84,7 +84,7 @@
       },
       null,
       {
-        "action": "damage",
+        "action": "venom",
         "value": 3
       },
       null
@@ -103,7 +103,7 @@
       null,
       {
         "action": "venom",
-        "value": 3
+        "value": 5
       }
     ]
   }

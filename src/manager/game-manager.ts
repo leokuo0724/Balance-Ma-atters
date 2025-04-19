@@ -24,6 +24,12 @@ const DEFAULT_MAAT_DATA = {
   BLOOD: 20,
   SHIELD: 0,
 };
+const LEVEL_OPPONENT_INFO = [
+  { opponentIds: ["o_00000", "o_00000", "o_00000"] },
+  { opponentIds: ["o_00001", "o_00002"] },
+  { opponentIds: ["o_00001", "o_00003"] },
+  { opponentIds: ["o_00004", "o_00004", "o_00005"] },
+];
 
 export class GameManager {
   public availableCardIds: string[] = DEFAULT_AVAILABLE_CARD_IDS;
