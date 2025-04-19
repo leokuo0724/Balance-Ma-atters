@@ -44,6 +44,14 @@ export class CardDeck extends Phaser.GameObjects.Container {
             type: EBalanceType.ATK,
             value: 1,
           },
+          {
+            type: EBalanceType.LNG,
+            value: 1,
+          },
+          {
+            type: EBalanceType.DUT,
+            value: 2,
+          },
         ],
       },
     );

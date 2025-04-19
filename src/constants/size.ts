@@ -3,4 +3,5 @@ export const SIZE = {
   LARGE_LIBRA_INDICATOR: [354, 12],
   LARGE_LIBRA_BOX: [52, 48],
   CARD: [140, 170],
+  LABEL: [42, 16],
 } as const;

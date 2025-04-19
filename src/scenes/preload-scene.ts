@@ -56,6 +56,34 @@ export class PreloadScene extends Phaser.Scene {
       8,
       COLOR_KEY.BROWN_4,
     );
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.LABEL_YELLOW,
+      ...SIZE.LABEL,
+      4,
+      COLOR_KEY.YELLOW_6,
+    );
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.LABEL_GREEN,
+      ...SIZE.LABEL,
+      4,
+      COLOR_KEY.GREEN_6,
+    );
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.LABEL_RED,
+      ...SIZE.LABEL,
+      4,
+      COLOR_KEY.RED_6,
+    );
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.LABEL_BLUE,
+      ...SIZE.LABEL,
+      4,
+      COLOR_KEY.BLUE_6,
+    );
   }
 
   create() {

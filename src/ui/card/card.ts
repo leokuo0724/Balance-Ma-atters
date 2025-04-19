@@ -8,6 +8,8 @@ import {
 } from "~/constants";
 import { TCardMetadata } from "~/type";
 
+import { BalanceLabel } from "./balance-label";
+
 export class Card extends Phaser.GameObjects.Container {
   private _origX: number;
   private _origY: number;
@@ -71,7 +73,20 @@ export class Card extends Phaser.GameObjects.Container {
         },
       )
       .setOrigin(0.5);
+
     this.add([bg, cover, titleLabel, descriptionLabel, valueLabel]);
+    metadata.balances.forEach((balance, index) => {
+      const rowNum = Math.floor(index / 2);
+      const colNum = index % 2;
+      const balanceLabel = new BalanceLabel(
+        scene,
+        LEFT + 54 + colNum * 48,
+        TOP + 8 + rowNum * 20,
+        balance.type,
+        balance.value,
+      );
+      this.add(balanceLabel);
+    });
     this.setSize(...SIZE.CARD).setDepth(DEPTH.CARD);
   }
 }
