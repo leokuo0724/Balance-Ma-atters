@@ -2,13 +2,17 @@ import { COLOR_KEY } from "~/constants";
 import { BloodBar } from "~/ui";
 import { hexToDecimal } from "~/utils";
 
-import { IBlood } from "../interfaces";
+import { IBelong, IBlood } from "../interfaces";
 import { MaatSprite } from "./maat-sprite";
 
-export class Maat extends Phaser.GameObjects.Container implements IBlood {
+export class Maat
+  extends Phaser.GameObjects.Container
+  implements IBlood, IBelong
+{
   public bloodBar: BloodBar;
   public totalBlood: number = 0;
   public currentBlood: number = 0;
+  public belong: "self" | "opponent" = "self";
 
   private _maatSprite: MaatSprite;
 

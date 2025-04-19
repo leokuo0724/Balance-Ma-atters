@@ -19,6 +19,18 @@ export class Card extends Phaser.GameObjects.Container {
 
   private _dragTarget: Phaser.GameObjects.Container | null = null;
 
+  private _onDrag:
+    | ((
+        pointer: Phaser.Input.Pointer,
+        gameObject: any,
+        dragX: number,
+        dragY: number,
+      ) => void)
+    | null = null;
+  private _onDragEnd:
+    | ((pointer: Phaser.Input.Pointer, gameObject: any) => void)
+    | null = null;
+
   constructor(scene: Phaser.Scene, x: number, y: number, id: string) {
     super(scene, x, y + 20);
     scene.add.existing(this);
@@ -121,51 +133,53 @@ export class Card extends Phaser.GameObjects.Container {
   }
 
   public _registerDragEvents() {
-    this.scene.input.on(
-      "drag",
-      (
-        pointer: Phaser.Input.Pointer,
-        gameObject: any,
-        dragX: number,
-        dragY: number,
-      ) => {
-        if (gameObject !== this) return;
+    this._onDrag = (
+      pointer: Phaser.Input.Pointer,
+      gameObject: any,
+      dragX: number,
+      dragY: number,
+    ) => {
+      if (gameObject !== this) return;
+      this.x = dragX;
+      this.y = dragY;
+      this.setDepth(DEPTH.DRAGGING_CARD);
 
-        this.x = dragX;
-        this.y = dragY;
-        this.setDepth(DEPTH.DRAGGING_CARD);
+      const gm = GameManager.getInstance();
+      const targets = [gm.maat!];
 
-        const gm = GameManager.getInstance();
-        const targets = [gm.maat!];
-
-        for (const target of targets) {
-          const isTargetCovered = Phaser.Geom.Intersects.RectangleToRectangle(
-            this.getBounds(),
-            target.getBounds(),
-          );
-          target.markAsCovered(isTargetCovered);
-          if (isTargetCovered) {
-            this._dragTarget = target;
-            break;
-          } else {
-            this._dragTarget = null;
-          }
-        }
-      },
-    );
-
-    this.scene.input.on(
-      "dragend",
-      (pointer: Phaser.Input.Pointer, gameObject: any) => {
-        if (gameObject !== this) return;
-        if (this._dragTarget) {
-          console.log(this._dragTarget);
+      for (const target of targets) {
+        const isTargetCovered = Phaser.Geom.Intersects.RectangleToRectangle(
+          this.getBounds(),
+          target.getBounds(),
+        );
+        target.markAsCovered(isTargetCovered);
+        if (isTargetCovered) {
+          this._dragTarget = target;
+          break;
         } else {
-          this.setDepth(DEPTH.CARD);
-          this.x = this._origX;
-          this.y = this._origY;
+          this._dragTarget = null;
         }
-      },
-    );
+      }
+    };
+    this.scene.input.on("drag", this._onDrag);
+
+    this._onDragEnd = (pointer: Phaser.Input.Pointer, gameObject: any) => {
+      if (gameObject !== this) return;
+      if (this._dragTarget) {
+        console.log(this._dragTarget);
+        this.destroy(true);
+      } else {
+        this.setDepth(DEPTH.CARD);
+        this.x = this._origX;
+        this.y = this._origY;
+      }
+    };
+    this.scene.input.on("dragend", this._onDragEnd);
+  }
+
+  public destroy(fromScene?: boolean): void {
+    if (this._onDrag) this.scene.input.off("drag", this._onDrag);
+    if (this._onDragEnd) this.scene.input.off("dragend", this._onDragEnd);
+    super.destroy(fromScene);
   }
 }
