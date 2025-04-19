@@ -40,7 +40,7 @@ export class LargeLibraIndicator extends Phaser.GameObjects.Container {
     });
     await tweensAsync(this.scene, {
       targets: this._bar,
-      duration: DURATION,
+      duration: 100,
       width:
         START_WIDTH * (value === 0 ? 0 : value > 0 ? 1 : -1) +
         ratio * (FULL_HALF_WIDTH - START_WIDTH),

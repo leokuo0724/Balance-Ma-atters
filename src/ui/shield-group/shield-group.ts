@@ -1,4 +1,4 @@
-import { ATLAS_KEY, COLOR_KEY, TEXTURE_KEY } from "~/constants";
+import { ATLAS_KEY, COLOR_KEY, FONT_KEY, TEXTURE_KEY } from "~/constants";
 
 export class ShieldGroup extends Phaser.GameObjects.Container {
   private _displayValue: Phaser.GameObjects.Text;
@@ -15,8 +15,8 @@ export class ShieldGroup extends Phaser.GameObjects.Container {
     );
     this._displayValue = scene.add
       .text(0, 0, "0", {
-        fontFamily: "Arial",
-        fontSize: 16,
+        fontFamily: FONT_KEY.JERSEY_25,
+        fontSize: 18,
         color: COLOR_KEY.BEIGE_2,
         align: "center",
       })

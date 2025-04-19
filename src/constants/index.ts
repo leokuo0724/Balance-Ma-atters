@@ -6,3 +6,4 @@ export * from "./size";
 export * from "./depth";
 export * from "./position";
 export * from "./event-key";
+export * from "./game.const";

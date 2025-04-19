@@ -1,8 +1,17 @@
-import { ATLAS_KEY, COLOR_KEY, FONT_KEY, SIZE, TEXTURE_KEY } from "~/constants";
-import { EBalanceSetType } from "~/type";
+import {
+  ATLAS_KEY,
+  COLOR_KEY,
+  EVENT_KEY,
+  FONT_KEY,
+  MAX_SMALL_LIBRA_STEPS,
+  SIZE,
+  TEXTURE_KEY,
+} from "~/constants";
+import { EBalanceSetType, TCardBalance } from "~/type";
 import {
   getBalanceLeftRightSet,
   getBalanceLongText,
+  getBalanceSetColor,
   hexToDecimal,
   tweensAsync,
 } from "~/utils";
@@ -10,7 +19,7 @@ import {
 const origIndicatorWidth = 164;
 const adjustedRatio = 210 / 172;
 const adjustedIndicatorWidth = origIndicatorWidth * adjustedRatio;
-const unitWidth = adjustedIndicatorWidth / 4 / 2;
+const unitWidth = adjustedIndicatorWidth / MAX_SMALL_LIBRA_STEPS / 2;
 
 const LIBRA_TEXTURE_MAP = {
   [EBalanceSetType.PHY_MAG]: TEXTURE_KEY.LIBRA_RED,
@@ -28,7 +37,7 @@ const INDICATOR_TEXTURE_MAP = {
 export class SmallLibraSet extends Phaser.GameObjects.Container {
   // Props
   private _value = 0;
-  private _locked = false;
+  public locked = false;
   public balanceSetType: EBalanceSetType;
 
   // UI
@@ -60,7 +69,7 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
         0,
         getBalanceLongText(lBalanceType),
         {
-          fontSize: "16px",
+          fontSize: 16,
           color: COLOR_KEY.BROWN_8,
           fontFamily: FONT_KEY.JERSEY_25,
         },
@@ -90,14 +99,14 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
       .image(0, 14, ATLAS_KEY.UI_COMPONENT, TEXTURE_KEY.RULER)
       .setScale(adjustedRatio);
     this._bar = scene.add
-      .rectangle(0, 14, 0, 8, hexToDecimal(COLOR_KEY.YELLOW_6))
+      .rectangle(0, 14, 0, 8, hexToDecimal(getBalanceSetColor(balanceSetType)))
       .setOrigin(0, 0.5);
     this._indicator = scene.add.image(
       0,
       14,
       INDICATOR_TEXTURE_MAP[balanceSetType],
     );
-    this._lockCover = new LockCover(scene, 0, 0).setVisible(this._locked);
+    this._lockCover = new LockCover(scene, 0, 0).setVisible(this.locked);
 
     this.add([
       bg,
@@ -111,11 +120,46 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
       this._lockCover,
     ]);
     this.setSize(libraSetWidth, libraSetHeight);
+
+    this.scene.events.on(
+      EVENT_KEY.ON_CARD_DRAG,
+      ({ balances }: { balances: TCardBalance[] }) => {
+        if (this.locked) return;
+        const currentValue = this._value;
+        const diff = this._gatherBalanceDiff(balances);
+        this.updateValue(currentValue + diff);
+      },
+    );
+    this.scene.events.on(
+      EVENT_KEY.ON_CARD_DRAG_CANCEL,
+      ({ balances }: { balances: TCardBalance[] }) => {
+        if (this.locked) return;
+        const currentValue = this._value;
+        const diff = this._gatherBalanceDiff(balances);
+        this.updateValue(currentValue - diff);
+      },
+    );
+  }
+
+  private _gatherBalanceDiff(balances: TCardBalance[]): number {
+    const [lBalanceType, rBalanceType] = getBalanceLeftRightSet(
+      this.balanceSetType,
+    );
+    let diff = 0;
+    balances.forEach(({ type, value }) => {
+      if (type === lBalanceType) {
+        diff -= value;
+      }
+      if (type === rBalanceType) {
+        diff += value;
+      }
+    });
+    return diff;
   }
 
   public async unlock() {
-    if (!this._locked) return;
-    this._locked = false;
+    if (!this.locked) return;
+    this.locked = false;
     await tweensAsync(this.scene, {
       targets: this._lockCover,
       alpha: 0,
@@ -132,6 +176,7 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
       ease: Phaser.Math.Easing.Bounce.Out,
     };
 
+    this._value = value;
     await Promise.all([
       tweensAsync(this.scene, {
         targets: this._bar,
@@ -144,7 +189,6 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
         ...commonConfig,
       }),
     ]);
-    this._value = value;
   }
 }
 

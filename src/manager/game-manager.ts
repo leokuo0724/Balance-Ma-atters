@@ -1,6 +1,6 @@
 import { Maat } from "~/characters";
-import { EVENT_KEY } from "~/constants";
-import { EBalanceSetType } from "~/type";
+import { EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
+import { EBalanceSetType, TCardBalance } from "~/type";
 import { Card, LargeLibraGroup } from "~/ui";
 import { CardDeck } from "~/ui/card-deck-group/card-deck";
 import { SmallLibraSet } from "~/ui/small-libra-group/small-libra-set";
@@ -99,5 +99,12 @@ export class GameManager {
       const cardDeck = this.cardDecks[i];
       await cardDeck.spawnCard(cardId);
     }
+  }
+
+  public getHalfTotalLibraValue() {
+    return (
+      Object.values(this.balanceSetMap).filter((set) => !set?.locked).length *
+      MAX_SMALL_LIBRA_STEPS
+    );
   }
 }

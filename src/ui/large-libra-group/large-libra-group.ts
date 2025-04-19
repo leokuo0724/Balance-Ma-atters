@@ -1,5 +1,7 @@
-import { COLOR_KEY, FONT_KEY, SIZE, TEXTURE_KEY } from "~/constants";
-import { tweensAsync, tweensCounterAsync } from "~/utils";
+import { COLOR_KEY, EVENT_KEY, FONT_KEY, SIZE, TEXTURE_KEY } from "~/constants";
+import { GameManager } from "~/manager";
+import { TCardBalance } from "~/type";
+import { getIsRightLibraValue, tweensAsync, tweensCounterAsync } from "~/utils";
 
 import {
   BalancedDisplay,
@@ -42,10 +44,40 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
       this._unbalanceValueDisplay,
       this._balancedDisplay,
     ]);
+    const gm = GameManager.getInstance();
+    this.updateBalanceValue(0, gm.getHalfTotalLibraValue());
 
-    // this.updateJackpotValue(20);
-    // this.updateBalanceValue(-1, 16);
-    // this._balancedDisplay.updateVisibility(true);
+    this.scene.events.on(
+      EVENT_KEY.ON_CARD_DRAG,
+      async ({ balances }: { balances: TCardBalance[] }) => {
+        const currentValue = this._balanceValue;
+        const diff = this._gatherBalanceDiff(balances);
+        await this.updateBalanceValue(
+          currentValue + diff,
+          gm.getHalfTotalLibraValue(),
+        );
+      },
+    );
+    this.scene.events.on(
+      EVENT_KEY.ON_CARD_DRAG_CANCEL,
+      async ({ balances }: { balances: TCardBalance[] }) => {
+        const currentValue = this._balanceValue;
+        const diff = this._gatherBalanceDiff(balances);
+        await this.updateBalanceValue(
+          currentValue - diff,
+          gm.getHalfTotalLibraValue(),
+        );
+      },
+    );
+  }
+
+  private _gatherBalanceDiff(balances: TCardBalance[]) {
+    let total = 0;
+    for (const { type, value } of balances) {
+      const isRight = getIsRightLibraValue(type);
+      total += isRight ? value : -value;
+    }
+    return total;
   }
 
   public updateJackpotValue(value: number) {
@@ -56,6 +88,7 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
 
   public async updateBalanceValue(value: number, halfTotal: number) {
     this._balanceValue = value;
+    this._balancedDisplay.updateVisibility(this._balanceValue === 0);
     const rect = await this._largeLibraIndicator.updateDisplay(
       value,
       halfTotal,
@@ -74,8 +107,6 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
         ease: Phaser.Math.Easing.Cubic.Out,
       });
     }
-
-    this._balancedDisplay.updateVisibility(this._balanceValue === 0);
   }
 
   private async numberTween(from: number, to: number) {

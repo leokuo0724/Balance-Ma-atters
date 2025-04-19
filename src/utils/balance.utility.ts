@@ -18,6 +18,19 @@ export const getBalanceColor = (type: EBalanceType): TColorKey => {
   }
 };
 
+export const getBalanceSetColor = (type: EBalanceSetType): TColorKey => {
+  switch (type) {
+    case EBalanceSetType.PHY_MAG:
+      return COLOR_KEY.RED_6;
+    case EBalanceSetType.DEF_ATK:
+      return COLOR_KEY.YELLOW_6;
+    case EBalanceSetType.SHT_LNG:
+      return COLOR_KEY.GREEN_6;
+    case EBalanceSetType.DUT_FIR:
+      return COLOR_KEY.BLUE_6;
+  }
+};
+
 export const getBalanceShortText = (type: EBalanceType): string => {
   const map = {
     [EBalanceType.PHY]: "PHY",
@@ -56,5 +69,20 @@ export const getBalanceLeftRightSet = (type: EBalanceSetType) => {
       return [EBalanceType.SHT, EBalanceType.LNG];
     case EBalanceSetType.DUT_FIR:
       return [EBalanceType.DUT, EBalanceType.FIR];
+  }
+};
+
+export const getIsRightLibraValue = (type: EBalanceType) => {
+  switch (type) {
+    case EBalanceType.PHY:
+    case EBalanceType.DEF:
+    case EBalanceType.SHT:
+    case EBalanceType.DUT:
+      return false;
+    case EBalanceType.MAG:
+    case EBalanceType.ATK:
+    case EBalanceType.LNG:
+    case EBalanceType.FIR:
+      return true;
   }
 };

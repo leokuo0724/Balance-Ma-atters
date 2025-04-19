@@ -3,6 +3,7 @@ import {
   ATLAS_KEY,
   COLOR_KEY,
   DEPTH,
+  EVENT_KEY,
   FONT_KEY,
   SIZE,
   TEXTURE_KEY,
@@ -19,6 +20,7 @@ export class Card extends Phaser.GameObjects.Container {
   public metadata: TCardMetadata;
 
   private _dragTarget: ITarget | null = null;
+  private _startDragging: boolean = false;
 
   private _onDrag:
     | ((
@@ -144,6 +146,12 @@ export class Card extends Phaser.GameObjects.Container {
       this.x = dragX;
       this.y = dragY;
       this.setDepth(DEPTH.DRAGGING_CARD);
+      if (!this._startDragging) {
+        this.scene.events.emit(EVENT_KEY.ON_CARD_DRAG, {
+          balances: this.metadata.balances,
+        });
+        this._startDragging = true;
+      }
 
       const gm = GameManager.getInstance();
       const targets = [gm.maat!];
@@ -169,12 +177,16 @@ export class Card extends Phaser.GameObjects.Container {
 
     this._onDragEnd = (pointer: Phaser.Input.Pointer, gameObject: any) => {
       if (gameObject !== this) return;
+      this._startDragging = false;
       if (this._dragTarget) {
         this._dragTarget.applyCardEffect(this.metadata);
         this._dragTarget.markAsCovered(false);
         this._dragTarget = null;
         this.destroy(true);
       } else {
+        this.scene.events.emit(EVENT_KEY.ON_CARD_DRAG_CANCEL, {
+          balances: this.metadata.balances,
+        });
         this.setDepth(DEPTH.CARD);
         this.x = this._origX;
         this.y = this._origY;
