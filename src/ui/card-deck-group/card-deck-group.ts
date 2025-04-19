@@ -9,7 +9,13 @@ export class CardDeckGroup extends Phaser.GameObjects.Container {
 
     const PADDING_X = 16;
     for (let i = 0; i < 5; i++) {
-      const cardDeck = new CardDeck(scene, (SIZE.CARD[0] + PADDING_X) * i, 300);
+      const cardDeck = new CardDeck(
+        scene,
+        (SIZE.CARD[0] + PADDING_X) * i,
+        300,
+        this.x,
+        this.y,
+      );
       this.add(cardDeck);
     }
   }

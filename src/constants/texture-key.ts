@@ -13,6 +13,8 @@ export const TEXTURE_KEY = {
   NUMBER_DISPLAY_BOX: "number-display-box.png",
   BALANCED_DISPLAY_BOX: "balanced-display-box.png",
   BLOOD_BAR_BOX: "blood-bar-box.png",
+  CARD_BG: "card-bg.png",
+  CARD_TOP: "card-top.png",
 
   SMALL_LIBRA_SET_BG: "small-libra-set-bg",
   SMALL_LIBRA_SET_BG_2: "small-libra-set-bg-2",

@@ -4,11 +4,32 @@
 			"image": "ui-component.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 246,
-				"h": 80
+				"w": 286,
+				"h": 250
 			},
 			"scale": 1,
 			"frames": [
+				{
+					"filename": "card-bg.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 141,
+						"h": 170
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 141,
+						"h": 170
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 141,
+						"h": 170
+					}
+				},
 				{
 					"filename": "balanced-display-box.png",
 					"rotated": false,
@@ -25,30 +46,30 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 1,
+						"y": 173,
 						"w": 152,
 						"h": 42
 					}
 				},
 				{
-					"filename": "libra-blue.png",
+					"filename": "blood-bar-box.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 22,
-						"h": 22
+						"w": 128,
+						"h": 20
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 22,
-						"h": 22
+						"w": 128,
+						"h": 20
 					},
 					"frame": {
 						"x": 1,
-						"y": 45,
-						"w": 22,
-						"h": 22
+						"y": 217,
+						"w": 128,
+						"h": 20
 					}
 				},
 				{
@@ -67,9 +88,72 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 69,
+						"y": 239,
 						"w": 164,
 						"h": 10
+					}
+				},
+				{
+					"filename": "card-top.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 141,
+						"h": 170
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 141,
+						"h": 170
+					},
+					"frame": {
+						"x": 144,
+						"y": 1,
+						"w": 141,
+						"h": 170
+					}
+				},
+				{
+					"filename": "libra-large.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 48,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 42,
+						"h": 42
+					},
+					"frame": {
+						"x": 155,
+						"y": 173,
+						"w": 42,
+						"h": 42
+					}
+				},
+				{
+					"filename": "libra-blue.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 22
+					},
+					"frame": {
+						"x": 167,
+						"y": 217,
+						"w": 22,
+						"h": 22
 					}
 				},
 				{
@@ -87,10 +171,31 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 25,
-						"y": 45,
+						"x": 191,
+						"y": 217,
 						"w": 22,
 						"h": 22
+					}
+				},
+				{
+					"filename": "number-display-box.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 36,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 36,
+						"h": 42
+					},
+					"frame": {
+						"x": 199,
+						"y": 173,
+						"w": 36,
+						"h": 42
 					}
 				},
 				{
@@ -108,8 +213,8 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 49,
-						"y": 45,
+						"x": 215,
+						"y": 217,
 						"w": 22,
 						"h": 22
 					}
@@ -129,8 +234,8 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 73,
-						"y": 45,
+						"x": 237,
+						"y": 173,
 						"w": 22,
 						"h": 22
 					}
@@ -150,73 +255,10 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 97,
-						"y": 45,
+						"x": 239,
+						"y": 197,
 						"w": 18,
 						"h": 22
-					}
-				},
-				{
-					"filename": "blood-bar-box.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 128,
-						"h": 20
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 128,
-						"h": 20
-					},
-					"frame": {
-						"x": 117,
-						"y": 45,
-						"w": 128,
-						"h": 20
-					}
-				},
-				{
-					"filename": "libra-large.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 48,
-						"h": 48
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 3,
-						"w": 42,
-						"h": 42
-					},
-					"frame": {
-						"x": 155,
-						"y": 1,
-						"w": 42,
-						"h": 42
-					}
-				},
-				{
-					"filename": "number-display-box.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 36,
-						"h": 42
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 36,
-						"h": 42
-					},
-					"frame": {
-						"x": 199,
-						"y": 1,
-						"w": 36,
-						"h": 42
 					}
 				}
 			]
@@ -225,6 +267,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:d5aab15f6e510c8b1d85b0ea1b1a813b:22a0eff90f74d6e88349898f8c088dc6:531d510bb7e47c5a7810ed876d840ed4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:958245c76ddf3fad2b2bc0a4cfe0d65b:e998c51a3c3402af4f90e8ac7f40bbb3:531d510bb7e47c5a7810ed876d840ed4$"
 	}
 }
