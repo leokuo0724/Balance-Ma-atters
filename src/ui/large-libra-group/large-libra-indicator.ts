@@ -1,5 +1,5 @@
 import { ATLAS_KEY, COLOR_KEY, SIZE, TEXTURE_KEY } from "~/constants";
-import { hexToDecimal } from "~/utils";
+import { hexToDecimal, tweensAsync } from "~/utils";
 
 const PADDING_X = 2;
 const FULL_HALF_WIDTH = SIZE.LARGE_LIBRA_INDICATOR[0] / 2 - PADDING_X;
@@ -23,5 +23,25 @@ export class LargeLibraIndicator extends Phaser.GameObjects.Container {
       .rectangle(0, 0, 0, 8, hexToDecimal(COLOR_KEY.BROWN_8))
       .setOrigin(0, 0.5);
     this.add([barBg, this._bar, icon]);
+  }
+
+  public updateDisplay(value: number, halfTotal: number) {
+    const DURATION = 800;
+    const MAX_UNBALANCED_ROTATION = Math.PI / 15;
+    const ratio = value / halfTotal;
+    tweensAsync(this.scene, {
+      targets: this,
+      duration: DURATION,
+      rotation: value === 0 ? 0 : ratio * MAX_UNBALANCED_ROTATION,
+      ease: Phaser.Math.Easing.Bounce.Out,
+    });
+    tweensAsync(this.scene, {
+      targets: this._bar,
+      duration: DURATION,
+      width:
+        START_WIDTH * (value > 0 ? 1 : -1) +
+        ratio * (FULL_HALF_WIDTH - START_WIDTH),
+      ease: Phaser.Math.Easing.Cubic.Out,
+    });
   }
 }
