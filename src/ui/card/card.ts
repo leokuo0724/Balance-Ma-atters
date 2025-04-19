@@ -1,3 +1,4 @@
+import { ITarget } from "~/characters/interfaces";
 import {
   ATLAS_KEY,
   COLOR_KEY,
@@ -7,7 +8,7 @@ import {
   TEXTURE_KEY,
 } from "~/constants";
 import { GameManager, WikiManager } from "~/manager";
-import { TCardMetadata } from "~/type";
+import { ETarget, TCardMetadata } from "~/type";
 import { tweensAsync } from "~/utils";
 
 import { BalanceLabel } from "./balance-label";
@@ -17,7 +18,7 @@ export class Card extends Phaser.GameObjects.Container {
   private _origY: number;
   public metadata: TCardMetadata;
 
-  private _dragTarget: Phaser.GameObjects.Container | null = null;
+  private _dragTarget: ITarget | null = null;
 
   private _onDrag:
     | ((
@@ -152,8 +153,11 @@ export class Card extends Phaser.GameObjects.Container {
           this.getBounds(),
           target.getBounds(),
         );
-        target.markAsCovered(isTargetCovered);
-        if (isTargetCovered) {
+        const isAppliable = this._checkIsAppliable(target);
+        const isMatched = isTargetCovered && isAppliable;
+
+        target.markAsCovered(isMatched);
+        if (isMatched) {
           this._dragTarget = target;
           break;
         } else {
@@ -167,6 +171,8 @@ export class Card extends Phaser.GameObjects.Container {
       if (gameObject !== this) return;
       if (this._dragTarget) {
         console.log(this._dragTarget);
+        this._dragTarget.markAsCovered(false);
+        this._dragTarget = null;
         this.destroy(true);
       } else {
         this.setDepth(DEPTH.CARD);
@@ -175,6 +181,14 @@ export class Card extends Phaser.GameObjects.Container {
       }
     };
     this.scene.input.on("dragend", this._onDragEnd);
+  }
+
+  private _checkIsAppliable({ belong }: ITarget) {
+    const isSelfAppliable =
+      belong === "self" && this.metadata.target === ETarget.SELF;
+    const isEnemyAppliable =
+      belong === "opponent" && this.metadata.target === ETarget.SINGLE_OPPONENT;
+    return isSelfAppliable || isEnemyAppliable;
   }
 
   public destroy(fromScene?: boolean): void {

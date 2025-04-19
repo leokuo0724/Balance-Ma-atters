@@ -1,2 +1,2 @@
 export * from "./IBlood";
-export * from "./IBelong";
+export * from "./ITarget";
