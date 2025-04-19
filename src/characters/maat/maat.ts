@@ -1,4 +1,5 @@
 import { COLOR_KEY } from "~/constants";
+import { GameManager } from "~/manager";
 import { TCardMetadata } from "~/type";
 import { BloodBar } from "~/ui";
 import { ShieldGroup } from "~/ui/shield-group";

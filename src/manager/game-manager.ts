@@ -1,19 +1,19 @@
 import { Maat } from "~/characters";
 import { EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
-import { EBalanceSetType, TCardBalance } from "~/type";
+import { EBalanceSetType } from "~/type";
 import { Card, LargeLibraGroup } from "~/ui";
 import { CardDeck } from "~/ui/card-deck-group/card-deck";
 import { SmallLibraSet } from "~/ui/small-libra-group/small-libra-set";
 import { shuffleArray } from "~/utils/math.utility";
 
 const DEFAULT_AVAILABLE_CARD_IDS = [
-  // "c_00000",
-  // "c_00000",
-  // "c_00001",
-  // "c_00002",
-  // "c_00003",
-  // "c_00004",
-  // "c_00004",
+  "c_00000",
+  "c_00000",
+  "c_00001",
+  "c_00002",
+  "c_00003",
+  "c_00004",
+  "c_00004",
   "c_00005",
   "c_00006",
   "c_00009",

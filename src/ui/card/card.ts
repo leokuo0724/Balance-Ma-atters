@@ -170,6 +170,9 @@ export class Card extends Phaser.GameObjects.Container {
       if (gameObject !== this) return;
       this._startDragging = false;
       if (this._dragTarget) {
+        this.scene.events.emit(EVENT_KEY.ON_CARD_APPLY, {
+          metadata: this.metadata,
+        });
         this._dragTarget.applyCardEffect(this.metadata);
         this._dragTarget.markAsCovered(false);
         this._dragTarget = null;

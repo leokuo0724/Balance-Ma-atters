@@ -1,6 +1,6 @@
 import { COLOR_KEY, EVENT_KEY, FONT_KEY, SIZE, TEXTURE_KEY } from "~/constants";
 import { GameManager } from "~/manager";
-import { TCardBalance } from "~/type";
+import { TCardBalance, TCardMetadata } from "~/type";
 import { getIsRightLibraValue, tweensAsync, tweensCounterAsync } from "~/utils";
 
 import {
@@ -11,6 +11,9 @@ import { LargeLibraIndicator } from "./large-libra-indicator";
 
 export class LargeLibraGroup extends Phaser.GameObjects.Container {
   private _jackpotValue = 0;
+  public get jackpotValue() {
+    return this._jackpotValue;
+  }
   private _balanceValue = 0;
   /** @deprecated directly calculate total from game manager  */
   private _tempBalanceValue: number | null = null;
@@ -22,6 +25,7 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
 
   private _onCardDrag: Function;
   private _onCardDragCancel: Function;
+  private _onCardApply: Function;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y);
@@ -67,6 +71,12 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
       );
     };
     this.scene.events.on(EVENT_KEY.ON_CARD_DRAG_CANCEL, this._onCardDragCancel);
+
+    this._onCardApply = ({ metadata }: { metadata: TCardMetadata }) => {
+      const { damage, shield } = metadata;
+      this.updateJackpotValue(this._jackpotValue + (damage ?? 0) + shield);
+    };
+    this.scene.events.on(EVENT_KEY.ON_CARD_APPLY, this._onCardApply);
 
     this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, this.destroy, this);
     this.once(Phaser.GameObjects.Events.DESTROY, this._onDestroy, this);
@@ -130,5 +140,6 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
       EVENT_KEY.ON_CARD_DRAG_CANCEL,
       this._onCardDragCancel,
     );
+    this.scene.events.off(EVENT_KEY.ON_CARD_APPLY, this._onCardApply);
   }
 }
