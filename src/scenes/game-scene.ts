@@ -1,4 +1,5 @@
-import { DEPTH, SCENE_KEY, SIZE } from "~/constants";
+import { Maat } from "~/characters";
+import { DEPTH, POSITION, SCENE_KEY, SIZE } from "~/constants";
 import { Ground, LargeLibraGroup, SmallLibraGroup } from "~/ui";
 import { getCanvasSize } from "~/utils";
 
@@ -22,5 +23,8 @@ export class GameScene extends Phaser.Scene {
     ).setDepth(DEPTH.LIBRA_SET);
 
     new LargeLibraGroup(this, canvasWidth / 2, 72).setDepth(DEPTH.LIBRA_SET);
+    new Maat(this, 360, POSITION.CHARACTER_BASELINE_Y).setDepth(
+      DEPTH.CHARACTER,
+    );
   }
 }

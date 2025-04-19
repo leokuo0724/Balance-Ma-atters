@@ -1,5 +1,6 @@
 import uiComponentJson from "~/assets/atlas/ui-component.json";
 import uiComponentPng from "~/assets/atlas/ui-component.png";
+import maatTest from "~/assets/maat-test.png";
 import {
   ATLAS_KEY,
   COLOR_KEY,
@@ -16,6 +17,7 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   preload() {
+    this.load.image("maat-test", maatTest);
     this.load.atlas(ATLAS_KEY.UI_COMPONENT, uiComponentPng, uiComponentJson);
 
     const graphics = new Phaser.GameObjects.Graphics(this);

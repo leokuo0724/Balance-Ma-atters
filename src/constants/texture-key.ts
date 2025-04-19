@@ -12,6 +12,7 @@ export const TEXTURE_KEY = {
   LOCK: "lock.png",
   NUMBER_DISPLAY_BOX: "number-display-box.png",
   BALANCED_DISPLAY_BOX: "balanced-display-box.png",
+  BLOOD_BAR_BOX: "blood-bar-box.png",
 
   SMALL_LIBRA_SET_BG: "small-libra-set-bg",
   SMALL_LIBRA_SET_BG_2: "small-libra-set-bg-2",

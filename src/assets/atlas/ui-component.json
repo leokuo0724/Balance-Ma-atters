@@ -4,8 +4,8 @@
 			"image": "ui-component.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 304,
-				"h": 56
+				"w": 246,
+				"h": 80
 			},
 			"scale": 1,
 			"frames": [
@@ -31,6 +31,27 @@
 					}
 				},
 				{
+					"filename": "libra-blue.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 22
+					},
+					"frame": {
+						"x": 1,
+						"y": 45,
+						"w": 22,
+						"h": 22
+					}
+				},
+				{
 					"filename": "ruler.png",
 					"rotated": false,
 					"trimmed": false,
@@ -46,9 +67,114 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 45,
+						"y": 69,
 						"w": 164,
 						"h": 10
+					}
+				},
+				{
+					"filename": "libra-green.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 22
+					},
+					"frame": {
+						"x": 25,
+						"y": 45,
+						"w": 22,
+						"h": 22
+					}
+				},
+				{
+					"filename": "libra-red.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 22
+					},
+					"frame": {
+						"x": 49,
+						"y": 45,
+						"w": 22,
+						"h": 22
+					}
+				},
+				{
+					"filename": "libra-yellow.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 22
+					},
+					"frame": {
+						"x": 73,
+						"y": 45,
+						"w": 22,
+						"h": 22
+					}
+				},
+				{
+					"filename": "lock.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 22,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 18,
+						"h": 22
+					},
+					"frame": {
+						"x": 97,
+						"y": 45,
+						"w": 18,
+						"h": 22
+					}
+				},
+				{
+					"filename": "blood-bar-box.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 20
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 20
+					},
+					"frame": {
+						"x": 117,
+						"y": 45,
+						"w": 128,
+						"h": 20
 					}
 				},
 				{
@@ -92,111 +218,6 @@
 						"w": 36,
 						"h": 42
 					}
-				},
-				{
-					"filename": "libra-blue.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 22,
-						"h": 22
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 22,
-						"h": 22
-					},
-					"frame": {
-						"x": 237,
-						"y": 1,
-						"w": 22,
-						"h": 22
-					}
-				},
-				{
-					"filename": "libra-green.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 22,
-						"h": 22
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 22,
-						"h": 22
-					},
-					"frame": {
-						"x": 237,
-						"y": 25,
-						"w": 22,
-						"h": 22
-					}
-				},
-				{
-					"filename": "libra-red.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 22,
-						"h": 22
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 22,
-						"h": 22
-					},
-					"frame": {
-						"x": 261,
-						"y": 1,
-						"w": 22,
-						"h": 22
-					}
-				},
-				{
-					"filename": "libra-yellow.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 22,
-						"h": 22
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 22,
-						"h": 22
-					},
-					"frame": {
-						"x": 261,
-						"y": 25,
-						"w": 22,
-						"h": 22
-					}
-				},
-				{
-					"filename": "lock.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 22,
-						"h": 22
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 18,
-						"h": 22
-					},
-					"frame": {
-						"x": 285,
-						"y": 1,
-						"w": 18,
-						"h": 22
-					}
 				}
 			]
 		}
@@ -204,6 +225,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:f3d05be599b4be9bbd356ff7266b498f:19e4151fae45a0e201cc5d2eb43f7512:531d510bb7e47c5a7810ed876d840ed4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:d5aab15f6e510c8b1d85b0ea1b1a813b:22a0eff90f74d6e88349898f8c088dc6:531d510bb7e47c5a7810ed876d840ed4$"
 	}
 }
