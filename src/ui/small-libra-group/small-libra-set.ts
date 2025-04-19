@@ -38,6 +38,9 @@ const INDICATOR_TEXTURE_MAP = {
 export class SmallLibraSet extends Phaser.GameObjects.Container {
   // Props
   private _value = 0;
+  public get value() {
+    return this._value;
+  }
   public locked = false;
   public balanceSetType: EBalanceSetType;
   private _tempValue: number | null = null;
@@ -186,15 +189,19 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
       -MAX_SMALL_LIBRA_STEPS,
       MAX_SMALL_LIBRA_STEPS,
     );
+    if (this.balanceSetType === EBalanceSetType.DEF_ATK) {
+      console.log(this._value);
+    }
+
     await Promise.all([
       tweensAsync(this.scene, {
         targets: this._bar,
-        width: value * unitWidth,
+        width: this._value * unitWidth,
         ...commonConfig,
       }),
       tweensAsync(this.scene, {
         targets: this._indicator,
-        x: value * unitWidth,
+        x: this._value * unitWidth,
         ...commonConfig,
       }),
     ]);

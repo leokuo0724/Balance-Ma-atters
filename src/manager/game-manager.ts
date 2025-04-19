@@ -7,13 +7,13 @@ import { SmallLibraSet } from "~/ui/small-libra-group/small-libra-set";
 import { shuffleArray } from "~/utils/math.utility";
 
 const DEFAULT_AVAILABLE_CARD_IDS = [
-  "c_00000",
-  "c_00000",
-  "c_00001",
-  "c_00002",
-  "c_00003",
-  "c_00004",
-  "c_00004",
+  // "c_00000",
+  // "c_00000",
+  // "c_00001",
+  // "c_00002",
+  // "c_00003",
+  // "c_00004",
+  // "c_00004",
   "c_00005",
   "c_00006",
   "c_00009",
@@ -106,5 +106,10 @@ export class GameManager {
       Object.values(this.balanceSetMap).filter((set) => !set?.locked).length *
       MAX_SMALL_LIBRA_STEPS
     );
+  }
+  public getTotalBalance() {
+    return Object.values(this.balanceSetMap).reduce((sum, current) => {
+      return (sum += current?.value ?? 0);
+    }, 0);
   }
 }

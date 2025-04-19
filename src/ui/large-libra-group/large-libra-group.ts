@@ -1,12 +1,7 @@
 import { COLOR_KEY, EVENT_KEY, FONT_KEY, SIZE, TEXTURE_KEY } from "~/constants";
 import { GameManager } from "~/manager";
 import { TCardBalance } from "~/type";
-import {
-  getIsRightLibraValue,
-  isNil,
-  tweensAsync,
-  tweensCounterAsync,
-} from "~/utils";
+import { getIsRightLibraValue, tweensAsync, tweensCounterAsync } from "~/utils";
 
 import {
   BalancedDisplay,
@@ -17,6 +12,7 @@ import { LargeLibraIndicator } from "./large-libra-indicator";
 export class LargeLibraGroup extends Phaser.GameObjects.Container {
   private _jackpotValue = 0;
   private _balanceValue = 0;
+  /** @deprecated directly calculate total from game manager  */
   private _tempBalanceValue: number | null = null;
 
   private _displayValue: Phaser.GameObjects.Text;
@@ -56,23 +52,19 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
     const gm = GameManager.getInstance();
     this.updateBalanceValue(0, gm.getHalfTotalLibraValue());
 
-    this._onCardDrag = async ({ balances }: { balances: TCardBalance[] }) => {
-      this._tempBalanceValue = this._balanceValue;
-      const diff = this._gatherBalanceDiff(balances);
+    this._onCardDrag = async () => {
       await this.updateBalanceValue(
-        this._balanceValue + diff,
+        gm.getTotalBalance(),
         gm.getHalfTotalLibraValue(),
       );
     };
     this.scene.events.on(EVENT_KEY.ON_CARD_DRAG, this._onCardDrag);
 
     this._onCardDragCancel = async () => {
-      if (isNil(this._tempBalanceValue)) return;
       await this.updateBalanceValue(
-        this._tempBalanceValue,
+        gm.getTotalBalance(),
         gm.getHalfTotalLibraValue(),
       );
-      this._tempBalanceValue = null;
     };
     this.scene.events.on(EVENT_KEY.ON_CARD_DRAG_CANCEL, this._onCardDragCancel);
 
@@ -80,6 +72,7 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
     this.once(Phaser.GameObjects.Events.DESTROY, this._onDestroy, this);
   }
 
+  /** @deprecated directly calculate total from game manager  */
   private _gatherBalanceDiff(balances: TCardBalance[]) {
     let total = 0;
     for (const { type, value } of balances) {
