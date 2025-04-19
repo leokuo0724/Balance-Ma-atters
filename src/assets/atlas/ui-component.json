@@ -5,7 +5,7 @@
 			"format": "RGBA8888",
 			"size": {
 				"w": 286,
-				"h": 250
+				"h": 252
 			},
 			"scale": 1,
 			"frames": [
@@ -73,6 +73,27 @@
 					}
 				},
 				{
+					"filename": "silver-shield-icon.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 34
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 34
+					},
+					"frame": {
+						"x": 1,
+						"y": 217,
+						"w": 30,
+						"h": 34
+					}
+				},
+				{
 					"filename": "blood-bar-box.png",
 					"rotated": false,
 					"trimmed": false,
@@ -87,52 +108,10 @@
 						"h": 20
 					},
 					"frame": {
-						"x": 1,
-						"y": 217,
-						"w": 128,
-						"h": 20
-					}
-				},
-				{
-					"filename": "ruler.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 164,
-						"h": 10
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 164,
-						"h": 10
-					},
-					"frame": {
-						"x": 1,
-						"y": 239,
-						"w": 164,
-						"h": 10
-					}
-				},
-				{
-					"filename": "libra-large.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 48,
-						"h": 48
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 3,
-						"w": 42,
-						"h": 42
-					},
-					"frame": {
 						"x": 155,
 						"y": 173,
-						"w": 42,
-						"h": 42
+						"w": 128,
+						"h": 20
 					}
 				},
 				{
@@ -150,10 +129,31 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 167,
+						"x": 33,
 						"y": 217,
 						"w": 22,
 						"h": 22
+					}
+				},
+				{
+					"filename": "ruler.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 164,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 164,
+						"h": 10
+					},
+					"frame": {
+						"x": 33,
+						"y": 241,
+						"w": 164,
+						"h": 10
 					}
 				},
 				{
@@ -171,31 +171,10 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 191,
+						"x": 57,
 						"y": 217,
 						"w": 22,
 						"h": 22
-					}
-				},
-				{
-					"filename": "number-display-box.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 36,
-						"h": 42
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 36,
-						"h": 42
-					},
-					"frame": {
-						"x": 199,
-						"y": 173,
-						"w": 36,
-						"h": 42
 					}
 				},
 				{
@@ -213,31 +192,10 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 215,
+						"x": 81,
 						"y": 217,
 						"w": 22,
 						"h": 22
-					}
-				},
-				{
-					"filename": "shield-icon.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 36
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 36
-					},
-					"frame": {
-						"x": 237,
-						"y": 173,
-						"w": 30,
-						"h": 36
 					}
 				},
 				{
@@ -255,8 +213,8 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 239,
-						"y": 211,
+						"x": 105,
+						"y": 217,
 						"w": 22,
 						"h": 22
 					}
@@ -276,10 +234,73 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 263,
-						"y": 211,
+						"x": 129,
+						"y": 217,
 						"w": 18,
 						"h": 22
+					}
+				},
+				{
+					"filename": "libra-large.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 48,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 42,
+						"h": 42
+					},
+					"frame": {
+						"x": 155,
+						"y": 195,
+						"w": 42,
+						"h": 42
+					}
+				},
+				{
+					"filename": "number-display-box.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 36,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 36,
+						"h": 42
+					},
+					"frame": {
+						"x": 199,
+						"y": 195,
+						"w": 36,
+						"h": 42
+					}
+				},
+				{
+					"filename": "shield-icon.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 36
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 36
+					},
+					"frame": {
+						"x": 237,
+						"y": 195,
+						"w": 30,
+						"h": 36
 					}
 				}
 			]
@@ -288,6 +309,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:7a8340b6948aaaf96b5e84f5a5606c6a:bcc49865f76bac6af9bfe6a6ba495445:531d510bb7e47c5a7810ed876d840ed4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:f173a04d91050481b845cf3f42e0bd72:6008506ac929a3d292363bda89d67a6a:531d510bb7e47c5a7810ed876d840ed4$"
 	}
 }

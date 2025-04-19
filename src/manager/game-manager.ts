@@ -4,21 +4,28 @@ import { Card } from "~/ui";
 import { CardDeck } from "~/ui/card-deck-group/card-deck";
 import { shuffleArray } from "~/utils/math.utility";
 
+const DEFAULT_AVAILABLE_CARD_IDS = [
+  "c_00000",
+  "c_00000",
+  "c_00001",
+  "c_00002",
+  "c_00003",
+  "c_00004",
+  "c_00004",
+  "c_00005",
+  "c_00006",
+  "c_00009",
+  "c_00009",
+  "c_00010",
+];
+const DEFAULT_MAAT_DATA = {
+  BLOOD: 20,
+  SHIELD: 0,
+};
+
 export class GameManager {
-  public availableCardIds: string[] = [
-    "c_00000",
-    "c_00000",
-    "c_00001",
-    "c_00002",
-    "c_00003",
-    "c_00004",
-    "c_00004",
-    "c_00005",
-    "c_00006",
-    "c_00009",
-    "c_00009",
-    "c_00010",
-  ];
+  public availableCardIds: string[] = DEFAULT_AVAILABLE_CARD_IDS;
+
   public usedCardIds: string[] = [];
   public inHandCards: (Card | null)[] = [null, null, null, null, null];
   public cardDecks: CardDeck[] = [];
@@ -35,6 +42,12 @@ export class GameManager {
 
   public setupMaat(maat: Maat) {
     this.maat = maat;
+    this.maat.updateBloodBar(
+      DEFAULT_MAAT_DATA.BLOOD,
+      DEFAULT_MAAT_DATA.BLOOD,
+      DEFAULT_MAAT_DATA.BLOOD,
+    );
+    this.maat.updateShield(DEFAULT_MAAT_DATA.SHIELD);
   }
 
   public addCardDecks(deck: CardDeck) {

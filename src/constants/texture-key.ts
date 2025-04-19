@@ -16,6 +16,7 @@ export const TEXTURE_KEY = {
   CARD_BG: "card-bg.png",
   CARD_TOP: "card-top.png",
   SHIELD_ICON: "shield-icon.png",
+  SILVER_SHIELD_ICON: "silver-shield-icon.png",
 
   SMALL_LIBRA_SET_BG: "small-libra-set-bg",
   SMALL_LIBRA_SET_BG_2: "small-libra-set-bg-2",
