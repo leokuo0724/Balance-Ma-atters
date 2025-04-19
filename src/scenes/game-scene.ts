@@ -34,6 +34,7 @@ export class GameScene extends Phaser.Scene {
     ).setDepth(DEPTH.CARD_DECK);
 
     const gm = GameManager.getInstance();
+    gm.shuffleAvailableCardIds();
     gm.drawCards();
   }
 }

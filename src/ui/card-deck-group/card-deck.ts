@@ -22,13 +22,13 @@ export class CardDeck extends Phaser.GameObjects.Container {
     this.add([bg]);
   }
 
-  public spawnCard(id: string) {
+  public async spawnCard(id: string) {
     const FLOATING_SPACE = 8;
-    new Card(
+    await new Card(
       this.scene,
       this._worldX + this.x - FLOATING_SPACE,
       this._worldY + this.y - FLOATING_SPACE,
       id,
-    );
+    ).enter();
   }
 }

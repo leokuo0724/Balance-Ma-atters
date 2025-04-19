@@ -38,7 +38,7 @@ export class GameManager {
     this.availableCardIds = shuffleArray(this.availableCardIds);
   }
 
-  public drawCardId(): string {
+  private _drawCardId(): string {
     if (this.availableCardIds.length === 0) {
       throw new Error("No more cards available to draw.");
     }
@@ -51,9 +51,9 @@ export class GameManager {
     for (let i = 0; i < this.inHandCards.length; i++) {
       const card = this.inHandCards[i];
       if (card !== null) continue;
-      const cardId = this.drawCardId();
+      const cardId = this._drawCardId();
       const cardDeck = this.cardDecks[i];
-      cardDeck.spawnCard(cardId);
+      await cardDeck.spawnCard(cardId);
     }
   }
 }

@@ -8,6 +8,7 @@ import {
 } from "~/constants";
 import { WikiManager } from "~/manager";
 import { TCardMetadata } from "~/type";
+import { tweensAsync } from "~/utils";
 
 import { BalanceLabel } from "./balance-label";
 
@@ -17,11 +18,10 @@ export class Card extends Phaser.GameObjects.Container {
   public metadata: TCardMetadata;
 
   constructor(scene: Phaser.Scene, x: number, y: number, id: string) {
-    super(scene, x, y);
+    super(scene, x, y + 20);
     scene.add.existing(this);
     this._origX = x;
     this._origY = y;
-    // FIXME:
 
     const wm = WikiManager.getInstance();
     this.metadata = wm.queryCardData(id);
@@ -91,6 +91,18 @@ export class Card extends Phaser.GameObjects.Container {
       );
       this.add(balanceLabel);
     });
-    this.setSize(...SIZE.CARD).setDepth(DEPTH.CARD);
+    this.setSize(...SIZE.CARD)
+      .setDepth(DEPTH.CARD)
+      .setAlpha(0);
+  }
+
+  public async enter() {
+    await tweensAsync(this.scene, {
+      targets: this,
+      duration: 200,
+      y: this._origY,
+      alpha: 1,
+      ease: Phaser.Math.Easing.Cubic.Out,
+    });
   }
 }
