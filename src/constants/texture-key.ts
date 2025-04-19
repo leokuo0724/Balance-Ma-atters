@@ -33,4 +33,5 @@ export const TEXTURE_KEY = {
   LABEL_BLUE: "label-blue",
   LABEL_RED: "label-red",
   LABEL_GREEN: "label-green",
+  REST_CARD_BG: "rest-card-bg",
 };

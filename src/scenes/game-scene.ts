@@ -2,6 +2,7 @@ import { Maat } from "~/characters";
 import { DEPTH, POSITION, SCENE_KEY, SIZE } from "~/constants";
 import { GameManager } from "~/manager";
 import { CardDeckGroup, Ground, LargeLibraGroup, SmallLibraGroup } from "~/ui";
+import { RestCardGroup } from "~/ui/rest-card-group";
 import { getCanvasSize } from "~/utils";
 
 export class GameScene extends Phaser.Scene {
@@ -32,9 +33,12 @@ export class GameScene extends Phaser.Scene {
       SIZE.CARD[0] / 2 + 96,
       canvasHeight / 2 - SIZE.CARD[1] / 2 - 12,
     ).setDepth(DEPTH.CARD_DECK);
+    new RestCardGroup(this, 36, canvasHeight / 2 + 144).setDepth(
+      DEPTH.CARD_DECK,
+    );
 
     const gm = GameManager.getInstance();
-    gm.shuffleAvailableCardIds();
-    gm.drawCards();
+    gm.shuffleAvailableCardIds(this);
+    gm.drawCards(this);
   }
 }
