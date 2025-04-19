@@ -5,4 +5,5 @@ export const DEPTH = {
   CHARACTER: 500,
   LIBRA_SET: 600,
   CARD: 700,
+  DRAGGING_CARD: 800,
 };

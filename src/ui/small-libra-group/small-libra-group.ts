@@ -1,4 +1,5 @@
 import { SIZE } from "~/constants";
+import { EBalanceSetType } from "~/type";
 
 import { SmallLibraSet } from "./small-libra-set";
 
@@ -9,13 +10,19 @@ export class SmallLibraGroup extends Phaser.GameObjects.Container {
 
     const [_, height] = SIZE.SMALL_LIBRA_SET;
     const PADDING_Y = 8;
-    const phyMagLibraSet = new SmallLibraSet(scene, 0, 0);
-    const atkDefLibraSet = new SmallLibraSet(scene, 0, height + PADDING_Y);
-    this.add([
-      phyMagLibraSet,
-      atkDefLibraSet,
-      new SmallLibraSet(scene, 0, height * 2 + PADDING_Y * 2),
-      new SmallLibraSet(scene, 0, height * 3 + PADDING_Y * 3),
-    ]);
+    [
+      EBalanceSetType.PHY_MAG,
+      EBalanceSetType.DEF_ATK,
+      EBalanceSetType.SHT_LNG,
+      EBalanceSetType.DUT_FIR,
+    ].forEach((type, index) => {
+      const libraSet = new SmallLibraSet(
+        scene,
+        0,
+        height * index + PADDING_Y * index,
+        type,
+      );
+      this.add(libraSet);
+    });
   }
 }

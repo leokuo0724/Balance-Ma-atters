@@ -1,45 +1,82 @@
 import { ATLAS_KEY, COLOR_KEY, FONT_KEY, SIZE, TEXTURE_KEY } from "~/constants";
-import { hexToDecimal, tweensAsync } from "~/utils";
+import { EBalanceSetType, EBalanceType } from "~/type";
+import {
+  getBalanceLeftRightSet,
+  getBalanceLongText,
+  hexToDecimal,
+  tweensAsync,
+} from "~/utils";
 
 const origIndicatorWidth = 164;
 const adjustedRatio = 210 / 172;
 const adjustedIndicatorWidth = origIndicatorWidth * adjustedRatio;
 const unitWidth = adjustedIndicatorWidth / 4 / 2;
 
+const LIBRA_TEXTURE_MAP = {
+  [EBalanceSetType.PHY_MAG]: TEXTURE_KEY.LIBRA_RED,
+  [EBalanceSetType.DEF_ATK]: TEXTURE_KEY.LIBRA_YELLOW,
+  [EBalanceSetType.SHT_LNG]: TEXTURE_KEY.LIBRA_GREEN,
+  [EBalanceSetType.DUT_FIR]: TEXTURE_KEY.LIBRA_BLUE,
+};
+const INDICATOR_TEXTURE_MAP = {
+  [EBalanceSetType.PHY_MAG]: TEXTURE_KEY.RULER_INDICATOR_RED,
+  [EBalanceSetType.DEF_ATK]: TEXTURE_KEY.RULER_INDICATOR_YELLOW,
+  [EBalanceSetType.SHT_LNG]: TEXTURE_KEY.RULER_INDICATOR_GREEN,
+  [EBalanceSetType.DUT_FIR]: TEXTURE_KEY.RULER_INDICATOR_BLUE,
+};
+
 export class SmallLibraSet extends Phaser.GameObjects.Container {
   // Props
   private _value = 0;
-  private _locked = true;
+  private _locked = false;
+  public balanceSetType: EBalanceSetType;
 
   // UI
   private _indicator: Phaser.GameObjects.Image;
   private _bar: Phaser.GameObjects.Rectangle;
   private _lockCover: LockCover;
 
-  constructor(scene: Phaser.Scene, x: number, y: number) {
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    balanceSetType: EBalanceSetType,
+  ) {
     super(scene, x, y);
     scene.add.existing(this);
+    this.balanceSetType = balanceSetType;
 
     const [libraSetWidth, libraSetHeight] = SIZE.SMALL_LIBRA_SET;
     const PADDING_X = 8;
+    const [lBalanceType, rBalanceType] = getBalanceLeftRightSet(balanceSetType);
 
     const bg = scene.add.image(0, 0, TEXTURE_KEY.SMALL_LIBRA_SET_BG);
     const libraIcon = scene.add
-      .image(0, 0, ATLAS_KEY.UI_COMPONENT, TEXTURE_KEY.LIBRA_YELLOW)
+      .image(0, 0, ATLAS_KEY.UI_COMPONENT, LIBRA_TEXTURE_MAP[balanceSetType])
       .setOrigin(0.5, 1);
     const leftLabel = scene.add
-      .text(-libraSetWidth / 2 + PADDING_X, 0, "Physical", {
-        fontSize: "16px",
-        color: COLOR_KEY.BROWN_8,
-        fontFamily: FONT_KEY.JERSEY_25,
-      })
+      .text(
+        -libraSetWidth / 2 + PADDING_X,
+        0,
+        getBalanceLongText(lBalanceType),
+        {
+          fontSize: "16px",
+          color: COLOR_KEY.BROWN_8,
+          fontFamily: FONT_KEY.JERSEY_25,
+        },
+      )
       .setOrigin(0, 1);
     const rightLabel = scene.add
-      .text(libraSetWidth / 2 - PADDING_X, 0, "Magical", {
-        fontSize: "16px",
-        color: COLOR_KEY.BROWN_8,
-        fontFamily: FONT_KEY.JERSEY_25,
-      })
+      .text(
+        libraSetWidth / 2 - PADDING_X,
+        0,
+        getBalanceLongText(rBalanceType),
+        {
+          fontSize: "16px",
+          color: COLOR_KEY.BROWN_8,
+          fontFamily: FONT_KEY.JERSEY_25,
+        },
+      )
       .setOrigin(1, 1);
 
     const rulerBg = scene.add.rectangle(
@@ -58,7 +95,7 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
     this._indicator = scene.add.image(
       0,
       14,
-      TEXTURE_KEY.RULER_INDICATOR_YELLOW,
+      INDICATOR_TEXTURE_MAP[balanceSetType],
     );
     this._lockCover = new LockCover(scene, 0, 0).setVisible(this._locked);
 

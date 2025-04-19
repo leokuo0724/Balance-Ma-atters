@@ -1,3 +1,4 @@
+import { Maat } from "~/characters";
 import { EVENT_KEY } from "~/constants";
 import { Card } from "~/ui";
 import { CardDeck } from "~/ui/card-deck-group/card-deck";
@@ -21,6 +22,7 @@ export class GameManager {
   public usedCardIds: string[] = [];
   public inHandCards: (Card | null)[] = [null, null, null, null, null];
   public cardDecks: CardDeck[] = [];
+  public maat: Maat | null = null;
 
   private static instance: GameManager;
   private constructor() {}
@@ -29,6 +31,10 @@ export class GameManager {
       GameManager.instance = new GameManager();
     }
     return GameManager.instance;
+  }
+
+  public setupMaat(maat: Maat) {
+    this.maat = maat;
   }
 
   public addCardDecks(deck: CardDeck) {
