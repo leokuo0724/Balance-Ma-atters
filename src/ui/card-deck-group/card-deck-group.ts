@@ -1,4 +1,5 @@
 import { SIZE } from "~/constants";
+import { GameManager } from "~/manager";
 
 import { CardDeck } from "./card-deck";
 
@@ -7,6 +8,7 @@ export class CardDeckGroup extends Phaser.GameObjects.Container {
     super(scene, x, y);
     scene.add.existing(this);
 
+    const gm = GameManager.getInstance();
     const PADDING_X = 16;
     for (let i = 0; i < 5; i++) {
       const cardDeck = new CardDeck(
@@ -17,6 +19,7 @@ export class CardDeckGroup extends Phaser.GameObjects.Container {
         this.y,
       );
       this.add(cardDeck);
+      gm.addCardDecks(cardDeck);
     }
   }
 }

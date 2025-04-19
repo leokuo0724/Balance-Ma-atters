@@ -1,5 +1,4 @@
 import { TEXTURE_KEY } from "~/constants";
-import { EBalanceType } from "~/type";
 
 import { Card } from "../card/card";
 
@@ -21,16 +20,15 @@ export class CardDeck extends Phaser.GameObjects.Container {
 
     const bg = scene.add.image(0, 0, TEXTURE_KEY.CARD_DECK);
     this.add([bg]);
-    this.spawnCard();
   }
 
-  public spawnCard() {
+  public spawnCard(id: string) {
     const FLOATING_SPACE = 8;
     new Card(
       this.scene,
       this._worldX + this.x - FLOATING_SPACE,
       this._worldY + this.y - FLOATING_SPACE,
-      "c_00001",
+      id,
     );
   }
 }
