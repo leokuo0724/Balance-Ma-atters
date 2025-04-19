@@ -22,17 +22,8 @@ export class Card extends Phaser.GameObjects.Container {
   private _dragTarget: ITarget | null = null;
   private _startDragging: boolean = false;
 
-  private _onDrag:
-    | ((
-        pointer: Phaser.Input.Pointer,
-        gameObject: any,
-        dragX: number,
-        dragY: number,
-      ) => void)
-    | null = null;
-  private _onDragEnd:
-    | ((pointer: Phaser.Input.Pointer, gameObject: any) => void)
-    | null = null;
+  private _onDrag: Function | null = null;
+  private _onDragEnd: Function | null = null;
 
   constructor(scene: Phaser.Scene, x: number, y: number, id: string) {
     super(scene, x, y + 20);
@@ -176,6 +167,7 @@ export class Card extends Phaser.GameObjects.Container {
     this.scene.input.on("drag", this._onDrag);
 
     this._onDragEnd = (pointer: Phaser.Input.Pointer, gameObject: any) => {
+      console.log("end");
       if (gameObject !== this) return;
       this._startDragging = false;
       if (this._dragTarget) {
@@ -193,6 +185,9 @@ export class Card extends Phaser.GameObjects.Container {
       }
     };
     this.scene.input.on("dragend", this._onDragEnd);
+
+    this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, this.destroy, this);
+    this.once(Phaser.GameObjects.Events.DESTROY, this._onDestroy, this);
   }
 
   private _checkIsAppliable({ belong }: ITarget) {
@@ -203,9 +198,8 @@ export class Card extends Phaser.GameObjects.Container {
     return isSelfAppliable || isEnemyAppliable;
   }
 
-  public destroy(fromScene?: boolean): void {
+  public _onDestroy(): void {
     if (this._onDrag) this.scene.input.off("drag", this._onDrag);
     if (this._onDragEnd) this.scene.input.off("dragend", this._onDragEnd);
-    super.destroy(fromScene);
   }
 }

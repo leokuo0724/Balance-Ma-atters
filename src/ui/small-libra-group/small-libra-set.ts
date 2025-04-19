@@ -47,6 +47,9 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
   private _bar: Phaser.GameObjects.Rectangle;
   private _lockCover: LockCover;
 
+  private _onCardDrag: Function;
+  private _onCardDragCancel: Function;
+
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -123,23 +126,23 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
     ]);
     this.setSize(libraSetWidth, libraSetHeight);
 
-    this.scene.events.on(
-      EVENT_KEY.ON_CARD_DRAG,
-      ({ balances }: { balances: TCardBalance[] }) => {
-        if (this.locked) return;
-        this._tempValue = this._value;
-        const diff = this._gatherBalanceDiff(balances);
-        this.updateValue(this._value + diff);
-      },
-    );
-    this.scene.events.on(
-      EVENT_KEY.ON_CARD_DRAG_CANCEL,
-      ({ balances }: { balances: TCardBalance[] }) => {
-        if (this.locked || isNil(this._tempValue)) return;
-        this.updateValue(this._tempValue);
-        this._tempValue = null;
-      },
-    );
+    this._onCardDrag = ({ balances }: { balances: TCardBalance[] }) => {
+      if (this.locked) return;
+      this._tempValue = this._value;
+      const diff = this._gatherBalanceDiff(balances);
+      this.updateValue(this._value + diff);
+    };
+    this.scene.events.on(EVENT_KEY.ON_CARD_DRAG, this._onCardDrag);
+
+    this._onCardDragCancel = () => {
+      if (this.locked || isNil(this._tempValue)) return;
+      this.updateValue(this._tempValue);
+      this._tempValue = null;
+    };
+    this.scene.events.on(EVENT_KEY.ON_CARD_DRAG_CANCEL, this._onCardDragCancel);
+
+    this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, this.destroy, this);
+    this.once(Phaser.GameObjects.Events.DESTROY, this._onDestroy, this);
   }
 
   private _gatherBalanceDiff(balances: TCardBalance[]): number {
@@ -195,6 +198,14 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
         ...commonConfig,
       }),
     ]);
+  }
+
+  private _onDestroy() {
+    this.scene.events.off(EVENT_KEY.ON_CARD_DRAG, this._onCardDrag);
+    this.scene.events.off(
+      EVENT_KEY.ON_CARD_DRAG_CANCEL,
+      this._onCardDragCancel,
+    );
   }
 }
 

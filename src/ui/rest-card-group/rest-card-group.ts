@@ -1,6 +1,8 @@
 import { COLOR_KEY, EVENT_KEY, FONT_KEY, TEXTURE_KEY } from "~/constants";
 
 export class RestCardGroup extends Phaser.GameObjects.Container {
+  private _onAvailableCardsUpdated: Function;
+
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y);
     scene.add.existing(this);
@@ -24,11 +26,22 @@ export class RestCardGroup extends Phaser.GameObjects.Container {
       .setOrigin(0.5);
     this.add([bg, restLabel, valueLabel]);
 
+    this._onAvailableCardsUpdated = ({ count }: { count: number }) => {
+      valueLabel.setText(count.toString());
+    };
     this.scene.events.on(
       EVENT_KEY.ON_AVAILABLE_CARDS_UPDATED,
-      ({ count }: { count: number }) => {
-        valueLabel.setText(count.toString());
-      },
+      this._onAvailableCardsUpdated,
+    );
+
+    this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, this.destroy, this);
+    this.once(Phaser.GameObjects.Events.DESTROY, this._onDestroy, this);
+  }
+
+  private _onDestroy() {
+    this.scene.events.off(
+      EVENT_KEY.ON_AVAILABLE_CARDS_UPDATED,
+      this._onAvailableCardsUpdated,
     );
   }
 }

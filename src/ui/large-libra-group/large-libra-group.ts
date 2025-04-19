@@ -24,6 +24,9 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
   private _unbalanceValueDisplay: UnbalanceValueDisplay;
   private _balancedDisplay: BalancedDisplay;
 
+  private _onCardDrag: Function;
+  private _onCardDragCancel: Function;
+
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y);
     scene.add.existing(this);
@@ -53,28 +56,28 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
     const gm = GameManager.getInstance();
     this.updateBalanceValue(0, gm.getHalfTotalLibraValue());
 
-    this.scene.events.on(
-      EVENT_KEY.ON_CARD_DRAG,
-      async ({ balances }: { balances: TCardBalance[] }) => {
-        this._tempBalanceValue = this._balanceValue;
-        const diff = this._gatherBalanceDiff(balances);
-        await this.updateBalanceValue(
-          this._balanceValue + diff,
-          gm.getHalfTotalLibraValue(),
-        );
-      },
-    );
-    this.scene.events.on(
-      EVENT_KEY.ON_CARD_DRAG_CANCEL,
-      async ({ balances }: { balances: TCardBalance[] }) => {
-        if (isNil(this._tempBalanceValue)) return;
-        await this.updateBalanceValue(
-          this._tempBalanceValue,
-          gm.getHalfTotalLibraValue(),
-        );
-        this._tempBalanceValue = null;
-      },
-    );
+    this._onCardDrag = async ({ balances }: { balances: TCardBalance[] }) => {
+      this._tempBalanceValue = this._balanceValue;
+      const diff = this._gatherBalanceDiff(balances);
+      await this.updateBalanceValue(
+        this._balanceValue + diff,
+        gm.getHalfTotalLibraValue(),
+      );
+    };
+    this.scene.events.on(EVENT_KEY.ON_CARD_DRAG, this._onCardDrag);
+
+    this._onCardDragCancel = async () => {
+      if (isNil(this._tempBalanceValue)) return;
+      await this.updateBalanceValue(
+        this._tempBalanceValue,
+        gm.getHalfTotalLibraValue(),
+      );
+      this._tempBalanceValue = null;
+    };
+    this.scene.events.on(EVENT_KEY.ON_CARD_DRAG_CANCEL, this._onCardDragCancel);
+
+    this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, this.destroy, this);
+    this.once(Phaser.GameObjects.Events.DESTROY, this._onDestroy, this);
   }
 
   private _gatherBalanceDiff(balances: TCardBalance[]) {
@@ -126,5 +129,13 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
         this._displayValue.setText(value.toString());
       },
     });
+  }
+
+  private _onDestroy() {
+    this.scene.events.off(EVENT_KEY.ON_CARD_DRAG, this._onCardDrag);
+    this.scene.events.off(
+      EVENT_KEY.ON_CARD_DRAG_CANCEL,
+      this._onCardDragCancel,
+    );
   }
 }
