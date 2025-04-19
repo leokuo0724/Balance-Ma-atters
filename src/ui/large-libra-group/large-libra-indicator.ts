@@ -25,7 +25,10 @@ export class LargeLibraIndicator extends Phaser.GameObjects.Container {
     this.add([barBg, this._bar, icon]);
   }
 
-  public updateDisplay(value: number, halfTotal: number) {
+  public async updateDisplay(
+    value: number,
+    halfTotal: number,
+  ): Promise<Phaser.Geom.Rectangle> {
     const DURATION = 800;
     const MAX_UNBALANCED_ROTATION = Math.PI / 15;
     const ratio = value / halfTotal;
@@ -35,13 +38,15 @@ export class LargeLibraIndicator extends Phaser.GameObjects.Container {
       rotation: value === 0 ? 0 : ratio * MAX_UNBALANCED_ROTATION,
       ease: Phaser.Math.Easing.Bounce.Out,
     });
-    tweensAsync(this.scene, {
+    await tweensAsync(this.scene, {
       targets: this._bar,
       duration: DURATION,
       width:
-        START_WIDTH * (value > 0 ? 1 : -1) +
+        START_WIDTH * (value === 0 ? 0 : value > 0 ? 1 : -1) +
         ratio * (FULL_HALF_WIDTH - START_WIDTH),
       ease: Phaser.Math.Easing.Cubic.Out,
     });
+
+    return this._bar.getBounds();
   }
 }

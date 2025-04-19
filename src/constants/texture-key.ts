@@ -10,6 +10,8 @@ export const TEXTURE_KEY = {
   LIBRA_GREEN: "libra-green.png",
   RULER: "ruler.png",
   LOCK: "lock.png",
+  NUMBER_DISPLAY_BOX: "number-display-box.png",
+  BALANCED_DISPLAY_BOX: "balanced-display-box.png",
 
   SMALL_LIBRA_SET_BG: "small-libra-set-bg",
   SMALL_LIBRA_SET_BG_2: "small-libra-set-bg-2",

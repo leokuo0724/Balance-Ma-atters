@@ -1,6 +1,7 @@
-import { COLOR_KEY, FONT_KEY, TEXTURE_KEY } from "~/constants";
-import { tweensCounterAsync } from "~/utils";
+import { COLOR_KEY, FONT_KEY, SIZE, TEXTURE_KEY } from "~/constants";
+import { tweensAsync, tweensCounterAsync } from "~/utils";
 
+import { UnbalanceValueDisplay } from "./balance-value-display";
 import { LargeLibraIndicator } from "./large-libra-indicator";
 
 export class LargeLibraGroup extends Phaser.GameObjects.Container {
@@ -9,6 +10,7 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
 
   private _displayValue: Phaser.GameObjects.Text;
   private _largeLibraIndicator: LargeLibraIndicator;
+  private _unbalanceValueDisplay: UnbalanceValueDisplay;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y);
@@ -25,16 +27,18 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
         align: "center",
       })
       .setOrigin(0.5);
+    this._unbalanceValueDisplay = new UnbalanceValueDisplay(scene, 0, 48);
 
     this.add([
       this._largeLibraIndicator,
       outerBox,
       innerBox,
       this._displayValue,
+      this._unbalanceValueDisplay,
     ]);
 
     // this.updateJackpotValue(20);
-    // this.updateBalanceValue(-5, 10);
+    // this.updateBalanceValue(-1, 16);
   }
 
   public updateJackpotValue(value: number) {
@@ -43,9 +47,26 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
     this._jackpotValue = value;
   }
 
-  public updateBalanceValue(value: number, halfTotal: number) {
+  public async updateBalanceValue(value: number, halfTotal: number) {
     this._balanceValue = value;
-    this._largeLibraIndicator.updateDisplay(value, halfTotal);
+    const rect = await this._largeLibraIndicator.updateDisplay(
+      value,
+      halfTotal,
+    );
+    const localPoint = this.getWorldTransformMatrix().applyInverse(
+      value > 0 ? rect.right : rect.left,
+      rect.bottom,
+    );
+    this._unbalanceValueDisplay.updateValueAndVisibility(this._balanceValue);
+    if (this._balanceValue !== 0) {
+      await tweensAsync(this.scene, {
+        targets: this._unbalanceValueDisplay,
+        duration: 300,
+        x: localPoint.x,
+        y: localPoint.y + SIZE.LARGE_LIBRA_BOX[1] / 2 + 8,
+        ease: Phaser.Math.Easing.Cubic.Out,
+      });
+    }
   }
 
   private async numberTween(from: number, to: number) {
