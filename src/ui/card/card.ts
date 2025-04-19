@@ -62,6 +62,14 @@ export class Card extends Phaser.GameObjects.Container {
       },
     );
     const isShield = this.metadata.shield > 0;
+    const shieldIcon = scene.add
+      .image(
+        LEFT + 12,
+        TOP + 14,
+        ATLAS_KEY.UI_COMPONENT,
+        TEXTURE_KEY.SHIELD_ICON,
+      )
+      .setVisible(isShield);
     const valueLabel = scene.add
       .text(
         LEFT + 12,
@@ -78,7 +86,7 @@ export class Card extends Phaser.GameObjects.Container {
       )
       .setOrigin(0.5);
 
-    this.add([bg, cover, titleLabel, descriptionLabel, valueLabel]);
+    this.add([bg, cover, titleLabel, descriptionLabel, shieldIcon, valueLabel]);
     this.metadata.balances.forEach((balance, index) => {
       const rowNum = Math.floor(index / 2);
       const colNum = index % 2;
