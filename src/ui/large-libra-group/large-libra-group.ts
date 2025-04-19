@@ -1,7 +1,10 @@
 import { COLOR_KEY, FONT_KEY, SIZE, TEXTURE_KEY } from "~/constants";
 import { tweensAsync, tweensCounterAsync } from "~/utils";
 
-import { UnbalanceValueDisplay } from "./balance-value-display";
+import {
+  BalancedDisplay,
+  UnbalanceValueDisplay,
+} from "./balance-value-display";
 import { LargeLibraIndicator } from "./large-libra-indicator";
 
 export class LargeLibraGroup extends Phaser.GameObjects.Container {
@@ -11,6 +14,7 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
   private _displayValue: Phaser.GameObjects.Text;
   private _largeLibraIndicator: LargeLibraIndicator;
   private _unbalanceValueDisplay: UnbalanceValueDisplay;
+  private _balancedDisplay: BalancedDisplay;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y);
@@ -28,6 +32,7 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
       })
       .setOrigin(0.5);
     this._unbalanceValueDisplay = new UnbalanceValueDisplay(scene, 0, 48);
+    this._balancedDisplay = new BalancedDisplay(scene, 0, 48);
 
     this.add([
       this._largeLibraIndicator,
@@ -35,10 +40,12 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
       innerBox,
       this._displayValue,
       this._unbalanceValueDisplay,
+      this._balancedDisplay,
     ]);
 
     // this.updateJackpotValue(20);
     // this.updateBalanceValue(-1, 16);
+    // this._balancedDisplay.updateVisibility(true);
   }
 
   public updateJackpotValue(value: number) {
@@ -67,6 +74,8 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
         ease: Phaser.Math.Easing.Cubic.Out,
       });
     }
+
+    this._balancedDisplay.updateVisibility(this._balanceValue === 0);
   }
 
   private async numberTween(from: number, to: number) {
