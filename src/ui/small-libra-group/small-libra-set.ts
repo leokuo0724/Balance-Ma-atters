@@ -180,6 +180,11 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
     this._lockCover.setVisible(false);
   }
 
+  public async addValue(value: number) {
+    const newValue = this._value + value;
+    this.updateValue(newValue);
+  }
+
   public async updateValue(value: number) {
     if (this._value === value) return;
     const commonConfig = {

@@ -305,28 +305,28 @@ export class GameManager {
 
   private _interruptBalance(type: EOpponentActionable, value: number) {
     if (type === EOpponentActionable.INTERRUPT_ATK) {
-      this.balanceSetMap[EBalanceSetType.DEF_ATK]!.updateValue(value);
+      this.balanceSetMap[EBalanceSetType.DEF_ATK]!.addValue(value);
     }
     if (type === EOpponentActionable.INTERRUPT_DEF) {
-      this.balanceSetMap[EBalanceSetType.DEF_ATK]!.updateValue(-value);
+      this.balanceSetMap[EBalanceSetType.DEF_ATK]!.addValue(-value);
     }
     if (type === EOpponentActionable.INTERRUPT_PHY) {
-      this.balanceSetMap[EBalanceSetType.PHY_MAG]!.updateValue(-value);
+      this.balanceSetMap[EBalanceSetType.PHY_MAG]!.addValue(-value);
     }
     if (type === EOpponentActionable.INTERRUPT_MAG) {
-      this.balanceSetMap[EBalanceSetType.PHY_MAG]!.updateValue(value);
+      this.balanceSetMap[EBalanceSetType.PHY_MAG]!.addValue(value);
     }
     if (type === EOpponentActionable.INTERRUPT_SHT) {
-      this.balanceSetMap[EBalanceSetType.SHT_LNG]!.updateValue(-value);
+      this.balanceSetMap[EBalanceSetType.SHT_LNG]!.addValue(-value);
     }
     if (type === EOpponentActionable.INTERRUPT_LNG) {
-      this.balanceSetMap[EBalanceSetType.SHT_LNG]!.updateValue(value);
+      this.balanceSetMap[EBalanceSetType.SHT_LNG]!.addValue(value);
     }
     if (type === EOpponentActionable.INTERRUPT_DUT) {
-      this.balanceSetMap[EBalanceSetType.DUT_FIR]!.updateValue(-value);
+      this.balanceSetMap[EBalanceSetType.DUT_FIR]!.addValue(-value);
     }
     if (type === EOpponentActionable.INTERRUPT_FIR) {
-      this.balanceSetMap[EBalanceSetType.DUT_FIR]!.updateValue(value);
+      this.balanceSetMap[EBalanceSetType.DUT_FIR]!.addValue(value);
     }
   }
 
