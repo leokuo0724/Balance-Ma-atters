@@ -85,34 +85,37 @@ export class Opponent
   public async applyCardEffect(card: TCardMetadata) {
     if (card.damage && card.damage > 0) {
       const gm = GameManager.getInstance();
-      const multiple = await gm.checkLibraSetBalanced();
+      const multiply = await gm.checkLibraSetBalanced();
       // TODO: check effects
+      this._dealtDamage(card.damage, multiply);
+    }
+  }
 
-      this._damageAnim(card.damage, multiple);
-      const dealtDamage = card.damage * multiple;
-      // check if shield is available
-      if (this.currentShield > 0) {
-        this.currentShield -= dealtDamage;
-        this.shieldGroup.updateValue(this.currentShield);
-        if (this.currentShield < 0) {
-          this.currentBlood += this.currentShield; // currentBlood will be negative
-          await this.bloodBar.updateBlood(
-            this.currentBlood - this.currentShield,
-            this.currentBlood,
-            this.totalBlood,
-          );
-          this.currentShield = 0;
-        }
-      } else {
-        this.currentBlood -= dealtDamage;
+  private async _dealtDamage(damage: number, multiply: number) {
+    this._damageAnim(damage, multiply);
+    const dealtDamage = damage * multiply;
+    // check if shield is available
+    if (this.currentShield > 0) {
+      this.currentShield -= dealtDamage;
+      this.shieldGroup.updateValue(this.currentShield);
+      if (this.currentShield < 0) {
+        this.currentBlood += this.currentShield; // currentBlood will be negative
         await this.bloodBar.updateBlood(
-          this.currentBlood + dealtDamage,
+          this.currentBlood - this.currentShield,
           this.currentBlood,
           this.totalBlood,
         );
+        this.currentShield = 0;
       }
-      this._checkDeath();
+    } else {
+      this.currentBlood -= dealtDamage;
+      await this.bloodBar.updateBlood(
+        this.currentBlood + dealtDamage,
+        this.currentBlood,
+        this.totalBlood,
+      );
     }
+    this._checkDeath();
   }
 
   private _checkDeath() {

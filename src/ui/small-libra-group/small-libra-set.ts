@@ -207,7 +207,7 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
     ]);
   }
 
-  public async displayMultipleHint(multiple: number) {
+  public async displayMultiplyHint(multiple: number) {
     const { right, centerY } = this.getBounds();
     new FloatingHint(
       this.scene,

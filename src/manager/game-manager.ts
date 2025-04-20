@@ -175,16 +175,16 @@ export class GameManager {
   }
   // return multiple number
   public async checkLibraSetBalanced(): Promise<number> {
-    let multiple = 1;
+    let multiply = 1;
     for (const set of Object.values(this.balanceSetMap).filter(
       (set) => !set?.locked,
     )) {
       if (set?.value === 0) {
-        multiple += 1;
-        await set.displayMultipleHint(multiple);
+        multiply += 1;
+        await set.displayMultiplyHint(multiply);
       }
     }
-    return multiple;
+    return multiply;
   }
 
   // Opponents
