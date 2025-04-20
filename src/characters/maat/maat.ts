@@ -1,8 +1,13 @@
 import { COLOR_KEY, SIZE } from "~/constants";
 import { GameManager } from "~/manager";
 import { TCardMetadata } from "~/type";
-import { BloodBar, ShieldGroup } from "~/ui";
-import { delayedCallAsync, hexToDecimal, tweensAsync } from "~/utils";
+import { BloodBar, GameOver, ShieldGroup } from "~/ui";
+import {
+  delayedCallAsync,
+  getCanvasCenter,
+  hexToDecimal,
+  tweensAsync,
+} from "~/utils";
 
 import { Damaged, FloatingHint } from "../effects";
 import { IBlood, IShield, ITarget } from "../interfaces";
@@ -69,7 +74,7 @@ export class Maat
 
   public async applyDamage(damage: number) {
     // TODO: damage animation
-    this._damageAnim(damage);
+    await this._damageAnim(damage);
     if (this.currentShield > 0) {
       this.currentShield -= damage;
       this.shieldGroup.updateValue(this.currentShield);
@@ -84,13 +89,20 @@ export class Maat
       }
     } else {
       this.currentBlood -= damage;
-      this.bloodBar.updateBlood(
+      await this.bloodBar.updateBlood(
         this.currentBlood + damage,
         this.currentBlood,
         this.totalBlood,
       );
-      // TODO: check death
+      this._checkDeath();
     }
+  }
+
+  private _checkDeath() {
+    if (this.currentBlood > 0) return;
+    const [x, y] = getCanvasCenter(this.scene);
+    new GameOver(this.scene, x, y);
+    this.destroy(true);
   }
 
   private async _damageAnim(damage: number) {
@@ -99,6 +111,7 @@ export class Maat
 
     const { x, y } = this._maatSprite.getWorldPoint();
     new Damaged(this.scene, x, y - 80).playAndFadeOut();
+    await delayedCallAsync(this.scene, 200);
     new FloatingHint(this.scene, x, y - 160, `-${damage}`).playAndFadeOut();
     await tweensAsync(this.scene, {
       targets: this,

@@ -1,0 +1,45 @@
+import { COLOR_KEY, DEPTH, FONT_KEY } from "~/constants";
+import { getCanvasCenter, getCanvasSize, hexToDecimal } from "~/utils";
+
+import { Button } from "../button";
+
+export class GameOver extends Phaser.GameObjects.Container {
+  constructor(scene: Phaser.Scene, x: number, y: number) {
+    super(scene, x, y);
+    scene.add.existing(this);
+    this.setDepth(DEPTH.OVERLAY);
+
+    const [width, height] = getCanvasSize(scene);
+    const bg = scene.add
+      .rectangle(0, 0, width, height, hexToDecimal(COLOR_KEY.BROWN_8))
+      .setOrigin(0.5);
+    const text = scene.add
+      .text(0, 0, "Game Over", {
+        fontFamily: FONT_KEY.JERSEY_25,
+        fontSize: 64,
+        color: COLOR_KEY.BEIGE_2,
+        align: "center",
+      })
+      .setOrigin(0.5);
+    const button = new RestartButton(scene, 0, 72);
+    this.add([bg, text, button]);
+
+    this.setY(-height / 2);
+    const [_, centerY] = getCanvasCenter(scene);
+    scene.add.tween({
+      targets: this,
+      y: centerY,
+      duration: 800,
+      ease: Phaser.Math.Easing.Bounce.Out,
+    });
+  }
+}
+
+class RestartButton extends Button {
+  constructor(scene: Phaser.Scene, x: number, y: number) {
+    super(scene, x, y, "Restart");
+  }
+  onClick(): void {
+    window.location.reload();
+  }
+}

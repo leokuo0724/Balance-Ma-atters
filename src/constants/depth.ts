@@ -7,4 +7,5 @@ export const DEPTH = {
   CARD: 700,
   DRAGGING_CARD: 800,
   EFFECT: 900,
+  OVERLAY: 1000,
 };

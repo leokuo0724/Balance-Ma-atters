@@ -187,7 +187,6 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
       ease: Phaser.Math.Easing.Bounce.Out,
     };
 
-    // TODO: Imbalance punishment
     this._value = Phaser.Math.Clamp(
       value,
       -MAX_SMALL_LIBRA_STEPS,
