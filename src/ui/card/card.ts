@@ -177,7 +177,7 @@ export class Card extends Phaser.GameObjects.Container {
         this._dragTarget.markAsCovered(false);
         this._dragTarget = null;
         const gm = GameManager.getInstance();
-        gm.markAsUsed(this);
+        gm.markAsUsed(this, this.scene);
       } else {
         this.scene.events.emit(EVENT_KEY.ON_CARD_DRAG_CANCEL, {
           balances: this.metadata.balances,

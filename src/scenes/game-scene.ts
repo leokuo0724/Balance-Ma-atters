@@ -7,6 +7,7 @@ import {
   LargeLibraGroup,
   RestCardGroup,
   SmallLibraGroup,
+  UsedCardGroup,
 } from "~/ui";
 import { getCanvasSize } from "~/utils";
 
@@ -52,12 +53,20 @@ export class GameScene extends Phaser.Scene {
 
     new CardDeckGroup(
       this,
-      SIZE.CARD[0] / 2 + 96,
+      SIZE.CARD[0] / 2 + 100,
       canvasHeight / 2 - SIZE.CARD[1] / 2 - 12,
     ).setDepth(DEPTH.CARD_DECK);
-    new RestCardGroup(this, 36, canvasHeight / 2 + 144).setDepth(
-      DEPTH.CARD_DECK,
-    );
+    const CARD_COUNT_GROUP_X = 42;
+    new RestCardGroup(
+      this,
+      CARD_COUNT_GROUP_X,
+      canvasHeight / 2 + 144,
+    ).setDepth(DEPTH.CARD_DECK);
+    new UsedCardGroup(
+      this,
+      CARD_COUNT_GROUP_X,
+      canvasHeight / 2 + 248,
+    ).setDepth(DEPTH.CARD_DECK);
 
     gm.shuffleAvailableCardIds(this);
     gm.drawCards(this);
