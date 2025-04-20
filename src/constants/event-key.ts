@@ -7,4 +7,5 @@ export const EVENT_KEY = {
 
   ON_TURN_UPDATED: "on-turn-updated",
   ON_NEXT_LEVEL: "on-next-level",
+  ON_NEXT_LEVEL_OPEN: "on-next-level-open",
 };

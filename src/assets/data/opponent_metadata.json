@@ -2,7 +2,7 @@
   "o_00000": {
     "id": "o_00000",
     "name": "Jackal",
-    "blood": 1,
+    "blood": 10,
     "moves": [
       {
         "action": "damage",

@@ -83,7 +83,7 @@ export class GameScene extends Phaser.Scene {
     gm.drawCards(this);
     gm.setupMaat(maat);
     gm.setupLargeLibraGroup(largeLibraGroup);
-    gm.setupCurrentLevel();
+    gm.setupLevelOpponents();
 
     this._onNextLevel = () => {
       new NextLevel(this, 0, 0, gm.level + 1, 4); // XXX: Hardcoded 4

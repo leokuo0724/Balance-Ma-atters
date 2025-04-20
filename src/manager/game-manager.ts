@@ -29,7 +29,7 @@ const DEFAULT_AVAILABLE_CARD_IDS = [
   // "c_00010",
 ];
 const DEFAULT_MAAT_DATA = {
-  BLOOD: 1,
+  BLOOD: 20,
   SHIELD: 0,
 };
 const LEVEL_OPPONENT_INFO = [
@@ -208,7 +208,7 @@ export class GameManager {
       .filter((spawner) => spawner.opponent)
       .map((spawner) => spawner.opponent!);
   }
-  public setupCurrentLevel() {
+  public setupLevelOpponents() {
     const opponentIds = LEVEL_OPPONENT_INFO[this.level].opponentIds;
     this.opponentSpawners.forEach((spawner, index) => {
       const opponentId = opponentIds[index];
@@ -336,5 +336,33 @@ export class GameManager {
       if (!card) continue;
       card.setControllable(!isApplying);
     }
+  }
+
+  public setNextLevel(scene: Phaser.Scene) {
+    this.level += 1;
+    this.setupLevelOpponents();
+    // unlock libra set
+    if (this.level === 1) {
+      this.balanceSetMap[EBalanceSetType.SHT_LNG]!.unlock();
+    } else if (this.level === 2) {
+      this.balanceSetMap[EBalanceSetType.DUT_FIR]!.unlock();
+    }
+    // reset cards
+    let inHandCardIds = [];
+    for (const card of this._inHandCards) {
+      if (!card) continue;
+      inHandCardIds.push(card.metadata.id);
+      card.destroy(true);
+    }
+    this._inHandCards = [null, null, null, null, null];
+    this._usedCardIds.push(...inHandCardIds);
+    this.drawCards(scene);
+
+    // reset libra
+    for (const set of Object.values(this.balanceSetMap)) {
+      set!.updateValue(0);
+    }
+    this.largeLibraGroup!.updateJackpotValue(0);
+    this.largeLibraGroup!.updateBalanceValue(0, this.getHalfTotalLibraValue());
   }
 }

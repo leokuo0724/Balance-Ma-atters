@@ -1,4 +1,4 @@
-import { COLOR_KEY, DEPTH, FONT_KEY } from "~/constants";
+import { COLOR_KEY, DEPTH, EVENT_KEY, FONT_KEY } from "~/constants";
 import { GameManager } from "~/manager";
 import { getCanvasCenter, getCanvasSize, hexToDecimal } from "~/utils";
 
@@ -47,6 +47,18 @@ export class NextLevel extends Phaser.GameObjects.Container {
       duration: 800,
       ease: Phaser.Math.Easing.Bounce.Out,
     });
+
+    scene.events.once(EVENT_KEY.ON_NEXT_LEVEL_OPEN, async () => {
+      scene.add.tween({
+        targets: this,
+        y: -height / 2,
+        duration: 800,
+        ease: Phaser.Math.Easing.Quadratic.Out,
+        onComplete: () => {
+          this.destroy();
+        },
+      });
+    });
   }
 }
 
@@ -56,6 +68,7 @@ class NextLevelButton extends Button {
   }
   onClick(): void {
     const gm = GameManager.getInstance();
-    // gm.nextLevel();
+    gm.setNextLevel(this.scene);
+    this.scene.events.emit(EVENT_KEY.ON_NEXT_LEVEL_OPEN);
   }
 }
