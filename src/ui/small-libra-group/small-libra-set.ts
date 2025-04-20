@@ -51,6 +51,7 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
   private _indicator: Phaser.GameObjects.Image;
   private _bar: Phaser.GameObjects.Rectangle;
   private _lockCover: LockCover;
+  private _brokenHint: FloatingHint | null = null;
 
   private _onCardDrag: Function;
   private _onCardDragCancel: Function;
@@ -220,6 +221,23 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
       `x${multiple}`,
     ).playAndFadeOut(1500);
     await delayedCallAsync(this.scene, 800);
+  }
+
+  public async fixImbalance() {
+    if (!this._brokenHint) return;
+    await this.updateValue(0);
+    this._brokenHint.setText("Fixed");
+    await this._brokenHint.playAndFadeOut(500);
+    this._brokenHint = null;
+  }
+
+  /** return newly imbalanced */
+  public checkImbalanced(): boolean {
+    if (Math.abs(this._value) < MAX_SMALL_LIBRA_STEPS) return false;
+    if (this._brokenHint) return false;
+    const { centerX, centerY } = this.getBounds();
+    this._brokenHint = new FloatingHint(this.scene, centerX, centerY, "Broken");
+    return true;
   }
 
   private _onDestroy() {

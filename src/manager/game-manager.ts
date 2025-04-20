@@ -1,4 +1,3 @@
-import { spawn } from "child_process";
 import { ITarget, Maat, Opponent, OpponentSpawner } from "~/characters";
 import { EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
 import {
@@ -6,7 +5,6 @@ import {
   EOpponentActionable,
   ETurn,
   TOpponentMovable,
-  TSimpleVector2,
 } from "~/type";
 import { Card, LargeLibraGroup } from "~/ui";
 import { CardDeck } from "~/ui/card-deck-group/card-deck";
@@ -18,12 +16,12 @@ const DEFAULT_AVAILABLE_CARD_IDS = [
   "c_00000",
   "c_00000",
   "c_00001",
-  "c_00002",
-  "c_00003",
-  "c_00004",
-  "c_00004",
-  "c_00005",
-  "c_00006",
+  // "c_00002",
+  // "c_00003",
+  // "c_00004",
+  // "c_00004",
+  // "c_00005",
+  // "c_00006",
   "c_00009",
   "c_00009",
   "c_00010",
@@ -201,6 +199,20 @@ export class GameManager {
   public getIsBalanceSetLocked(type: EBalanceSetType) {
     return Boolean(this.balanceSetMap[type]?.locked);
   }
+  private async _fixLibraSetImbalanced() {
+    for (const set of Object.values(this.balanceSetMap)) {
+      if (set!.locked) continue;
+      await set!.fixImbalance();
+    }
+  }
+  private _checkLibraSetImbalanced() {
+    for (const set of Object.values(this.balanceSetMap)) {
+      if (set!.locked) continue;
+      const imbalanced = set!.checkImbalanced();
+      if (imbalanced) return true;
+    }
+    return false;
+  }
 
   // Opponents
   public getOpponents(): Opponent[] {
@@ -242,6 +254,26 @@ export class GameManager {
       this._inHandCards.forEach((card) => card?.setControllable(false));
     } else {
       this._currentTurn = ETurn.PLAYER;
+      const isNewlyImbalanced = this._checkLibraSetImbalanced();
+      if (isNewlyImbalanced) {
+        await delayedCallAsync(scene, 500);
+        await this.maat!.fixingLibraHint();
+        await delayedCallAsync(scene, 2500);
+        this.updateTurn(scene);
+        return;
+      }
+      await this._fixLibraSetImbalanced();
+      const balanceSets = Object.values(this.balanceSetMap).filter(
+        (set) => !set?.locked,
+      );
+      const totalBalance = balanceSets.reduce(
+        (sum, current) => (sum += current!.value),
+        0,
+      );
+      this.largeLibraGroup!.updateBalanceValue(
+        totalBalance,
+        balanceSets.length * MAX_SMALL_LIBRA_STEPS,
+      );
       this._inHandCards.forEach((card) => card?.setControllable(true));
     }
     scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: this._currentTurn });
@@ -250,13 +282,14 @@ export class GameManager {
   private async _performOpponentTurn(scene: Phaser.Scene) {
     const opponents = this.getOpponents();
     for (const opponent of opponents) {
-      await delayedCallAsync(scene, 500);
+      await delayedCallAsync(scene, 300);
       await opponent.performMovable();
     }
     await delayedCallAsync(scene, 500);
     for (const opponent of opponents) {
       opponent.updateMove();
     }
+    await delayedCallAsync(scene, 500);
     this.drawCards(scene);
     this.updateTurn(scene);
   }

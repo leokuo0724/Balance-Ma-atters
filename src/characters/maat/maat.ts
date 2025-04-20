@@ -121,4 +121,14 @@ export class Maat
       duration: 300,
     });
   }
+
+  public async fixingLibraHint() {
+    const { x, y } = this.getWorldPoint();
+    new FloatingHint(
+      this.scene,
+      x,
+      y - 60,
+      "PASS\nFIXING LIBRA...",
+    ).playAndFadeOut(undefined, 1500);
+  }
 }
