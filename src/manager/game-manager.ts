@@ -69,6 +69,10 @@ export class GameManager {
   public get cardDragTarget() {
     return this._cardDragTarget;
   }
+  private _isApplyingEffect: boolean = false;
+  public get isApplyingEffect() {
+    return this._isApplyingEffect;
+  }
 
   private static instance: GameManager;
   private constructor() {}
@@ -309,6 +313,14 @@ export class GameManager {
     }
     if (type === EOpponentActionable.INTERRUPT_FIR) {
       this.balanceSetMap[EBalanceSetType.DUT_FIR]!.updateValue(value);
+    }
+  }
+
+  public setApplyingEffect(isApplying: boolean) {
+    this._isApplyingEffect = isApplying;
+    for (const card of this._inHandCards) {
+      if (!card) continue;
+      card.setControllable(!isApplying);
     }
   }
 }

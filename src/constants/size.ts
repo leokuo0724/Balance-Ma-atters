@@ -6,5 +6,5 @@ export const SIZE = {
   LABEL: [42, 16],
   BUTTON_LG: [128, 38],
 
-  TARGET_RECT: [120, 160],
+  TARGET_RECT: [120, 140],
 } as const;

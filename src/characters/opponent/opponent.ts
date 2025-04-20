@@ -7,7 +7,7 @@ import {
   TOpponentMove,
 } from "~/type";
 import { BloodBar, ShieldGroup } from "~/ui";
-import { hexToDecimal, tweensAsync } from "~/utils";
+import { delayedCallAsync, hexToDecimal, tweensAsync } from "~/utils";
 
 import { Damaged, FloatingHint } from "../effects";
 import { IBlood, IShield, ITarget } from "../interfaces";
@@ -89,8 +89,9 @@ export class Opponent
       // TODO: check effects
       await this.dealtDamage(card.damage, multiply);
       await gm.checkLibraStrike(multiply);
+      await delayedCallAsync(this.scene, 500);
+      gm.setApplyingEffect(false);
     }
-    // FIXME: prevent end turn during effects
   }
 
   public async dealtDamage(damage: number, multiply: number) {

@@ -168,7 +168,7 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
       op.dealtDamage(value, multiply);
       FadeOutDestroy(valueObject, 500);
     }
-    return value;
+    this.updateJackpotValue(0);
   }
 
   private _onDestroy() {

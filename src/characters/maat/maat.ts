@@ -62,6 +62,8 @@ export class Maat
       const gm = GameManager.getInstance();
       const multiple = await gm.checkLibraSetBalanced();
       this.addShield(card.shield * multiple);
+      await delayedCallAsync(this.scene, 500);
+      gm.setApplyingEffect(false);
     }
   }
 

@@ -10,7 +10,7 @@ import {
 } from "~/constants";
 import { GameManager, WikiManager } from "~/manager";
 import { ETarget, ETurn, TCardMetadata } from "~/type";
-import { tweensAsync } from "~/utils";
+import { delayedCallAsync, tweensAsync } from "~/utils";
 
 import { BalanceLabel } from "./balance-label";
 
@@ -19,7 +19,6 @@ export class Card extends Phaser.GameObjects.Container {
   private _origY: number;
   public metadata: TCardMetadata;
 
-  // private _dragTarget: ITarget | null = null;
   private _startDragging: boolean = false;
 
   private _onDrag: Function | null = null;
@@ -136,6 +135,7 @@ export class Card extends Phaser.GameObjects.Container {
       if (gameObject !== this) return;
       const gm = GameManager.getInstance();
       if (gm.currentTurn !== ETurn.PLAYER) return;
+      if (gm.isApplyingEffect) return;
 
       this.x = dragX;
       this.y = dragY;
@@ -167,10 +167,14 @@ export class Card extends Phaser.GameObjects.Container {
     };
     this.scene.input.on("drag", this._onDrag);
 
-    this._onDragEnd = (pointer: Phaser.Input.Pointer, gameObject: any) => {
+    this._onDragEnd = async (
+      pointer: Phaser.Input.Pointer,
+      gameObject: any,
+    ) => {
       if (gameObject !== this) return;
       const gm = GameManager.getInstance();
       if (gm.currentTurn !== ETurn.PLAYER) return;
+      if (gm.isApplyingEffect) return;
 
       this._startDragging = false;
       const target = gm.cardDragTarget;
@@ -178,10 +182,11 @@ export class Card extends Phaser.GameObjects.Container {
         this.scene.events.emit(EVENT_KEY.ON_CARD_APPLY, {
           metadata: this.metadata,
         });
-        target.applyCardEffect(this.metadata);
         target.markAsCovered(false);
         gm.setCardDragTarget(null);
         gm.markAsUsed(this, this.scene);
+        gm.setApplyingEffect(true);
+        await target.applyCardEffect(this.metadata);
       } else {
         this.scene.events.emit(EVENT_KEY.ON_CARD_DRAG_CANCEL, {
           balances: this.metadata.balances,
@@ -203,6 +208,16 @@ export class Card extends Phaser.GameObjects.Container {
     const isEnemyAppliable =
       belong === "opponent" && this.metadata.target === ETarget.SINGLE_OPPONENT;
     return isSelfAppliable || isEnemyAppliable;
+  }
+
+  public setControllable(isControllable: boolean) {
+    tweensAsync(this.scene, {
+      targets: this,
+      duration: 200,
+      x: isControllable ? this._origX : "+=4",
+      y: isControllable ? this._origY : "+=4",
+      ease: Phaser.Math.Easing.Cubic.Out,
+    });
   }
 
   public _onDestroy(): void {
