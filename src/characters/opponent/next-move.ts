@@ -5,6 +5,7 @@ import {
   TOpponentMovable,
   TOpponentMove,
 } from "~/type";
+import { hexToDecimal, tweensAsync } from "~/utils";
 
 const ACTION_TEXT_MAP: Record<EOpponentActionable, string> = {
   [EOpponentActionable.ATTACK]: "Attack {amount}",
@@ -22,8 +23,11 @@ const ACTION_TEXT_MAP: Record<EOpponentActionable, string> = {
   [EOpponentActionable.INTERRUPT_FIR]: "Interrupt\nFIR Balance {amount}",
 };
 
+const COVER_WIDTH = 84;
+
 export class NextMove extends Phaser.GameObjects.Container {
   private _text: Phaser.GameObjects.Text;
+  private _cover: Phaser.GameObjects.Rectangle;
   public nextMovable: TOpponentMovable | null = null;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
@@ -33,15 +37,32 @@ export class NextMove extends Phaser.GameObjects.Container {
     this._text = scene.add
       .text(0, 0, "", {
         fontFamily: FONT_KEY.JERSEY_25,
-        fontSize: 16,
+        fontSize: 20,
         color: COLOR_KEY.BROWN_8,
         align: "center",
       })
-      .setOrigin(0.5);
-    this.add([this._text]);
+      .setOrigin(0.5, 1);
+    this._cover = scene.add
+      .rectangle(
+        -COVER_WIDTH / 2,
+        0,
+        COVER_WIDTH,
+        32,
+        hexToDecimal(COLOR_KEY.RED_8),
+      )
+      .setOrigin(0, 1)
+      .setScale(0, 1);
+    this.add([this._text, this._cover]);
   }
 
-  public updateNextMove(move: TOpponentMove | null) {
+  public async updateNextMove(move: TOpponentMove | null) {
+    this._cover.setX(-COVER_WIDTH / 2).setOrigin(0, 1);
+    await tweensAsync(this.scene, {
+      targets: this._cover,
+      duration: 100,
+      scaleX: 1,
+    });
+
     if (!move) {
       this.nextMovable = null;
       this._text.setText("No Action");
@@ -52,6 +73,16 @@ export class NextMove extends Phaser.GameObjects.Container {
       const text = ACTION_TEXT_MAP[actionable];
       this._text.setText(text.replace("{amount}", value.toString()));
     }
+
+    this._cover.setX(COVER_WIDTH / 2).setOrigin(1, 1);
+    await tweensAsync(this.scene, {
+      targets: this._cover,
+      duration: 100,
+      scaleX: 0,
+      onComplete: () => {
+        this._cover.setScale(0, 1);
+      },
+    });
   }
 
   private _getActionable(action: EOpponentAction) {

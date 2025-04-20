@@ -32,7 +32,7 @@ const DEFAULT_MAAT_DATA = {
   SHIELD: 0,
 };
 const LEVEL_OPPONENT_INFO = [
-  { opponentIds: ["o_00000", "o_00000", "o_00000"] },
+  { opponentIds: ["o_00000", "o_00003", "o_00000"] },
   { opponentIds: ["o_00001", "o_00002"] },
   { opponentIds: ["o_00001", "o_00003"] },
   { opponentIds: ["o_00004", "o_00005", "o_00004"] },
@@ -216,6 +216,9 @@ export class GameManager {
       await opponent.performMovable();
     }
     await delayedCallAsync(scene, 500);
+    for (const opponent of opponents) {
+      opponent.updateMove();
+    }
     this.drawCards(scene);
     this.updateTurn(scene);
   }

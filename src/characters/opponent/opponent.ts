@@ -151,13 +151,13 @@ export class Opponent
     };
     if (isSelfApplied) {
       await tweensAsync(this.scene, {
-        y: "-=8",
+        y: "-=12",
         yoyo: true,
         ...config,
       });
     } else {
       await tweensAsync(this.scene, {
-        x: "-=8",
+        x: "-=12",
         yoyo: true,
         ...config,
       });
