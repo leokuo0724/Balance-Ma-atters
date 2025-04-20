@@ -32,7 +32,7 @@ export class Opponent
   private _sprite: Phaser.GameObjects.Sprite;
   private _nextMove: NextMove;
 
-  private _currentMoveCount = 0;
+  private _currentMoveCount = -1;
   private _defaultMoves: (TOpponentMove | null)[];
 
   constructor(
@@ -103,6 +103,10 @@ export class Opponent
   }
 
   public updateMove() {
+    this._currentMoveCount++;
+    if (this._currentMoveCount >= this._defaultMoves.length) {
+      this._currentMoveCount = 0;
+    }
     const move = this._defaultMoves[this._currentMoveCount];
     this._nextMove.updateNextMove(move);
   }

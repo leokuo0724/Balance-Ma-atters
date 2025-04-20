@@ -1,3 +1,4 @@
+import { count } from "console";
 import { ITarget, Maat, Opponent, OpponentSpawner } from "~/characters";
 import { EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
 import {
@@ -119,6 +120,9 @@ export class GameManager {
       this._availableCardIds = shuffleArray(this._usedCardIds);
       this._usedCardIds = [];
       cardId = this._availableCardIds.pop();
+      scene.events.emit(EVENT_KEY.ON_USED_CARDS_UPDATED, {
+        count: this._usedCardIds.length,
+      });
     }
     scene.events.emit(EVENT_KEY.ON_AVAILABLE_CARDS_UPDATED, {
       count: this._availableCardIds.length,
