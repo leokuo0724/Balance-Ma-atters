@@ -51,7 +51,7 @@ export class Opponent
     this._sprite = scene.add
       .sprite(0, 0, ATLAS_KEY.CHARACTER, OPPONENT_TEXTURE_MAP[metadata.id])
       .setOrigin(0.5, 1);
-    this._nextMove = new NextMove(scene, 0, this._sprite.getTopCenter().y - 24);
+    this._nextMove = new NextMove(scene, 0, this._sprite.getTopCenter().y - 36);
 
     this.add([this._sprite, this.bloodBar, this.shieldGroup, this._nextMove]);
     this.setSize(...SIZE.TARGET_RECT); // TODO: modify size

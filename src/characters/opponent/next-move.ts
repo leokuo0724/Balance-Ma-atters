@@ -41,7 +41,7 @@ export class NextMove extends Phaser.GameObjects.Container {
         color: COLOR_KEY.BROWN_8,
         align: "center",
       })
-      .setOrigin(0.5, 1);
+      .setOrigin(0.5);
     this._cover = scene.add
       .rectangle(
         -COVER_WIDTH / 2,
@@ -50,13 +50,13 @@ export class NextMove extends Phaser.GameObjects.Container {
         32,
         hexToDecimal(COLOR_KEY.RED_8),
       )
-      .setOrigin(0, 1)
+      .setOrigin(0, 0.5)
       .setScale(0, 1);
     this.add([this._text, this._cover]);
   }
 
   public async updateNextMove(move: TOpponentMove | null) {
-    this._cover.setX(-COVER_WIDTH / 2).setOrigin(0, 1);
+    this._cover.setX(-COVER_WIDTH / 2).setOrigin(0, 0.5);
     await tweensAsync(this.scene, {
       targets: this._cover,
       duration: 100,
@@ -74,7 +74,7 @@ export class NextMove extends Phaser.GameObjects.Container {
       this._text.setText(text.replace("{amount}", value.toString()));
     }
 
-    this._cover.setX(COVER_WIDTH / 2).setOrigin(1, 1);
+    this._cover.setX(COVER_WIDTH / 2).setOrigin(1, 0.5);
     await tweensAsync(this.scene, {
       targets: this._cover,
       duration: 100,
