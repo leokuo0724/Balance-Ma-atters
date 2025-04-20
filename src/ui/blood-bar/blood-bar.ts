@@ -38,13 +38,15 @@ export class BloodBar extends Phaser.GameObjects.Container {
   }
 
   public async updateBlood(from: number, to: number, total: number) {
-    tweensAsync(this.scene, {
-      targets: this._blood,
-      duration: 300,
-      width: (to / total) * 122,
-      ease: Phaser.Math.Easing.Cubic.Out,
-    });
-    this.numberTween(from, to, total);
+    await Promise.all([
+      tweensAsync(this.scene, {
+        targets: this._blood,
+        duration: 300,
+        width: (to / total) * 122,
+        ease: Phaser.Math.Easing.Cubic.Out,
+      }),
+      this.numberTween(from, to, total),
+    ]);
   }
 
   private async numberTween(from: number, to: number, total: number) {

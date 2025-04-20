@@ -190,6 +190,14 @@ export class GameManager {
       }
     });
   }
+  public defectedOpponent(opponent: Opponent) {
+    const targetIndex = this.opponentSpawners.findIndex(
+      (spawner) => spawner.opponent === opponent,
+    );
+    if (targetIndex < 0) throw new Error("Opponent not found");
+    this.opponentSpawners[targetIndex].opponent!.destroy();
+    this.opponentSpawners[targetIndex].opponent = null;
+  }
 
   // Game states
   public async updateTurn(scene: Phaser.Scene) {
@@ -220,7 +228,7 @@ export class GameManager {
         break;
       }
       case EOpponentActionable.SHIELD: {
-        this.getOpponents().forEach((op) => op.updateShield(value));
+        this.getOpponents().forEach((op) => op.addShield(value));
         break;
       }
       case EOpponentActionable.HEAL: {

@@ -43,6 +43,11 @@ export class Maat
     this.currentShield = value;
   }
 
+  public addShield(added: number): void {
+    this.currentShield += added;
+    this.shieldGroup.updateValue(this.currentShield);
+  }
+
   public markAsCovered(isCovered: boolean) {
     this._maatSprite.setTint(
       isCovered ? hexToDecimal(COLOR_KEY.YELLOW_6) : 0xffffff,
@@ -52,8 +57,7 @@ export class Maat
   public applyCardEffect(card: TCardMetadata) {
     // should only apply shield
     if (card.shield > 0) {
-      this.shieldGroup.updateValue(card.shield);
-      this.currentShield += card.shield;
+      this.addShield(card.shield);
     }
   }
 

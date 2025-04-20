@@ -72,11 +72,16 @@ export class Opponent
     this.currentShield = value;
   }
 
+  public addShield(added: number): void {
+    this.currentShield += added;
+    this.shieldGroup.updateValue(this.currentShield);
+  }
+
   public markAsCovered(isCovered: boolean) {
     this._sprite.setTint(isCovered ? hexToDecimal(COLOR_KEY.RED_6) : 0xffffff);
   }
 
-  public applyCardEffect(card: TCardMetadata) {
+  public async applyCardEffect(card: TCardMetadata) {
     if (card.damage && card.damage > 0) {
       // TODO: check balanced
       // TODO: check effects
@@ -87,19 +92,29 @@ export class Opponent
         this.shieldGroup.updateValue(this.currentShield);
         if (this.currentShield < 0) {
           this.currentBlood += this.currentShield; // currentBlood will be negative
-          this.shieldGroup.updateValue(0);
+          await this.bloodBar.updateBlood(
+            (this.currentBlood -= this.currentShield),
+            this.currentBlood,
+            this.totalBlood,
+          );
           this.currentShield = 0;
         }
       } else {
         this.currentBlood -= card.damage;
-        this.bloodBar.updateBlood(
+        await this.bloodBar.updateBlood(
           this.currentBlood + card.damage,
           this.currentBlood,
           this.totalBlood,
         );
       }
-      // TODO: check death
+      this._checkDeath();
     }
+  }
+
+  private _checkDeath() {
+    if (this.currentBlood > 0) return;
+    const gm = GameManager.getInstance();
+    gm.defectedOpponent(this);
   }
 
   public updateMove() {
