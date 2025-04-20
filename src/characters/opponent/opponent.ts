@@ -144,4 +144,14 @@ export class Opponent
       });
     }
   }
+
+  public healing(value: number) {
+    // TODO: animation
+    this.currentBlood += value;
+    this.bloodBar.updateBlood(
+      this.currentBlood - value,
+      this.currentBlood,
+      this.totalBlood,
+    );
+  }
 }

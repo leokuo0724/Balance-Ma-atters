@@ -208,6 +208,65 @@ export class GameManager {
         this.maat!.applyDamage(value);
         break;
       }
+      case EOpponentActionable.SHIELD: {
+        this.getOpponents().forEach((op) => op.updateShield(value));
+        break;
+      }
+      case EOpponentActionable.HEAL: {
+        this.getOpponents().forEach((op) => op.healing(value));
+        break;
+      }
+      case EOpponentActionable.SUMMON: {
+        this.opponentSpawners.forEach((spawner) => {
+          if (!spawner.opponent) {
+            spawner.spawnOpponent("o_00004");
+          }
+        });
+        break;
+      }
+      case EOpponentActionable.VENOM: {
+        // TODO: apply venom
+        // this.maat!.applyVenom(value);
+        break;
+      }
+      case EOpponentActionable.INTERRUPT_ATK:
+      case EOpponentActionable.INTERRUPT_DEF:
+      case EOpponentActionable.INTERRUPT_PHY:
+      case EOpponentActionable.INTERRUPT_MAG:
+      case EOpponentActionable.INTERRUPT_SHT:
+      case EOpponentActionable.INTERRUPT_LNG:
+      case EOpponentActionable.INTERRUPT_DUT:
+      case EOpponentActionable.INTERRUPT_FIR: {
+        this._interruptBalance(action, value);
+        break;
+      }
+    }
+  }
+
+  private _interruptBalance(type: EOpponentActionable, value: number) {
+    if (type === EOpponentActionable.INTERRUPT_ATK) {
+      this.balanceSetMap[EBalanceSetType.DEF_ATK]!.updateValue(value);
+    }
+    if (type === EOpponentActionable.INTERRUPT_DEF) {
+      this.balanceSetMap[EBalanceSetType.DEF_ATK]!.updateValue(-value);
+    }
+    if (type === EOpponentActionable.INTERRUPT_PHY) {
+      this.balanceSetMap[EBalanceSetType.PHY_MAG]!.updateValue(-value);
+    }
+    if (type === EOpponentActionable.INTERRUPT_MAG) {
+      this.balanceSetMap[EBalanceSetType.PHY_MAG]!.updateValue(value);
+    }
+    if (type === EOpponentActionable.INTERRUPT_SHT) {
+      this.balanceSetMap[EBalanceSetType.SHT_LNG]!.updateValue(-value);
+    }
+    if (type === EOpponentActionable.INTERRUPT_LNG) {
+      this.balanceSetMap[EBalanceSetType.SHT_LNG]!.updateValue(value);
+    }
+    if (type === EOpponentActionable.INTERRUPT_DUT) {
+      this.balanceSetMap[EBalanceSetType.DUT_FIR]!.updateValue(-value);
+    }
+    if (type === EOpponentActionable.INTERRUPT_FIR) {
+      this.balanceSetMap[EBalanceSetType.DUT_FIR]!.updateValue(value);
     }
   }
 }

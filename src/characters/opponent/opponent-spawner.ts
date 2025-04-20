@@ -12,6 +12,7 @@ export class OpponentSpawner extends Phaser.GameObjects.Container {
 
   public spawnOpponent(id: string) {
     if (this.opponent) return;
+    // TODO: Animation
     const wm = WikiManager.getInstance();
     const data = wm.queryOpponentData(id);
     this.opponent = new Opponent(this.scene, 0, 0, data);
