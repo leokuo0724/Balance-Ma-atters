@@ -184,7 +184,6 @@ export class GameManager {
         await set.displayMultipleHint(multiple);
       }
     }
-
     return multiple;
   }
 

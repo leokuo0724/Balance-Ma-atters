@@ -1,9 +1,10 @@
 import { COLOR_KEY, SIZE } from "~/constants";
+import { GameManager } from "~/manager";
 import { TCardMetadata } from "~/type";
 import { BloodBar, ShieldGroup } from "~/ui";
 import { delayedCallAsync, hexToDecimal, tweensAsync } from "~/utils";
 
-import { Damaged } from "../effects";
+import { Damaged, FloatingHint } from "../effects";
 import { IBlood, IShield, ITarget } from "../interfaces";
 import { MaatSprite } from "./maat-sprite";
 
@@ -55,16 +56,18 @@ export class Maat
     );
   }
 
-  public applyCardEffect(card: TCardMetadata) {
+  public async applyCardEffect(card: TCardMetadata) {
     // should only apply shield
     if (card.shield > 0) {
-      this.addShield(card.shield);
+      const gm = GameManager.getInstance();
+      const multiple = await gm.checkLibraSetBalanced();
+      this.addShield(card.shield * multiple);
     }
   }
 
   public async applyDamage(damage: number) {
     // TODO: damage animation
-    this._damageAnim();
+    this._damageAnim(damage);
     if (this.currentShield > 0) {
       this.currentShield -= damage;
       this.shieldGroup.updateValue(this.currentShield);
@@ -88,12 +91,13 @@ export class Maat
     }
   }
 
-  private async _damageAnim() {
+  private async _damageAnim(damage: number) {
     // delay for opponent movement
     await delayedCallAsync(this.scene, 250);
 
     const { x, y } = this._maatSprite.getWorldPoint();
     new Damaged(this.scene, x, y - 80).playAndFadeOut();
+    new FloatingHint(this.scene, x, y - 160, `-${damage}`).playAndFadeOut();
     await tweensAsync(this.scene, {
       targets: this,
       x: "-=12",

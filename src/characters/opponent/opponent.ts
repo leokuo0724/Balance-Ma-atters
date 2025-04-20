@@ -86,12 +86,11 @@ export class Opponent
     if (card.damage && card.damage > 0) {
       const gm = GameManager.getInstance();
       const multiple = await gm.checkLibraSetBalanced();
-
       // TODO: check effects
 
-      // check if shield is available
-      this._damageAnim();
+      this._damageAnim(card.damage, multiple);
       const dealtDamage = card.damage * multiple;
+      // check if shield is available
       if (this.currentShield > 0) {
         this.currentShield -= dealtDamage;
         this.shieldGroup.updateValue(this.currentShield);
@@ -182,9 +181,16 @@ export class Opponent
     );
   }
 
-  private async _damageAnim() {
+  private async _damageAnim(damage: number, multiple: number) {
     const { x, y } = this._sprite.getWorldPoint();
     new Damaged(this.scene, x, y - 80).playAndFadeOut();
+    new FloatingHint(
+      this.scene,
+      x,
+      y - 160,
+      `-${damage}x${multiple}`,
+    ).playAndFadeOut();
+
     await tweensAsync(this.scene, {
       targets: this,
       x: "+=12",
