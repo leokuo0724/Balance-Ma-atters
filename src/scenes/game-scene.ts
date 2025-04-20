@@ -1,5 +1,5 @@
 import { Maat, OpponentSpawner } from "~/characters";
-import { DEPTH, POSITION, SCENE_KEY, SIZE } from "~/constants";
+import { DEPTH, EVENT_KEY, POSITION, SCENE_KEY, SIZE } from "~/constants";
 import { GameManager } from "~/manager";
 import {
   Button,
@@ -7,6 +7,7 @@ import {
   EndTurnButton,
   Ground,
   LargeLibraGroup,
+  NextLevel,
   RestCardGroup,
   SmallLibraGroup,
   UsedCardGroup,
@@ -14,6 +15,8 @@ import {
 import { getCanvasSize } from "~/utils";
 
 export class GameScene extends Phaser.Scene {
+  private _onNextLevel: Function | null = null;
+
   constructor() {
     super({ key: SCENE_KEY.GAME });
   }
@@ -81,5 +84,14 @@ export class GameScene extends Phaser.Scene {
     gm.setupMaat(maat);
     gm.setupLargeLibraGroup(largeLibraGroup);
     gm.setupCurrentLevel();
+
+    this._onNextLevel = () => {
+      new NextLevel(this, 0, 0, gm.level + 1, 4); // XXX: Hardcoded 4
+    };
+    this.events.on(EVENT_KEY.ON_NEXT_LEVEL, this._onNextLevel);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      if (this._onNextLevel)
+        this.events.off(EVENT_KEY.ON_NEXT_LEVEL, this._onNextLevel);
+    });
   }
 }

@@ -1,3 +1,4 @@
+import { spawn } from "child_process";
 import { ITarget, Maat, Opponent, OpponentSpawner } from "~/characters";
 import { EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
 import {
@@ -28,7 +29,7 @@ const DEFAULT_AVAILABLE_CARD_IDS = [
   // "c_00010",
 ];
 const DEFAULT_MAAT_DATA = {
-  BLOOD: 3,
+  BLOOD: 1,
   SHIELD: 0,
 };
 const LEVEL_OPPONENT_INFO = [
@@ -221,6 +222,14 @@ export class GameManager {
       (spawner) => spawner.opponent === opponent,
     );
     if (targetIndex < 0) throw new Error("Opponent not found");
+    // check if able to next level
+    // XXX: we have to do that before destroy or scene will be undefined
+    const isAllDefeated =
+      this.opponentSpawners.filter((spawner) => spawner.opponent).length === 1;
+    // TODO: check win
+    if (isAllDefeated) {
+      opponent.scene.events.emit(EVENT_KEY.ON_NEXT_LEVEL);
+    }
     this.opponentSpawners[targetIndex].opponent!.destroy();
     this.opponentSpawners[targetIndex].opponent = null;
   }

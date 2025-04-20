@@ -6,4 +6,5 @@ export const EVENT_KEY = {
   ON_CARD_APPLY: "on-card-apply",
 
   ON_TURN_UPDATED: "on-turn-updated",
+  ON_NEXT_LEVEL: "on-next-level",
 };

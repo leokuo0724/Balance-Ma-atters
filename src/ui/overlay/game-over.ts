@@ -24,7 +24,7 @@ export class GameOver extends Phaser.GameObjects.Container {
     const button = new RestartButton(scene, 0, 72);
     this.add([bg, text, button]);
 
-    this.setY(-height / 2);
+    this.setPosition(width / 2, -height / 2);
     const [_, centerY] = getCanvasCenter(scene);
     scene.add.tween({
       targets: this,
