@@ -227,8 +227,10 @@ export class GameManager {
     if (this._currentTurn === ETurn.PLAYER) {
       this._currentTurn = ETurn.OPPONENT;
       this._performOpponentTurn(scene);
+      this._inHandCards.forEach((card) => card?.setControllable(false));
     } else {
       this._currentTurn = ETurn.PLAYER;
+      this._inHandCards.forEach((card) => card?.setControllable(true));
     }
     scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: this._currentTurn });
   }

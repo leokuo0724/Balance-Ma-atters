@@ -55,7 +55,7 @@ export class Opponent
     this._nextMove = new NextMove(scene, 0, this._sprite.getTopCenter().y - 36);
 
     this.add([this._sprite, this.bloodBar, this.shieldGroup, this._nextMove]);
-    this.setSize(...SIZE.TARGET_RECT); // TODO: modify size
+    this.setSize(...SIZE.TARGET_RECT);
 
     this.updateBloodBar(metadata.blood, metadata.blood, metadata.blood);
     this.updateShield(0);
