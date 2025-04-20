@@ -9,7 +9,7 @@ import {
   TEXTURE_KEY,
 } from "~/constants";
 import { GameManager, WikiManager } from "~/manager";
-import { ETarget, TCardMetadata } from "~/type";
+import { ETarget, ETurn, TCardMetadata } from "~/type";
 import { tweensAsync } from "~/utils";
 
 import { BalanceLabel } from "./balance-label";
@@ -134,6 +134,9 @@ export class Card extends Phaser.GameObjects.Container {
       dragY: number,
     ) => {
       if (gameObject !== this) return;
+      const gm = GameManager.getInstance();
+      if (gm.currentTurn !== ETurn.PLAYER) return;
+
       this.x = dragX;
       this.y = dragY;
       this.setDepth(DEPTH.DRAGGING_CARD);
@@ -144,7 +147,6 @@ export class Card extends Phaser.GameObjects.Container {
         this._startDragging = true;
       }
 
-      const gm = GameManager.getInstance();
       const targets = [gm.maat!, ...gm.getOpponents()];
 
       for (const target of targets) {
@@ -167,8 +169,10 @@ export class Card extends Phaser.GameObjects.Container {
 
     this._onDragEnd = (pointer: Phaser.Input.Pointer, gameObject: any) => {
       if (gameObject !== this) return;
-      this._startDragging = false;
       const gm = GameManager.getInstance();
+      if (gm.currentTurn !== ETurn.PLAYER) return;
+
+      this._startDragging = false;
       const target = gm.cardDragTarget;
       if (target) {
         this.scene.events.emit(EVENT_KEY.ON_CARD_APPLY, {

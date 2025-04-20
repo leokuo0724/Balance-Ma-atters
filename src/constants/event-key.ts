@@ -4,4 +4,6 @@ export const EVENT_KEY = {
   ON_CARD_DRAG: "on-card-drag",
   ON_CARD_DRAG_CANCEL: "on-card-drag-cancel",
   ON_CARD_APPLY: "on-card-apply",
+
+  ON_TURN_UPDATED: "on-turn-updated",
 };

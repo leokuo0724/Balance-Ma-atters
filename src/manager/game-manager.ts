@@ -1,9 +1,10 @@
 import { ITarget, Maat, Opponent, OpponentSpawner } from "~/characters";
 import { EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
-import { EBalanceSetType } from "~/type";
+import { EBalanceSetType, ETurn } from "~/type";
 import { Card, LargeLibraGroup } from "~/ui";
 import { CardDeck } from "~/ui/card-deck-group/card-deck";
 import { SmallLibraSet } from "~/ui/small-libra-group/small-libra-set";
+import { delayedCallAsync } from "~/utils";
 import { shuffleArray } from "~/utils/math.utility";
 
 const DEFAULT_AVAILABLE_CARD_IDS = [
@@ -54,6 +55,10 @@ export class GameManager {
 
   // Game states
   public level: number = 0;
+  private _currentTurn: ETurn = ETurn.PLAYER;
+  public get currentTurn() {
+    return this._currentTurn;
+  }
   private _cardDragTarget: ITarget | null = null;
   public get cardDragTarget() {
     return this._cardDragTarget;
@@ -170,5 +175,24 @@ export class GameManager {
         spawner.spawnOpponent(opponentId);
       }
     });
+  }
+
+  // Game states
+  public updateTurn(scene: Phaser.Scene) {
+    if (this._currentTurn === ETurn.PLAYER) {
+      this._currentTurn = ETurn.OPPONENT;
+      this._performOpponentTurn(scene);
+    } else {
+      this._currentTurn = ETurn.PLAYER;
+    }
+    scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: this._currentTurn }); // TODO: update end turn button
+  }
+
+  private async _performOpponentTurn(scene: Phaser.Scene) {
+    const opponents = this.getOpponents();
+    for (const opponent of opponents) {
+    }
+    await delayedCallAsync(scene, 1000);
+    this.updateTurn(scene);
   }
 }

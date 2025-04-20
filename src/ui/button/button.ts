@@ -46,10 +46,12 @@ export abstract class Button extends Phaser.GameObjects.Container {
     this.setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
         if (this.isDisabled) return;
+        this._hoverTweens(true);
         this._bg.setTexture(BUTTON_TYPE_TEXTURE_MAP.hover);
       })
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
         if (this.isDisabled) return;
+        this._hoverTweens(false);
         this._bg.setTexture(BUTTON_TYPE_TEXTURE_MAP.normal);
       })
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
@@ -76,12 +78,27 @@ export abstract class Button extends Phaser.GameObjects.Container {
     this._text.setText(text);
   }
 
+  private _hoverTweens(isHover: boolean) {
+    tweensAsync(this.scene, {
+      targets: [this._bgTop, this._bg, this._text],
+      duration: 300,
+      y: isHover ? -4 : -2,
+      ease: Phaser.Math.Easing.Bounce.Out,
+    });
+  }
+
   private _pressTweens(isPressed: boolean) {
     tweensAsync(this.scene, {
       targets: [this._bgTop, this._bg, this._text],
       duration: 300,
       y: isPressed ? 2 : -2,
       ease: Phaser.Math.Easing.Quartic.Out,
+    });
+  }
+
+  public resetY() {
+    [this._bgTop, this._bg, this._text].forEach((item) => {
+      item.setY(-2);
     });
   }
 }
