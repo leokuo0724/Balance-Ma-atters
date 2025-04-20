@@ -1,3 +1,4 @@
+import { FloatingHint } from "~/characters";
 import {
   ATLAS_KEY,
   COLOR_KEY,
@@ -9,6 +10,7 @@ import {
 } from "~/constants";
 import { EBalanceSetType, TCardBalance } from "~/type";
 import {
+  delayedCallAsync,
   getBalanceLeftRightSet,
   getBalanceLongText,
   getBalanceSetColor,
@@ -203,6 +205,17 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
         ...commonConfig,
       }),
     ]);
+  }
+
+  public async displayMultipleHint(multiple: number) {
+    const { right, centerY } = this.getBounds();
+    new FloatingHint(
+      this.scene,
+      right + 28,
+      centerY,
+      `x${multiple}`,
+    ).playAndFadeOut(1500);
+    await delayedCallAsync(this.scene, 800);
   }
 
   private _onDestroy() {

@@ -1,6 +1,6 @@
 import FadeOutDestroy from "phaser3-rex-plugins/plugins/fade-out-destroy";
 import { COLOR_KEY, DEPTH, FONT_KEY } from "~/constants";
-import { tweensAsync } from "~/utils";
+import { delayedCallAsync, tweensAsync } from "~/utils";
 
 export class FloatingHint extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene, x: number, y: number, text: string) {
@@ -21,13 +21,13 @@ export class FloatingHint extends Phaser.GameObjects.Container {
     this.add([label]);
   }
 
-  public async playAndFadeOut() {
+  public async playAndFadeOut(fadeoutDuration?: number) {
     await tweensAsync(this.scene, {
       targets: this,
       y: "-=12",
       duration: 500,
       ease: Phaser.Math.Easing.Bounce.Out,
     });
-    FadeOutDestroy(this, 500);
+    FadeOutDestroy(this, fadeoutDuration ?? 500);
   }
 }

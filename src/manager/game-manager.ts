@@ -173,6 +173,20 @@ export class GameManager {
       return (sum += current?.value ?? 0);
     }, 0);
   }
+  // return multiple number
+  public async checkLibraSetBalanced(): Promise<number> {
+    let multiple = 1;
+    for (const set of Object.values(this.balanceSetMap).filter(
+      (set) => !set?.locked,
+    )) {
+      if (set?.value === 0) {
+        multiple += 1;
+        await set.displayMultipleHint(multiple);
+      }
+    }
+
+    return multiple;
+  }
 
   // Opponents
   public getOpponents(): Opponent[] {

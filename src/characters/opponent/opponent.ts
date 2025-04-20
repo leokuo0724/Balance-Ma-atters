@@ -84,13 +84,16 @@ export class Opponent
 
   public async applyCardEffect(card: TCardMetadata) {
     if (card.damage && card.damage > 0) {
-      // TODO: check balanced
+      const gm = GameManager.getInstance();
+      const multiple = await gm.checkLibraSetBalanced();
+
       // TODO: check effects
 
       // check if shield is available
       this._damageAnim();
+      const dealtDamage = card.damage * multiple;
       if (this.currentShield > 0) {
-        this.currentShield -= card.damage;
+        this.currentShield -= dealtDamage;
         this.shieldGroup.updateValue(this.currentShield);
         if (this.currentShield < 0) {
           this.currentBlood += this.currentShield; // currentBlood will be negative
@@ -102,9 +105,9 @@ export class Opponent
           this.currentShield = 0;
         }
       } else {
-        this.currentBlood -= card.damage;
+        this.currentBlood -= dealtDamage;
         await this.bloodBar.updateBlood(
-          this.currentBlood + card.damage,
+          this.currentBlood + dealtDamage,
           this.currentBlood,
           this.totalBlood,
         );
