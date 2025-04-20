@@ -6,4 +6,5 @@ export const DEPTH = {
   LIBRA_SET: 600,
   CARD: 700,
   DRAGGING_CARD: 800,
+  EFFECT: 900,
 };

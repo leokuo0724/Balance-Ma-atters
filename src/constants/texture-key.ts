@@ -1,6 +1,7 @@
 export const ATLAS_KEY = {
   UI_COMPONENT: "ui-component",
   CHARACTER: "character",
+  DAMAGED: "damaged",
 };
 
 export const TEXTURE_KEY = {

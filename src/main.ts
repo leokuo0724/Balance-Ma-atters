@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import FadePlugin from "phaser3-rex-plugins/plugins/fade-plugin.js";
 import "~/style.css";
 
 import { COLOR_KEY } from "./constants";
@@ -15,6 +16,9 @@ const config = {
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
   scene: [BootScene, PreloadScene, GameScene],
+  plugins: {
+    global: [{ key: "rexFade", plugin: FadePlugin, start: true }],
+  },
 };
 
 export default new Phaser.Game(config);

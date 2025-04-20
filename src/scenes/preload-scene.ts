@@ -1,5 +1,7 @@
 import characterJson from "~/assets/atlas/character.json";
 import characterPng from "~/assets/atlas/character.png";
+import damagedJson from "~/assets/atlas/damaged.json";
+import damagedPng from "~/assets/atlas/damaged.png";
 import uiComponentJson from "~/assets/atlas/ui-component.json";
 import uiComponentPng from "~/assets/atlas/ui-component.png";
 import maatTest from "~/assets/maat-test.png";
@@ -22,6 +24,7 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image("maat-test", maatTest);
     this.load.atlas(ATLAS_KEY.UI_COMPONENT, uiComponentPng, uiComponentJson);
     this.load.atlas(ATLAS_KEY.CHARACTER, characterPng, characterJson);
+    this.load.atlas(ATLAS_KEY.DAMAGED, damagedPng, damagedJson);
 
     const graphics = new Phaser.GameObjects.Graphics(this);
     this._drawSmallLibraSetBg(graphics, TEXTURE_KEY.SMALL_LIBRA_SET_BG);

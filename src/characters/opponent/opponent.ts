@@ -9,6 +9,7 @@ import {
 import { BloodBar, ShieldGroup } from "~/ui";
 import { hexToDecimal, tweensAsync } from "~/utils";
 
+import { Damaged } from "../effects";
 import { IBlood, IShield, ITarget } from "../interfaces";
 import { NextMove } from "./next-move";
 
@@ -87,6 +88,7 @@ export class Opponent
       // TODO: check effects
 
       // check if shield is available
+      this._damageAnim();
       if (this.currentShield > 0) {
         this.currentShield -= card.damage;
         this.shieldGroup.updateValue(this.currentShield);
@@ -172,5 +174,18 @@ export class Opponent
       this.currentBlood,
       this.totalBlood,
     );
+  }
+
+  private async _damageAnim() {
+    const { x, y } = this._sprite.getWorldPoint();
+    console.log(this._sprite.getWorldPoint());
+    new Damaged(this.scene, x, y - 80).playAndFadeOut();
+    await tweensAsync(this.scene, {
+      targets: this,
+      x: "+=12",
+      yoyo: true,
+      ease: Phaser.Math.Easing.Cubic.InOut,
+      duration: 300,
+    });
   }
 }
