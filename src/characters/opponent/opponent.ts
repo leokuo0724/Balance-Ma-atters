@@ -180,6 +180,9 @@ export class Opponent
   public healing(value: number) {
     // TODO: animation
     this.currentBlood += value;
+    if (this.currentBlood > this.totalBlood) {
+      this.currentBlood = this.totalBlood;
+    }
     this.bloodBar.updateBlood(
       this.currentBlood - value,
       this.currentBlood,

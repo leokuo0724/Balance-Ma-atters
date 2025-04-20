@@ -20,13 +20,13 @@ const DEFAULT_AVAILABLE_CARD_IDS = [
   "c_00001",
   "c_00002",
   "c_00003",
-  // "c_00004",
-  // "c_00004",
-  // "c_00005",
-  // "c_00006",
-  // "c_00009",
-  // "c_00009",
-  // "c_00010",
+  "c_00004",
+  "c_00004",
+  "c_00005",
+  "c_00006",
+  "c_00009",
+  "c_00009",
+  "c_00010",
 ];
 const DEFAULT_MAAT_DATA = {
   BLOOD: 20,
@@ -364,5 +364,8 @@ export class GameManager {
     }
     this.largeLibraGroup!.updateJackpotValue(0);
     this.largeLibraGroup!.updateBalanceValue(0, this.getHalfTotalLibraValue());
+
+    // rest character
+    this.maat!.updateShield(0);
   }
 }
