@@ -9,7 +9,7 @@ import {
 import { BloodBar, ShieldGroup } from "~/ui";
 import { hexToDecimal, tweensAsync } from "~/utils";
 
-import { Damaged } from "../effects";
+import { Damaged, FloatingHint } from "../effects";
 import { IBlood, IShield, ITarget } from "../interfaces";
 import { NextMove } from "./next-move";
 
@@ -132,7 +132,8 @@ export class Opponent
     const gm = GameManager.getInstance();
     const movable = this._nextMove.nextMovable;
     if (!movable) {
-      // TODO: hint do nothing
+      const { x, y } = this._sprite.getWorldPoint();
+      await new FloatingHint(this.scene, x, y - 160, "PASS").playAndFadeOut();
     } else {
       await Promise.all([
         this._movableAnim(movable.action),

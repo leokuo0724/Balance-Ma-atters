@@ -1,4 +1,3 @@
-import { count } from "console";
 import { ITarget, Maat, Opponent, OpponentSpawner } from "~/characters";
 import { EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
 import {
@@ -32,7 +31,7 @@ const DEFAULT_MAAT_DATA = {
   SHIELD: 0,
 };
 const LEVEL_OPPONENT_INFO = [
-  { opponentIds: ["o_00000", "o_00003", "o_00000"] },
+  { opponentIds: ["o_00000", "o_00000", "o_00000"] },
   { opponentIds: ["o_00001", "o_00002"] },
   { opponentIds: ["o_00001", "o_00003"] },
   { opponentIds: ["o_00004", "o_00005", "o_00004"] },
