@@ -1,7 +1,13 @@
 import { ATLAS_KEY, COLOR_KEY, SIZE, TEXTURE_KEY } from "~/constants";
-import { TCardMetadata, TOpponentMetadata, TOpponentMove } from "~/type";
+import { GameManager } from "~/manager";
+import {
+  EOpponentActionable,
+  TCardMetadata,
+  TOpponentMetadata,
+  TOpponentMove,
+} from "~/type";
 import { BloodBar, ShieldGroup } from "~/ui";
-import { hexToDecimal } from "~/utils";
+import { hexToDecimal, tweensAsync } from "~/utils";
 
 import { IBlood, IShield, ITarget } from "../interfaces";
 import { NextMove } from "./next-move";
@@ -26,7 +32,7 @@ export class Opponent
   private _sprite: Phaser.GameObjects.Sprite;
   private _nextMove: NextMove;
 
-  private _currentMove = 0;
+  private _currentMoveCount = 0;
   private _defaultMoves: (TOpponentMove | null)[];
 
   constructor(
@@ -92,11 +98,50 @@ export class Opponent
           this.totalBlood,
         );
       }
+      // TODO: check death
     }
   }
 
   public updateMove() {
-    const move = this._defaultMoves[this._currentMove];
+    const move = this._defaultMoves[this._currentMoveCount];
     this._nextMove.updateNextMove(move);
+  }
+
+  public async performMovable() {
+    const gm = GameManager.getInstance();
+    const movable = this._nextMove.nextMovable;
+    if (!movable) {
+      // TODO: hint do nothing
+    } else {
+      await this._movableAnim(movable.action);
+      gm.applyOpponentMovable(movable);
+    }
+  }
+
+  private async _movableAnim(actionable: EOpponentActionable) {
+    const isSelfApplied = [
+      EOpponentActionable.SHIELD,
+      EOpponentActionable.HEAL,
+      EOpponentActionable.SUMMON,
+    ].includes(actionable);
+
+    const config = {
+      targets: this,
+      ease: Phaser.Math.Easing.Cubic.In,
+      duration: 400,
+    };
+    if (isSelfApplied) {
+      await tweensAsync(this.scene, {
+        y: "-=8",
+        yoyo: true,
+        ...config,
+      });
+    } else {
+      await tweensAsync(this.scene, {
+        x: "-=8",
+        yoyo: true,
+        ...config,
+      });
+    }
   }
 }

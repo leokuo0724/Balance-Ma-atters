@@ -56,4 +56,25 @@ export class Maat
       this.currentShield += card.shield;
     }
   }
+
+  public applyDamage(damage: number) {
+    // TODO: damage animation
+    if (this.currentShield > 0) {
+      this.currentShield -= damage;
+      this.shieldGroup.updateValue(this.currentShield);
+      if (this.currentShield < 0) {
+        this.currentBlood += this.currentShield; // currentBlood will be negative
+        this.shieldGroup.updateValue(0);
+        this.currentShield = 0;
+      }
+    } else {
+      this.currentBlood -= damage;
+      this.bloodBar.updateBlood(
+        this.currentBlood + damage,
+        this.currentBlood,
+        this.totalBlood,
+      );
+      // TODO: check death
+    }
+  }
 }
