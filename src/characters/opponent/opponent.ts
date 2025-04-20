@@ -89,7 +89,7 @@ export class Opponent
       // TODO: check effects
       await this.dealtDamage(card.damage, multiply);
       await gm.checkLibraStrike(multiply);
-      await delayedCallAsync(this.scene, 500);
+      if (this.scene) await delayedCallAsync(this.scene, 500);
       gm.setApplyingEffect(false);
     }
   }
