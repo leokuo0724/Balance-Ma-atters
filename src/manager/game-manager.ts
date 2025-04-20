@@ -1,4 +1,4 @@
-import { Maat, Opponent, OpponentSpawner } from "~/characters";
+import { ITarget, Maat, Opponent, OpponentSpawner } from "~/characters";
 import { EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
 import { EBalanceSetType } from "~/type";
 import { Card, LargeLibraGroup } from "~/ui";
@@ -54,6 +54,10 @@ export class GameManager {
 
   // Game states
   public level: number = 0;
+  private _cardDragTarget: ITarget | null = null;
+  public get cardDragTarget() {
+    return this._cardDragTarget;
+  }
 
   private static instance: GameManager;
   private constructor() {}
@@ -127,6 +131,15 @@ export class GameManager {
     this.usedCardIds.push(targetCardId);
     scene.events.emit(EVENT_KEY.ON_USED_CARDS_UPDATED, {
       count: this.usedCardIds.length,
+    });
+  }
+  public setCardDragTarget(target: ITarget | null) {
+    this._cardDragTarget = target;
+    // mark as covered
+    [this.maat, ...this.getOpponents()].forEach((character) => {
+      if (character) {
+        character.markAsCovered(character === target);
+      }
     });
   }
 

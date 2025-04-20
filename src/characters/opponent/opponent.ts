@@ -4,6 +4,7 @@ import { BloodBar, ShieldGroup } from "~/ui";
 import { hexToDecimal } from "~/utils";
 
 import { IBlood, IShield, ITarget } from "../interfaces";
+import { NextMove } from "./next-move";
 
 const OPPONENT_TEXTURE_MAP: Record<string, string> = {
   o_00000: TEXTURE_KEY.JACKAL,
@@ -23,9 +24,10 @@ export class Opponent
   public belong: "self" | "opponent" = "opponent";
 
   private _sprite: Phaser.GameObjects.Sprite;
+  private _nextMove: NextMove;
 
   private _currentMove = 0;
-  private _moves: (TOpponentMove | null)[];
+  private _defaultMoves: (TOpponentMove | null)[];
 
   constructor(
     scene: Phaser.Scene,
@@ -35,7 +37,7 @@ export class Opponent
   ) {
     super(scene, x, y);
     scene.add.existing(this);
-    this._moves = metadata.moves;
+    this._defaultMoves = metadata.moves;
 
     this.bloodBar = new BloodBar(scene, 0, 14);
     this.shieldGroup = new ShieldGroup(scene, -84, 14);
@@ -43,13 +45,14 @@ export class Opponent
     this._sprite = scene.add
       .sprite(0, 0, ATLAS_KEY.CHARACTER, OPPONENT_TEXTURE_MAP[metadata.id])
       .setOrigin(0.5, 1);
+    this._nextMove = new NextMove(scene, 0, this._sprite.getTopCenter().y - 24);
 
-    this.add([this._sprite, this.bloodBar, this.shieldGroup]);
+    this.add([this._sprite, this.bloodBar, this.shieldGroup, this._nextMove]);
     this.setSize(...SIZE.TARGET_RECT); // TODO: modify size
 
     this.updateBloodBar(metadata.blood, metadata.blood, metadata.blood);
     this.updateShield(0);
-    // TODO: display next move
+    this.updateMove();
   }
 
   public updateBloodBar(from: number, to: number, total: number): void {
@@ -90,5 +93,10 @@ export class Opponent
         );
       }
     }
+  }
+
+  public updateMove() {
+    const move = this._defaultMoves[this._currentMove];
+    this._nextMove.updateNextMove(move);
   }
 }

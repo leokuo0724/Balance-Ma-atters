@@ -19,7 +19,7 @@ export class Card extends Phaser.GameObjects.Container {
   private _origY: number;
   public metadata: TCardMetadata;
 
-  private _dragTarget: ITarget | null = null;
+  // private _dragTarget: ITarget | null = null;
   private _startDragging: boolean = false;
 
   private _onDrag: Function | null = null;
@@ -107,7 +107,7 @@ export class Card extends Phaser.GameObjects.Container {
       );
       this.add(balanceLabel);
     });
-    this.setSize(...SIZE.CARD)
+    this.setSize(cardWidth - 30, cardHeight - 40)
       .setDepth(DEPTH.CARD)
       .setAlpha(0)
       .setInteractive();
@@ -155,12 +155,11 @@ export class Card extends Phaser.GameObjects.Container {
         const isAppliable = this._checkIsAppliable(target);
         const isMatched = isTargetCovered && isAppliable;
 
-        target.markAsCovered(isMatched);
         if (isMatched) {
-          this._dragTarget = target;
+          gm.setCardDragTarget(target);
           break;
         } else {
-          this._dragTarget = null;
+          gm.setCardDragTarget(null);
         }
       }
     };
@@ -169,14 +168,15 @@ export class Card extends Phaser.GameObjects.Container {
     this._onDragEnd = (pointer: Phaser.Input.Pointer, gameObject: any) => {
       if (gameObject !== this) return;
       this._startDragging = false;
-      if (this._dragTarget) {
+      const gm = GameManager.getInstance();
+      const target = gm.cardDragTarget;
+      if (target) {
         this.scene.events.emit(EVENT_KEY.ON_CARD_APPLY, {
           metadata: this.metadata,
         });
-        this._dragTarget.applyCardEffect(this.metadata);
-        this._dragTarget.markAsCovered(false);
-        this._dragTarget = null;
-        const gm = GameManager.getInstance();
+        target.applyCardEffect(this.metadata);
+        target.markAsCovered(false);
+        gm.setCardDragTarget(null);
         gm.markAsUsed(this, this.scene);
       } else {
         this.scene.events.emit(EVENT_KEY.ON_CARD_DRAG_CANCEL, {
