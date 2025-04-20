@@ -4,8 +4,8 @@ import { getCanvasCenter, getCanvasSize, hexToDecimal } from "~/utils";
 import { Button } from "../button";
 
 export class GameOver extends Phaser.GameObjects.Container {
-  constructor(scene: Phaser.Scene, x: number, y: number) {
-    super(scene, x, y);
+  constructor(scene: Phaser.Scene, desc: string) {
+    super(scene, 0, 0);
     scene.add.existing(this);
     this.setDepth(DEPTH.OVERLAY);
 
@@ -14,15 +14,23 @@ export class GameOver extends Phaser.GameObjects.Container {
       .rectangle(0, 0, width, height, hexToDecimal(COLOR_KEY.BROWN_8))
       .setOrigin(0.5);
     const text = scene.add
-      .text(0, 0, "Game Over", {
+      .text(0, -24, "Game Over", {
         fontFamily: FONT_KEY.JERSEY_25,
         fontSize: 64,
         color: COLOR_KEY.BEIGE_2,
         align: "center",
       })
       .setOrigin(0.5);
+    const subText = scene.add
+      .text(0, 24, desc, {
+        fontFamily: FONT_KEY.JERSEY_25,
+        fontSize: 32,
+        color: COLOR_KEY.BEIGE_2,
+        align: "center",
+      })
+      .setOrigin(0.5);
     const button = new RestartButton(scene, 0, 72);
-    this.add([bg, text, button]);
+    this.add([bg, text, subText, button]);
 
     this.setPosition(width / 2, -height / 2);
     const [_, centerY] = getCanvasCenter(scene);

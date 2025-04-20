@@ -6,7 +6,7 @@ import {
   ETurn,
   TOpponentMovable,
 } from "~/type";
-import { Card, LargeLibraGroup } from "~/ui";
+import { Card, GameOver, LargeLibraGroup } from "~/ui";
 import { CardDeck } from "~/ui/card-deck-group/card-deck";
 import { SmallLibraSet } from "~/ui/small-libra-group/small-libra-set";
 import { delayedCallAsync } from "~/utils";
@@ -213,6 +213,16 @@ export class GameManager {
     }
     return false;
   }
+  private _checkTotalImbalance(scene: Phaser.Scene) {
+    const balances = Object.values(this.balanceSetMap).filter(
+      (set) => !set?.locked,
+    );
+    const maxValue = balances.length * MAX_SMALL_LIBRA_STEPS;
+    const currentValue = this.getTotalBalance();
+    if (Math.abs(currentValue) >= maxValue) {
+      new GameOver(scene, "The scales have tipped... and so have you.");
+    }
+  }
 
   // Opponents
   public getOpponents(): Opponent[] {
@@ -249,6 +259,7 @@ export class GameManager {
   // Game states
   public async updateTurn(scene: Phaser.Scene) {
     if (this._currentTurn === ETurn.PLAYER) {
+      await this._checkTotalImbalance(scene);
       this._currentTurn = ETurn.OPPONENT;
       this._performOpponentTurn(scene);
       this._inHandCards.forEach((card) => card?.setControllable(false));

@@ -100,8 +100,7 @@ export class Maat
 
   private _checkDeath() {
     if (this.currentBlood > 0) return;
-    const [x, y] = getCanvasCenter(this.scene);
-    new GameOver(this.scene, x, y);
+    new GameOver(this.scene, "You lost the fight. Turns out punches hurt.");
     this.destroy(true);
   }
 
