@@ -95,7 +95,7 @@ export class Opponent
         if (this.currentShield < 0) {
           this.currentBlood += this.currentShield; // currentBlood will be negative
           await this.bloodBar.updateBlood(
-            (this.currentBlood -= this.currentShield),
+            this.currentBlood - this.currentShield,
             this.currentBlood,
             this.totalBlood,
           );
@@ -134,8 +134,10 @@ export class Opponent
     if (!movable) {
       // TODO: hint do nothing
     } else {
-      await this._movableAnim(movable.action);
-      gm.applyOpponentMovable(movable);
+      await Promise.all([
+        this._movableAnim(movable.action),
+        gm.applyOpponentMovable(movable),
+      ]);
     }
   }
 
@@ -149,7 +151,7 @@ export class Opponent
     const config = {
       targets: this,
       ease: Phaser.Math.Easing.Cubic.In,
-      duration: 400,
+      duration: 300,
     };
     if (isSelfApplied) {
       await tweensAsync(this.scene, {
@@ -178,7 +180,6 @@ export class Opponent
 
   private async _damageAnim() {
     const { x, y } = this._sprite.getWorldPoint();
-    console.log(this._sprite.getWorldPoint());
     new Damaged(this.scene, x, y - 80).playAndFadeOut();
     await tweensAsync(this.scene, {
       targets: this,

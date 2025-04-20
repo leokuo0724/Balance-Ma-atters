@@ -1,8 +1,9 @@
 import { COLOR_KEY, SIZE } from "~/constants";
 import { TCardMetadata } from "~/type";
 import { BloodBar, ShieldGroup } from "~/ui";
-import { hexToDecimal } from "~/utils";
+import { delayedCallAsync, hexToDecimal, tweensAsync } from "~/utils";
 
+import { Damaged } from "../effects";
 import { IBlood, IShield, ITarget } from "../interfaces";
 import { MaatSprite } from "./maat-sprite";
 
@@ -61,14 +62,19 @@ export class Maat
     }
   }
 
-  public applyDamage(damage: number) {
+  public async applyDamage(damage: number) {
     // TODO: damage animation
+    this._damageAnim();
     if (this.currentShield > 0) {
       this.currentShield -= damage;
       this.shieldGroup.updateValue(this.currentShield);
       if (this.currentShield < 0) {
         this.currentBlood += this.currentShield; // currentBlood will be negative
-        this.shieldGroup.updateValue(0);
+        await this.bloodBar.updateBlood(
+          this.currentBlood - this.currentShield,
+          this.currentBlood,
+          this.totalBlood,
+        );
         this.currentShield = 0;
       }
     } else {
@@ -80,5 +86,20 @@ export class Maat
       );
       // TODO: check death
     }
+  }
+
+  private async _damageAnim() {
+    // delay for opponent movement
+    await delayedCallAsync(this.scene, 250);
+
+    const { x, y } = this._maatSprite.getWorldPoint();
+    new Damaged(this.scene, x, y - 80).playAndFadeOut();
+    await tweensAsync(this.scene, {
+      targets: this,
+      x: "-=12",
+      yoyo: true,
+      ease: Phaser.Math.Easing.Cubic.InOut,
+      duration: 300,
+    });
   }
 }

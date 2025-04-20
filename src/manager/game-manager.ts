@@ -213,6 +213,7 @@ export class GameManager {
   private async _performOpponentTurn(scene: Phaser.Scene) {
     const opponents = this.getOpponents();
     for (const opponent of opponents) {
+      await delayedCallAsync(scene, 500);
       await opponent.performMovable();
     }
     await delayedCallAsync(scene, 500);
@@ -227,7 +228,7 @@ export class GameManager {
     const { action, value } = movable;
     switch (action) {
       case EOpponentActionable.ATTACK: {
-        this.maat!.applyDamage(value);
+        await this.maat!.applyDamage(value);
         break;
       }
       case EOpponentActionable.SHIELD: {
