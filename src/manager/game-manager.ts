@@ -39,11 +39,11 @@ const LEVEL_OPPONENT_INFO = [
 
 export class GameManager {
   // Cards
-  public availableCardIds: string[] = DEFAULT_AVAILABLE_CARD_IDS;
-  public usedCardIds: string[] = [];
-  public inHandCards: (Card | null)[] = [null, null, null, null, null];
+  private _availableCardIds: string[] = DEFAULT_AVAILABLE_CARD_IDS;
+  private _usedCardIds: string[] = [];
+  private _inHandCards: (Card | null)[] = [null, null, null, null, null];
   // Card Spawners
-  public cardDecks: CardDeck[] = [];
+  private _cardDecks: CardDeck[] = [];
 
   // Characters
   public maat: Maat | null = null;
@@ -100,47 +100,52 @@ export class GameManager {
     this.opponentSpawners.push(spawner);
   }
   public addCardDecks(deck: CardDeck) {
-    this.cardDecks.push(deck);
+    this._cardDecks.push(deck);
   }
 
   // Cards
   public shuffleAvailableCardIds(scene: Phaser.Scene) {
-    this.availableCardIds = shuffleArray(this.availableCardIds);
+    this._availableCardIds = shuffleArray(this._availableCardIds);
     scene.events.emit(EVENT_KEY.ON_AVAILABLE_CARDS_UPDATED, {
-      count: this.availableCardIds.length,
+      count: this._availableCardIds.length,
     });
   }
+
   private _drawCardId(scene: Phaser.Scene): string {
-    if (this.availableCardIds.length === 0) {
-      throw new Error("No more cards available to draw.");
+    let cardId = this._availableCardIds.pop();
+    if (!cardId && this._availableCardIds.length === 0) {
+      // Reset available cards
+      // TODO: add shuffle animation
+      this._availableCardIds = shuffleArray(this._usedCardIds);
+      this._usedCardIds = [];
+      cardId = this._availableCardIds.pop();
     }
-    const cardId = this.availableCardIds.pop()!;
     scene.events.emit(EVENT_KEY.ON_AVAILABLE_CARDS_UPDATED, {
-      count: this.availableCardIds.length,
+      count: this._availableCardIds.length,
     });
-    // XXX: remember to create Card instance and put into array
+    if (!cardId) throw new Error("Card ID is null");
     return cardId;
   }
   public async drawCards(scene: Phaser.Scene) {
-    for (let i = 0; i < this.inHandCards.length; i++) {
-      if (this.inHandCards[i] !== null) continue;
+    for (let i = 0; i < this._inHandCards.length; i++) {
+      if (this._inHandCards[i] !== null) continue;
       const cardId = this._drawCardId(scene);
-      const cardDeck = this.cardDecks[i];
+      const cardDeck = this._cardDecks[i];
       const newCard = await cardDeck.spawnCard(cardId);
-      this.inHandCards[i] = newCard;
+      this._inHandCards[i] = newCard;
     }
   }
   public async markAsUsed(card: Card, scene: Phaser.Scene) {
-    const targetIndex = this.inHandCards.findIndex((c) => c === card);
+    const targetIndex = this._inHandCards.findIndex((c) => c === card);
     if (targetIndex < 0) throw new Error("Card not found in hand");
-    const targetCard = this.inHandCards[targetIndex]!;
+    const targetCard = this._inHandCards[targetIndex]!;
     const targetCardId = targetCard.metadata.id;
 
     targetCard.destroy(true);
-    this.inHandCards[targetIndex] = null;
-    this.usedCardIds.push(targetCardId);
+    this._inHandCards[targetIndex] = null;
+    this._usedCardIds.push(targetCardId);
     scene.events.emit(EVENT_KEY.ON_USED_CARDS_UPDATED, {
-      count: this.usedCardIds.length,
+      count: this._usedCardIds.length,
     });
   }
   public setCardDragTarget(target: ITarget | null) {
@@ -183,14 +188,14 @@ export class GameManager {
   }
 
   // Game states
-  public updateTurn(scene: Phaser.Scene) {
+  public async updateTurn(scene: Phaser.Scene) {
     if (this._currentTurn === ETurn.PLAYER) {
       this._currentTurn = ETurn.OPPONENT;
       this._performOpponentTurn(scene);
     } else {
       this._currentTurn = ETurn.PLAYER;
     }
-    scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: this._currentTurn }); // TODO: update end turn button
+    scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: this._currentTurn });
   }
 
   private async _performOpponentTurn(scene: Phaser.Scene) {
@@ -198,9 +203,11 @@ export class GameManager {
     for (const opponent of opponents) {
       await opponent.performMovable();
     }
-    await delayedCallAsync(scene, 1000);
+    await delayedCallAsync(scene, 500);
+    this.drawCards(scene);
     this.updateTurn(scene);
   }
+
   public async applyOpponentMovable(movable: TOpponentMovable) {
     const { action, value } = movable;
     switch (action) {
