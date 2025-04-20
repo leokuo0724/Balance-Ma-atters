@@ -10,7 +10,7 @@ import {
 } from "~/constants";
 import { GameManager, WikiManager } from "~/manager";
 import { ETarget, ETurn, TCardMetadata } from "~/type";
-import { delayedCallAsync, tweensAsync } from "~/utils";
+import { delayedCallAsync, getBalanceSetType, tweensAsync } from "~/utils";
 
 import { BalanceLabel } from "./balance-label";
 
@@ -30,6 +30,7 @@ export class Card extends Phaser.GameObjects.Container {
     this._origX = x;
     this._origY = y;
 
+    const gm = GameManager.getInstance();
     const wm = WikiManager.getInstance();
     this.metadata = wm.queryCardData(id);
 
@@ -94,17 +95,22 @@ export class Card extends Phaser.GameObjects.Container {
       .setOrigin(0.5);
 
     this.add([bg, cover, titleLabel, descriptionLabel, shieldIcon, valueLabel]);
+
     this.metadata.balances.forEach((balance, index) => {
-      const rowNum = Math.floor(index / 2);
-      const colNum = index % 2;
-      const balanceLabel = new BalanceLabel(
-        scene,
-        LEFT + 54 + colNum * 48,
-        TOP + 8 + rowNum * 20,
-        balance.type,
-        balance.value,
-      );
-      this.add(balanceLabel);
+      const balanceSet = getBalanceSetType(balance.type);
+      const isTypeLocked = gm.getIsBalanceSetLocked(balanceSet);
+      if (!isTypeLocked) {
+        const rowNum = Math.floor(index / 2);
+        const colNum = index % 2;
+        const balanceLabel = new BalanceLabel(
+          scene,
+          LEFT + 54 + colNum * 48,
+          TOP + 8 + rowNum * 20,
+          balance.type,
+          balance.value,
+        );
+        this.add(balanceLabel);
+      }
     });
     this.setSize(cardWidth - 30, cardHeight - 40)
       .setDepth(DEPTH.CARD)

@@ -197,6 +197,9 @@ export class GameManager {
     const opponents = this.getOpponents();
     await this.largeLibraGroup!.jackpotAttack(opponents, multiply);
   }
+  public getIsBalanceSetLocked(type: EBalanceSetType) {
+    return Boolean(this.balanceSetMap[type]?.locked);
+  }
 
   // Opponents
   public getOpponents(): Opponent[] {

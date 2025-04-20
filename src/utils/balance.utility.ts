@@ -86,3 +86,20 @@ export const getIsRightLibraValue = (type: EBalanceType) => {
       return true;
   }
 };
+
+export const getBalanceSetType = (type: EBalanceType): EBalanceSetType => {
+  switch (type) {
+    case EBalanceType.PHY:
+    case EBalanceType.MAG:
+      return EBalanceSetType.PHY_MAG;
+    case EBalanceType.DEF:
+    case EBalanceType.ATK:
+      return EBalanceSetType.DEF_ATK;
+    case EBalanceType.SHT:
+    case EBalanceType.LNG:
+      return EBalanceSetType.SHT_LNG;
+    case EBalanceType.DUT:
+    case EBalanceType.FIR:
+      return EBalanceSetType.DUT_FIR;
+  }
+};
