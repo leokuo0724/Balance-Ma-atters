@@ -1,4 +1,4 @@
-import { Maat } from "~/characters";
+import { Maat, OpponentSpawner } from "~/characters";
 import { EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
 import { EBalanceSetType } from "~/type";
 import { Card, LargeLibraGroup } from "~/ui";
@@ -28,18 +28,21 @@ const LEVEL_OPPONENT_INFO = [
   { opponentIds: ["o_00000", "o_00000", "o_00000"] },
   { opponentIds: ["o_00001", "o_00002"] },
   { opponentIds: ["o_00001", "o_00003"] },
-  { opponentIds: ["o_00004", "o_00004", "o_00005"] },
+  { opponentIds: ["o_00004", "o_00005", "o_00004"] },
 ];
 
 export class GameManager {
+  // Cards
   public availableCardIds: string[] = DEFAULT_AVAILABLE_CARD_IDS;
-
   public usedCardIds: string[] = [];
   public inHandCards: (Card | null)[] = [null, null, null, null, null];
   public cardDecks: CardDeck[] = [];
-  public maat: Maat | null = null;
 
-  // balance_set
+  // Characters
+  public maat: Maat | null = null;
+  public opponentSpawners: OpponentSpawner[] = [];
+
+  // Libra
   public largeLibraGroup: LargeLibraGroup | null = null;
   public balanceSetMap: Record<EBalanceSetType, SmallLibraSet | null> = {
     [EBalanceSetType.PHY_MAG]: null,
@@ -48,7 +51,7 @@ export class GameManager {
     [EBalanceSetType.DUT_FIR]: null,
   };
 
-  // game info
+  // Game states
   public level: number = 0;
 
   private static instance: GameManager;
@@ -76,7 +79,11 @@ export class GameManager {
   public setupLargeLibraGroup(libra: LargeLibraGroup) {
     this.largeLibraGroup = libra;
   }
-
+  public addOpponentSpawner(spawner: OpponentSpawner) {
+    if (this.opponentSpawners.length >= 3)
+      throw new Error("Limited to 3 spawners");
+    this.opponentSpawners.push(spawner);
+  }
   public addCardDecks(deck: CardDeck) {
     this.cardDecks.push(deck);
   }

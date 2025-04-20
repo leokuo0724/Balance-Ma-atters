@@ -1,4 +1,4 @@
-import { COLOR_KEY } from "~/constants";
+import { COLOR_KEY, SIZE } from "~/constants";
 import { TCardMetadata } from "~/type";
 import { BloodBar, ShieldGroup } from "~/ui";
 import { hexToDecimal } from "~/utils";
@@ -29,7 +29,7 @@ export class Maat
     this.bloodBar = new BloodBar(scene, 0, 14);
     this.shieldGroup = new ShieldGroup(scene, 84, 14);
     this.add([this._maatSprite, this.bloodBar, this.shieldGroup]);
-    this.setSize(120, 180); // TODO: modify size
+    this.setSize(...SIZE.TARGET_RECT);
   }
 
   public updateBloodBar(from: number, to: number, total: number): void {

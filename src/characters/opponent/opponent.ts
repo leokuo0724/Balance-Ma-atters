@@ -1,4 +1,5 @@
-import { TCardMetadata } from "~/type";
+import { SIZE } from "~/constants";
+import { TCardMetadata, TOpponentMetadata, TOpponentMove } from "~/type";
 import { BloodBar, ShieldGroup } from "~/ui";
 
 import { IBlood, IShield, ITarget } from "../interfaces";
@@ -16,14 +17,27 @@ export class Opponent
 
   public belong: "self" | "opponent" = "opponent";
 
-  constructor(scene: Phaser.Scene, x: number, y: number) {
+  private _currentMove = 0;
+  private _moves: (TOpponentMove | null)[];
+
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    metadata: TOpponentMetadata,
+  ) {
     super(scene, x, y);
     scene.add.existing(this);
+    this._moves = metadata.moves;
 
     this.bloodBar = new BloodBar(scene, 0, 14);
     this.shieldGroup = new ShieldGroup(scene, -84, 14);
     this.add([this.bloodBar, this.shieldGroup]);
-    this.setSize(120, 180); // TODO: modify size
+    this.setSize(...SIZE.TARGET_RECT); // TODO: modify size
+
+    this.updateBloodBar(metadata.blood, metadata.blood, metadata.blood);
+    this.updateShield(0);
+    // TODO: display next move
   }
 
   public updateBloodBar(from: number, to: number, total: number): void {
@@ -37,7 +51,9 @@ export class Opponent
     this.currentShield = value;
   }
 
-  public markAsCovered(isCovered: boolean) {}
+  public markAsCovered(isCovered: boolean) {
+    console.log("Opponent is covered", isCovered);
+  }
 
   public applyCardEffect(card: TCardMetadata) {
     if (card.damage && card.damage > 0) {

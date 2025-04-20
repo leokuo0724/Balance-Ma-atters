@@ -58,10 +58,12 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
     x: number,
     y: number,
     balanceSetType: EBalanceSetType,
+    isLocked: boolean,
   ) {
     super(scene, x, y);
     scene.add.existing(this);
     this.balanceSetType = balanceSetType;
+    this.locked = isLocked;
 
     const [libraSetWidth, libraSetHeight] = SIZE.SMALL_LIBRA_SET;
     const PADDING_X = 8;
