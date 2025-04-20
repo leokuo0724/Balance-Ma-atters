@@ -42,7 +42,7 @@ export class BloodBar extends Phaser.GameObjects.Container {
       tweensAsync(this.scene, {
         targets: this._blood,
         duration: 300,
-        width: (to / total) * 122,
+        width: Math.max((to / total) * 122, 0),
         ease: Phaser.Math.Easing.Cubic.Out,
       }),
       this.numberTween(from, to, total),
