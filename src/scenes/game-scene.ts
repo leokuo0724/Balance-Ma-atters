@@ -63,6 +63,7 @@ export class GameScene extends Phaser.Scene {
     gm.drawCards(this);
     gm.setupMaat(maat);
     gm.setupLargeLibraGroup(largeLibraGroup);
+    gm.setupCurrentLevel();
 
     // listener for create opponents
   }

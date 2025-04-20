@@ -1,4 +1,4 @@
-import { Maat, OpponentSpawner } from "~/characters";
+import { Maat, Opponent, OpponentSpawner } from "~/characters";
 import { EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
 import { EBalanceSetType } from "~/type";
 import { Card, LargeLibraGroup } from "~/ui";
@@ -88,13 +88,13 @@ export class GameManager {
     this.cardDecks.push(deck);
   }
 
+  // Cards
   public shuffleAvailableCardIds(scene: Phaser.Scene) {
     this.availableCardIds = shuffleArray(this.availableCardIds);
     scene.events.emit(EVENT_KEY.ON_AVAILABLE_CARDS_UPDATED, {
       count: this.availableCardIds.length,
     });
   }
-
   private _drawCardId(scene: Phaser.Scene): string {
     if (this.availableCardIds.length === 0) {
       throw new Error("No more cards available to draw.");
@@ -106,7 +106,6 @@ export class GameManager {
     // XXX: remember to create Card instance and put into array
     return cardId;
   }
-
   public async drawCards(scene: Phaser.Scene) {
     for (let i = 0; i < this.inHandCards.length; i++) {
       const card = this.inHandCards[i];
@@ -117,6 +116,7 @@ export class GameManager {
     }
   }
 
+  // Libra
   public getHalfTotalLibraValue() {
     return (
       Object.values(this.balanceSetMap).filter((set) => !set?.locked).length *
@@ -127,5 +127,21 @@ export class GameManager {
     return Object.values(this.balanceSetMap).reduce((sum, current) => {
       return (sum += current?.value ?? 0);
     }, 0);
+  }
+
+  // Opponents
+  public getOpponents(): Opponent[] {
+    return this.opponentSpawners
+      .filter((spawner) => spawner.opponent)
+      .map((spawner) => spawner.opponent!);
+  }
+  public setupCurrentLevel() {
+    const opponentIds = LEVEL_OPPONENT_INFO[this.level].opponentIds;
+    this.opponentSpawners.forEach((spawner, index) => {
+      const opponentId = opponentIds[index];
+      if (opponentId) {
+        spawner.spawnOpponent(opponentId);
+      }
+    });
   }
 }

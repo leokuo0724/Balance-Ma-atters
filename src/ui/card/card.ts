@@ -145,7 +145,7 @@ export class Card extends Phaser.GameObjects.Container {
       }
 
       const gm = GameManager.getInstance();
-      const targets = [gm.maat!];
+      const targets = [gm.maat!, ...gm.getOpponents()];
 
       for (const target of targets) {
         const isTargetCovered = Phaser.Geom.Intersects.RectangleToRectangle(
