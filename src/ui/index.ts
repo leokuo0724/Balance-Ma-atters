@@ -6,3 +6,4 @@ export * from "./card";
 export * from "./card-deck-group";
 export * from "./shield-group";
 export * from "./card-count-group";
+export * from "./button";

@@ -9,6 +9,7 @@ export const COLOR_KEY = {
   BROWN_9: "#442d26",
 
   RED_6: "#ca6059",
+  ORANGE_6: "#c16527",
   YELLOW_6: "#e78e4f",
   GREEN_6: "#6a986a",
   BLUE_6: "#505b79",

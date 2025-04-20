@@ -2,7 +2,9 @@ import { Maat, OpponentSpawner } from "~/characters";
 import { DEPTH, POSITION, SCENE_KEY, SIZE } from "~/constants";
 import { GameManager } from "~/manager";
 import {
+  Button,
   CardDeckGroup,
+  EndTurnButton,
   Ground,
   LargeLibraGroup,
   RestCardGroup,
@@ -66,6 +68,12 @@ export class GameScene extends Phaser.Scene {
       this,
       CARD_COUNT_GROUP_X,
       canvasHeight / 2 + 248,
+    ).setDepth(DEPTH.CARD_DECK);
+    new EndTurnButton(
+      this,
+      canvasWidth - SIZE.BUTTON_LG[0] / 2 - 18,
+      canvasHeight - SIZE.BUTTON_LG[1] / 2 - 20,
+      "End Turn",
     ).setDepth(DEPTH.CARD_DECK);
 
     gm.shuffleAvailableCardIds(this);

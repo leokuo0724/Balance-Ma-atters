@@ -40,4 +40,9 @@ export const TEXTURE_KEY = {
   LABEL_RED: "label-red",
   LABEL_GREEN: "label-green",
   REST_CARD_BG: "rest-card-bg",
+  BUTTON_LG_UNDER: "button-lg-under",
+  BUTTON_LG_BG_TOP: "button-lg-bg-top",
+  BUTTON_LG_BG_NORMAL: "button-lg-bg-normal",
+  BUTTON_LG_BG_HOVER: "button-lg-bg-hover",
+  BUTTON_LG_BG_DISABLED: "button-lg-bg-disabled",
 };

@@ -95,6 +95,45 @@ export class PreloadScene extends Phaser.Scene {
       4,
       COLOR_KEY.BROWN_8,
     );
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.BUTTON_LG_UNDER,
+      ...SIZE.BUTTON_LG,
+      6,
+      COLOR_KEY.BROWN_9,
+    );
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.BUTTON_LG_BG_TOP,
+      ...SIZE.BUTTON_LG,
+      6,
+      COLOR_KEY.BROWN_8,
+    );
+    const [buttonLgWidth, buttonLgHeight] = SIZE.BUTTON_LG;
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.BUTTON_LG_BG_NORMAL,
+      buttonLgWidth - 6,
+      buttonLgHeight - 6,
+      4,
+      COLOR_KEY.YELLOW_6,
+    );
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.BUTTON_LG_BG_HOVER,
+      buttonLgWidth - 6,
+      buttonLgHeight - 6,
+      4,
+      COLOR_KEY.ORANGE_6,
+    );
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.BUTTON_LG_BG_DISABLED,
+      buttonLgWidth - 6,
+      buttonLgHeight - 6,
+      4,
+      COLOR_KEY.BEIGE_4,
+    );
   }
 
   create() {
