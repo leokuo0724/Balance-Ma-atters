@@ -1,6 +1,15 @@
-import { COLOR_KEY, EVENT_KEY, FONT_KEY, SIZE, TEXTURE_KEY } from "~/constants";
+import FadeOutDestroy from "phaser3-rex-plugins/plugins/fade-out-destroy";
+import { Opponent } from "~/characters";
+import {
+  COLOR_KEY,
+  DEPTH,
+  EVENT_KEY,
+  FONT_KEY,
+  SIZE,
+  TEXTURE_KEY,
+} from "~/constants";
 import { GameManager } from "~/manager";
-import { TCardBalance, TCardMetadata } from "~/type";
+import { TCardBalance, TCardMetadata, TSimpleVector2 } from "~/type";
 import { getIsRightLibraValue, tweensAsync, tweensCounterAsync } from "~/utils";
 
 import {
@@ -15,8 +24,6 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
     return this._jackpotValue;
   }
   private _balanceValue = 0;
-  /** @deprecated directly calculate total from game manager  */
-  private _tempBalanceValue: number | null = null;
 
   private _displayValue: Phaser.GameObjects.Text;
   private _largeLibraIndicator: LargeLibraIndicator;
@@ -82,16 +89,6 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
     this.once(Phaser.GameObjects.Events.DESTROY, this._onDestroy, this);
   }
 
-  /** @deprecated directly calculate total from game manager  */
-  private _gatherBalanceDiff(balances: TCardBalance[]) {
-    let total = 0;
-    for (const { type, value } of balances) {
-      const isRight = getIsRightLibraValue(type);
-      total += isRight ? value : -value;
-    }
-    return total;
-  }
-
   public updateJackpotValue(value: number) {
     if (this._jackpotValue === value) return;
     this.numberTween(this._jackpotValue, value);
@@ -132,6 +129,46 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
         this._displayValue.setText(value.toString());
       },
     });
+  }
+
+  public async jackpotAttack(opponents: Opponent[], multiply: number) {
+    const { centerX, centerY } = this.getBounds();
+    const value = this._jackpotValue;
+
+    for (const op of opponents) {
+      const bounds = op.getBounds();
+      const { centerX: targetX, centerY: targetY } = bounds;
+
+      const valueObject = this.scene.add
+        .text(centerX, centerY, value.toString(), {
+          fontFamily: FONT_KEY.JERSEY_25,
+          fontSize: 80,
+          color: COLOR_KEY.YELLOW_6,
+          align: "center",
+        })
+        .setScale(0.5)
+        .setOrigin(0.5)
+        .setDepth(DEPTH.EFFECT);
+      await tweensAsync(this.scene, {
+        targets: valueObject,
+        duration: 200,
+        x: targetX - 8,
+        y: "-=12",
+        scale: 0.7,
+        ease: Phaser.Math.Easing.Quadratic.Out,
+      });
+      await tweensAsync(this.scene, {
+        targets: valueObject,
+        duration: 200,
+        x: targetX,
+        y: targetY,
+        scale: 1,
+        ease: Phaser.Math.Easing.Quadratic.In,
+      });
+      op.dealtDamage(value, multiply);
+      FadeOutDestroy(valueObject, 500);
+    }
+    return value;
   }
 
   private _onDestroy() {

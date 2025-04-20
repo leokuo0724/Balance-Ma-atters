@@ -87,11 +87,13 @@ export class Opponent
       const gm = GameManager.getInstance();
       const multiply = await gm.checkLibraSetBalanced();
       // TODO: check effects
-      this._dealtDamage(card.damage, multiply);
+      await this.dealtDamage(card.damage, multiply);
+      await gm.checkLibraStrike(multiply);
     }
+    // FIXME: prevent end turn during effects
   }
 
-  private async _dealtDamage(damage: number, multiply: number) {
+  public async dealtDamage(damage: number, multiply: number) {
     this._damageAnim(damage, multiply);
     const dealtDamage = damage * multiply;
     // check if shield is available

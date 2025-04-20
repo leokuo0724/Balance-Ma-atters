@@ -5,6 +5,7 @@ import {
   EOpponentActionable,
   ETurn,
   TOpponentMovable,
+  TSimpleVector2,
 } from "~/type";
 import { Card, LargeLibraGroup } from "~/ui";
 import { CardDeck } from "~/ui/card-deck-group/card-deck";
@@ -18,13 +19,13 @@ const DEFAULT_AVAILABLE_CARD_IDS = [
   "c_00001",
   "c_00002",
   "c_00003",
-  "c_00004",
-  "c_00004",
-  "c_00005",
-  "c_00006",
-  "c_00009",
-  "c_00009",
-  "c_00010",
+  // "c_00004",
+  // "c_00004",
+  // "c_00005",
+  // "c_00006",
+  // "c_00009",
+  // "c_00009",
+  // "c_00010",
 ];
 const DEFAULT_MAAT_DATA = {
   BLOOD: 20,
@@ -173,7 +174,7 @@ export class GameManager {
       return (sum += current?.value ?? 0);
     }, 0);
   }
-  // return multiple number
+  // return multiply number
   public async checkLibraSetBalanced(): Promise<number> {
     let multiply = 1;
     for (const set of Object.values(this.balanceSetMap).filter(
@@ -185,6 +186,12 @@ export class GameManager {
       }
     }
     return multiply;
+  }
+  public async checkLibraStrike(multiply: number) {
+    const totalBalance = this.getTotalBalance();
+    if (totalBalance !== 0) return 0;
+    const opponents = this.getOpponents();
+    await this.largeLibraGroup!.jackpotAttack(opponents, multiply);
   }
 
   // Opponents
