@@ -4,6 +4,7 @@ import { EBalanceSetType } from "~/type";
 import { Card, LargeLibraGroup } from "~/ui";
 import { CardDeck } from "~/ui/card-deck-group/card-deck";
 import { SmallLibraSet } from "~/ui/small-libra-group/small-libra-set";
+import { isNil } from "~/utils";
 import { shuffleArray } from "~/utils/math.utility";
 
 const DEFAULT_AVAILABLE_CARD_IDS = [
@@ -36,6 +37,7 @@ export class GameManager {
   public availableCardIds: string[] = DEFAULT_AVAILABLE_CARD_IDS;
   public usedCardIds: string[] = [];
   public inHandCards: (Card | null)[] = [null, null, null, null, null];
+  // Card Spawners
   public cardDecks: CardDeck[] = [];
 
   // Characters
@@ -108,12 +110,21 @@ export class GameManager {
   }
   public async drawCards(scene: Phaser.Scene) {
     for (let i = 0; i < this.inHandCards.length; i++) {
-      const card = this.inHandCards[i];
-      if (card !== null) continue;
+      if (this.inHandCards[i] !== null) continue;
       const cardId = this._drawCardId(scene);
       const cardDeck = this.cardDecks[i];
-      await cardDeck.spawnCard(cardId);
+      const newCard = await cardDeck.spawnCard(cardId);
+      this.inHandCards[i] = newCard;
     }
+  }
+  public async markAsUsed(card: Card) {
+    const targetIndex = this.inHandCards.findIndex((c) => c === card);
+    if (targetIndex < 0) throw new Error("Card not found in hand");
+    const targetCard = this.inHandCards[targetIndex]!;
+    const targetCardId = targetCard.metadata.id;
+    targetCard.destroy(true);
+    this.inHandCards[targetIndex] = null;
+    this.usedCardIds.push(targetCardId);
   }
 
   // Libra
