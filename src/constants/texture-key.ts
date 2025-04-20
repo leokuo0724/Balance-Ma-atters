@@ -1,8 +1,10 @@
 export const ATLAS_KEY = {
   UI_COMPONENT: "ui-component",
+  CHARACTER: "character",
 };
 
 export const TEXTURE_KEY = {
+  // In ui-component atlas
   LIBRA_LARGE: "libra-large.png",
   LIBRA_YELLOW: "libra-yellow.png",
   LIBRA_BLUE: "libra-blue.png",
@@ -17,6 +19,9 @@ export const TEXTURE_KEY = {
   CARD_TOP: "card-top.png",
   SHIELD_ICON: "shield-icon.png",
   SILVER_SHIELD_ICON: "silver-shield-icon.png",
+
+  // In character atlas
+  JACKAL: "jackal.png",
 
   SMALL_LIBRA_SET_BG: "small-libra-set-bg",
   SMALL_LIBRA_SET_BG_2: "small-libra-set-bg-2",

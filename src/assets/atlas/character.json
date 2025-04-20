@@ -1,0 +1,41 @@
+{
+  "textures": [
+    {
+      "image": "character.png",
+      "format": "RGBA8888",
+      "size": {
+        "w": 136,
+        "h": 160
+      },
+      "scale": 1,
+      "frames": [
+        {
+          "filename": "jackal.png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 134,
+            "h": 158
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 134,
+            "h": 158
+          },
+          "frame": {
+            "x": 1,
+            "y": 1,
+            "w": 134,
+            "h": 158
+          }
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "app": "https://www.codeandweb.com/texturepacker",
+    "version": "3.0",
+    "smartupdate": "$TexturePacker:SmartUpdate:0b16408250aa26d7b01b6f46fee26913:dcf709aa0d86840449e47099258c6179:42e475aa4a03af306bdc7acb5ff91d19$"
+  }
+}

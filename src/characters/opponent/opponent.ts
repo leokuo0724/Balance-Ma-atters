@@ -1,8 +1,13 @@
-import { SIZE } from "~/constants";
+import { ATLAS_KEY, COLOR_KEY, SIZE, TEXTURE_KEY } from "~/constants";
 import { TCardMetadata, TOpponentMetadata, TOpponentMove } from "~/type";
 import { BloodBar, ShieldGroup } from "~/ui";
+import { hexToDecimal } from "~/utils";
 
 import { IBlood, IShield, ITarget } from "../interfaces";
+
+const OPPONENT_TEXTURE_MAP: Record<string, string> = {
+  o_00000: TEXTURE_KEY.JACKAL,
+};
 
 export class Opponent
   extends Phaser.GameObjects.Container
@@ -16,6 +21,8 @@ export class Opponent
   public currentShield: number = 0;
 
   public belong: "self" | "opponent" = "opponent";
+
+  private _sprite: Phaser.GameObjects.Sprite;
 
   private _currentMove = 0;
   private _moves: (TOpponentMove | null)[];
@@ -32,7 +39,12 @@ export class Opponent
 
     this.bloodBar = new BloodBar(scene, 0, 14);
     this.shieldGroup = new ShieldGroup(scene, -84, 14);
-    this.add([this.bloodBar, this.shieldGroup]);
+
+    this._sprite = scene.add
+      .sprite(0, 0, ATLAS_KEY.CHARACTER, OPPONENT_TEXTURE_MAP[metadata.id])
+      .setOrigin(0.5, 1);
+
+    this.add([this._sprite, this.bloodBar, this.shieldGroup]);
     this.setSize(...SIZE.TARGET_RECT); // TODO: modify size
 
     this.updateBloodBar(metadata.blood, metadata.blood, metadata.blood);
@@ -52,7 +64,7 @@ export class Opponent
   }
 
   public markAsCovered(isCovered: boolean) {
-    console.log("Opponent is covered", isCovered);
+    this._sprite.setTint(isCovered ? hexToDecimal(COLOR_KEY.RED_6) : 0xffffff);
   }
 
   public applyCardEffect(card: TCardMetadata) {

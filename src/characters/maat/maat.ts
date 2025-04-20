@@ -45,7 +45,7 @@ export class Maat
 
   public markAsCovered(isCovered: boolean) {
     this._maatSprite.setTint(
-      isCovered ? hexToDecimal(COLOR_KEY.RED_6) : 0xffffff,
+      isCovered ? hexToDecimal(COLOR_KEY.YELLOW_6) : 0xffffff,
     );
   }
 
