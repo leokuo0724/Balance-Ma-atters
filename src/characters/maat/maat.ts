@@ -130,4 +130,6 @@ export class Maat
       "PASS\nFIXING LIBRA...",
     ).playAndFadeOut(undefined, 1500);
   }
+
+  public async applyVenom(value: number) {}
 }

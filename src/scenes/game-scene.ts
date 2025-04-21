@@ -2,7 +2,6 @@ import { Maat, OpponentSpawner } from "~/characters";
 import { DEPTH, EVENT_KEY, POSITION, SCENE_KEY, SIZE } from "~/constants";
 import { GameManager } from "~/manager";
 import {
-  Button,
   CardDeckGroup,
   EndTurnButton,
   Ground,

@@ -8,7 +8,7 @@ export class Ground extends Phaser.GameObjects.Container {
 
     const [width, _] = getCanvasSize(scene);
     const rect = scene.add
-      .rectangle(0, 0, width, 268, hexToDecimal(COLOR_KEY.BROWN_3))
+      .rectangle(0, 0, width, 288, hexToDecimal(COLOR_KEY.BROWN_3))
       .setOrigin(0, 1);
     this.add([rect]);
   }

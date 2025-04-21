@@ -31,6 +31,7 @@ const DEFAULT_MAAT_DATA = {
   SHIELD: 0,
 };
 const LEVEL_OPPONENT_INFO = [
+  { opponentIds: [null, "o_00005", "o_00004"] },
   { opponentIds: ["o_00000", "o_00000", "o_00000"] },
   { opponentIds: ["o_00001", "o_00002"] },
   { opponentIds: ["o_00001", "o_00003"] },
