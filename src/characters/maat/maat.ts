@@ -1,16 +1,12 @@
 import { COLOR_KEY, SIZE } from "~/constants";
 import { GameManager } from "~/manager";
-import { TCardMetadata } from "~/type";
+import { EStatusType, TCardMetadata } from "~/type";
 import { BloodBar, GameOver, ShieldGroup } from "~/ui";
-import {
-  delayedCallAsync,
-  getCanvasCenter,
-  hexToDecimal,
-  tweensAsync,
-} from "~/utils";
+import { delayedCallAsync, hexToDecimal, tweensAsync } from "~/utils";
 
 import { Damaged, FloatingHint } from "../effects";
 import { IBlood, IShield, ITarget } from "../interfaces";
+import { StatusBox } from "../status-box";
 import { MaatSprite } from "./maat-sprite";
 
 export class Maat
@@ -26,6 +22,8 @@ export class Maat
 
   public belong: "self" | "opponent" = "self";
 
+  public statusBox: StatusBox;
+
   private _maatSprite: MaatSprite;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
@@ -33,9 +31,15 @@ export class Maat
     scene.add.existing(this);
 
     this._maatSprite = new MaatSprite(scene, 0, 0);
-    this.bloodBar = new BloodBar(scene, 0, 14);
+    this.bloodBar = new BloodBar(scene, 0, 12);
     this.shieldGroup = new ShieldGroup(scene, 84, 14);
-    this.add([this._maatSprite, this.bloodBar, this.shieldGroup]);
+    this.statusBox = new StatusBox(scene, -60, 40);
+    this.add([
+      this._maatSprite,
+      this.bloodBar,
+      this.shieldGroup,
+      this.statusBox,
+    ]);
     this.setSize(...SIZE.TARGET_RECT);
   }
 
@@ -131,5 +135,7 @@ export class Maat
     ).playAndFadeOut(undefined, 1500);
   }
 
-  public async applyVenom(value: number) {}
+  public async applyVenom(value: number) {
+    this.statusBox.addStatus(EStatusType.VENOM, value);
+  }
 }

@@ -4,3 +4,4 @@ export * from "./balance.type";
 export * from "./effect.type";
 export * from "./opponent.type";
 export * from "./game.type";
+export * from "./status.type";

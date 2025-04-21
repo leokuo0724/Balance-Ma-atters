@@ -11,6 +11,7 @@ import { delayedCallAsync, hexToDecimal, tweensAsync } from "~/utils";
 
 import { Damaged, FloatingHint } from "../effects";
 import { IBlood, IShield, ITarget } from "../interfaces";
+import { StatusBox } from "../status-box";
 import { NextMove } from "./next-move";
 
 const OPPONENT_TEXTURE_MAP: Record<string, string> = {
@@ -30,6 +31,8 @@ export class Opponent
 
   public belong: "self" | "opponent" = "opponent";
 
+  public statusBox: StatusBox;
+
   private _sprite: Phaser.GameObjects.Sprite;
   private _nextMove: NextMove;
 
@@ -46,15 +49,22 @@ export class Opponent
     scene.add.existing(this);
     this._defaultMoves = metadata.moves;
 
-    this.bloodBar = new BloodBar(scene, 0, 14);
+    this.bloodBar = new BloodBar(scene, 0, 12);
     this.shieldGroup = new ShieldGroup(scene, -84, 14);
+    this.statusBox = new StatusBox(scene, -60, 40);
 
     this._sprite = scene.add
       .sprite(0, 0, ATLAS_KEY.CHARACTER, OPPONENT_TEXTURE_MAP[metadata.id])
       .setOrigin(0.5, 1);
     this._nextMove = new NextMove(scene, 0, this._sprite.getTopCenter().y - 36);
 
-    this.add([this._sprite, this.bloodBar, this.shieldGroup, this._nextMove]);
+    this.add([
+      this._sprite,
+      this.bloodBar,
+      this.shieldGroup,
+      this._nextMove,
+      this.statusBox,
+    ]);
     this.setSize(...SIZE.TARGET_RECT);
 
     this.updateBloodBar(metadata.blood, metadata.blood, metadata.blood);

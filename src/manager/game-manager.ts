@@ -330,8 +330,7 @@ export class GameManager {
         break;
       }
       case EOpponentActionable.VENOM: {
-        // TODO: apply venom
-        // this.maat!.applyVenom(value);
+        this.maat!.applyVenom(value);
         break;
       }
       case EOpponentActionable.INTERRUPT_ATK:

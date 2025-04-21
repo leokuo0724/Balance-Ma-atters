@@ -5,7 +5,7 @@
 			"format": "RGBA8888",
 			"size": {
 				"w": 286,
-				"h": 252
+				"h": 254
 			},
 			"scale": 1,
 			"frames": [
@@ -73,6 +73,27 @@
 					}
 				},
 				{
+					"filename": "shield-icon.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 36
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 36
+					},
+					"frame": {
+						"x": 1,
+						"y": 217,
+						"w": 30,
+						"h": 36
+					}
+				},
+				{
 					"filename": "silver-shield-icon.png",
 					"rotated": false,
 					"trimmed": false,
@@ -87,7 +108,7 @@
 						"h": 34
 					},
 					"frame": {
-						"x": 1,
+						"x": 33,
 						"y": 217,
 						"w": 30,
 						"h": 34
@@ -115,6 +136,27 @@
 					}
 				},
 				{
+					"filename": "venom.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 28,
+						"h": 28
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 28,
+						"h": 28
+					},
+					"frame": {
+						"x": 65,
+						"y": 217,
+						"w": 28,
+						"h": 28
+					}
+				},
+				{
 					"filename": "libra-blue.png",
 					"rotated": false,
 					"trimmed": false,
@@ -129,7 +171,7 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 33,
+						"x": 95,
 						"y": 217,
 						"w": 22,
 						"h": 22
@@ -150,7 +192,7 @@
 						"h": 10
 					},
 					"frame": {
-						"x": 33,
+						"x": 95,
 						"y": 241,
 						"w": 164,
 						"h": 10
@@ -171,7 +213,7 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 57,
+						"x": 119,
 						"y": 217,
 						"w": 22,
 						"h": 22
@@ -192,51 +234,9 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 81,
+						"x": 143,
 						"y": 217,
 						"w": 22,
-						"h": 22
-					}
-				},
-				{
-					"filename": "libra-yellow.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 22,
-						"h": 22
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 22,
-						"h": 22
-					},
-					"frame": {
-						"x": 105,
-						"y": 217,
-						"w": 22,
-						"h": 22
-					}
-				},
-				{
-					"filename": "lock.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 22,
-						"h": 22
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 18,
-						"h": 22
-					},
-					"frame": {
-						"x": 129,
-						"y": 217,
-						"w": 18,
 						"h": 22
 					}
 				},
@@ -255,7 +255,7 @@
 						"h": 42
 					},
 					"frame": {
-						"x": 155,
+						"x": 167,
 						"y": 195,
 						"w": 42,
 						"h": 42
@@ -276,31 +276,52 @@
 						"h": 42
 					},
 					"frame": {
-						"x": 199,
+						"x": 211,
 						"y": 195,
 						"w": 36,
 						"h": 42
 					}
 				},
 				{
-					"filename": "shield-icon.png",
+					"filename": "libra-yellow.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 30,
-						"h": 36
+						"w": 22,
+						"h": 22
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 30,
-						"h": 36
+						"w": 22,
+						"h": 22
 					},
 					"frame": {
-						"x": 237,
+						"x": 261,
 						"y": 195,
-						"w": 30,
-						"h": 36
+						"w": 22,
+						"h": 22
+					}
+				},
+				{
+					"filename": "lock.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 22,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 18,
+						"h": 22
+					},
+					"frame": {
+						"x": 261,
+						"y": 219,
+						"w": 18,
+						"h": 22
 					}
 				}
 			]
@@ -309,6 +330,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:f173a04d91050481b845cf3f42e0bd72:6008506ac929a3d292363bda89d67a6a:531d510bb7e47c5a7810ed876d840ed4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:61f5c351bbf4dc94c0daf05a84b6f006:1bcfe0c2938066139126ca9c9652eaf9:531d510bb7e47c5a7810ed876d840ed4$"
 	}
 }

@@ -17,6 +17,11 @@ export abstract class Button extends Phaser.GameObjects.Container {
 
   abstract onClick(): void;
 
+  private _onPointerOver: Function;
+  private _onPointerOut: Function;
+  private _onPointerDown: Function;
+  private _onPointerUp: Function;
+
   constructor(scene: Phaser.Scene, x: number, y: number, text: string) {
     super(scene, x, y);
     scene.add.existing(this);
@@ -42,27 +47,34 @@ export abstract class Button extends Phaser.GameObjects.Container {
     const [width, height] = SIZE.BUTTON_LG;
     this.setSize(width + 6, height + 6);
 
-    // FIXME: remove events
+    this._onPointerOver = () => {
+      if (this.isDisabled) return;
+      this._hoverTweens(true);
+      this._bg.setTexture(BUTTON_TYPE_TEXTURE_MAP.hover);
+    };
+    this._onPointerOut = () => {
+      if (this.isDisabled) return;
+      this._hoverTweens(false);
+      this._bg.setTexture(BUTTON_TYPE_TEXTURE_MAP.normal);
+    };
+    this._onPointerDown = () => {
+      if (this.isDisabled) return;
+      this._pressTweens(true);
+      this.onClick();
+    };
+    this._onPointerUp = () => {
+      if (this.isDisabled) return;
+      this._pressTweens(false);
+    };
+
     this.setInteractive()
-      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
-        if (this.isDisabled) return;
-        this._hoverTweens(true);
-        this._bg.setTexture(BUTTON_TYPE_TEXTURE_MAP.hover);
-      })
-      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
-        if (this.isDisabled) return;
-        this._hoverTweens(false);
-        this._bg.setTexture(BUTTON_TYPE_TEXTURE_MAP.normal);
-      })
-      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-        if (this.isDisabled) return;
-        this._pressTweens(true);
-        this.onClick();
-      })
-      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-        if (this.isDisabled) return;
-        this._pressTweens(false);
-      });
+      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, this._onPointerOver)
+      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, this._onPointerOut)
+      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, this._onPointerDown)
+      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, this._onPointerUp);
+
+    this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, this.destroy, this);
+    this.once(Phaser.GameObjects.Events.DESTROY, this._onDestroy, this);
   }
 
   public setDisabled(isDisabled: boolean) {
@@ -100,5 +112,13 @@ export abstract class Button extends Phaser.GameObjects.Container {
     [this._bgTop, this._bg, this._text].forEach((item) => {
       item.setY(-2);
     });
+  }
+
+  private _onDestroy() {
+    this.setInteractive(false);
+    this.off(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, this._onPointerOver);
+    this.off(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, this._onPointerOut);
+    this.off(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, this._onPointerDown);
+    this.off(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, this._onPointerUp);
   }
 }

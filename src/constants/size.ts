@@ -5,6 +5,7 @@ export const SIZE = {
   CARD: [140, 170],
   LABEL: [42, 16],
   BUTTON_LG: [128, 38],
+  STATUS_TAG: [28, 28],
 
   TARGET_RECT: [120, 140],
 } as const;
