@@ -14,7 +14,7 @@ export class GameOver extends Phaser.GameObjects.Container {
       .rectangle(0, 0, width, height, hexToDecimal(COLOR_KEY.BROWN_8))
       .setOrigin(0.5);
     const text = scene.add
-      .text(0, -24, "Game Over", {
+      .text(0, -32, "Game Over", {
         fontFamily: FONT_KEY.JERSEY_25,
         fontSize: 64,
         color: COLOR_KEY.BEIGE_2,
@@ -22,7 +22,7 @@ export class GameOver extends Phaser.GameObjects.Container {
       })
       .setOrigin(0.5);
     const subText = scene.add
-      .text(0, 24, desc, {
+      .text(0, 20, desc, {
         fontFamily: FONT_KEY.JERSEY_25,
         fontSize: 32,
         color: COLOR_KEY.BEIGE_2,

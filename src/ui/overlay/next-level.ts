@@ -21,7 +21,7 @@ export class NextLevel extends Phaser.GameObjects.Container {
       .rectangle(0, 0, width, height, hexToDecimal(COLOR_KEY.BROWN_8))
       .setOrigin(0.5);
     const text = scene.add
-      .text(0, -24, "Next Level", {
+      .text(0, -32, "Level Completed", {
         fontFamily: FONT_KEY.JERSEY_25,
         fontSize: 64,
         color: COLOR_KEY.BEIGE_2,
@@ -29,7 +29,7 @@ export class NextLevel extends Phaser.GameObjects.Container {
       })
       .setOrigin(0.5);
     const subText = scene.add
-      .text(0, 24, `Balance Restored (${level} / ${totalLevel})`, {
+      .text(0, 20, `Balance Restored (${level} / ${totalLevel})`, {
         fontFamily: FONT_KEY.JERSEY_25,
         fontSize: 32,
         color: COLOR_KEY.BEIGE_2,
