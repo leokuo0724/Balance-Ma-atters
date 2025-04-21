@@ -8,6 +8,7 @@ import {
   SIZE,
   TEXTURE_KEY,
 } from "~/constants";
+import { GameManager } from "~/manager";
 import { EBalanceSetType, TCardBalance } from "~/type";
 import {
   delayedCallAsync,
@@ -55,6 +56,7 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
 
   private _onCardDrag: Function;
   private _onCardDragCancel: Function;
+  private _onCardApply: Function;
 
   constructor(
     scene: Phaser.Scene,
@@ -136,6 +138,8 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
 
     this._onCardDrag = ({ balances }: { balances: TCardBalance[] }) => {
       if (this.locked) return;
+      const gm = GameManager.getInstance();
+      if (gm.isApplyingEffect) return;
       this._tempValue = this._value;
       const diff = this._gatherBalanceDiff(balances);
       this.updateValue(this._value + diff);
@@ -144,10 +148,17 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
 
     this._onCardDragCancel = () => {
       if (this.locked || isNil(this._tempValue)) return;
+      const gm = GameManager.getInstance();
+      if (gm.isApplyingEffect) return;
       this.updateValue(this._tempValue);
       this._tempValue = null;
     };
     this.scene.events.on(EVENT_KEY.ON_CARD_DRAG_CANCEL, this._onCardDragCancel);
+
+    this._onCardApply = () => {
+      this._tempValue = null;
+    };
+    this.scene.events.on(EVENT_KEY.ON_CARD_APPLY, this._onCardApply);
 
     this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, this.destroy, this);
     this.once(Phaser.GameObjects.Events.DESTROY, this._onDestroy, this);
@@ -246,6 +257,7 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
       EVENT_KEY.ON_CARD_DRAG_CANCEL,
       this._onCardDragCancel,
     );
+    this.scene.events.off(EVENT_KEY.ON_CARD_APPLY, this._onCardApply);
   }
 }
 

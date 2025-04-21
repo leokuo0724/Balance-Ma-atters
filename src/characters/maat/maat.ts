@@ -66,14 +66,16 @@ export class Maat
   }
 
   public async applyCardEffect(card: TCardMetadata) {
-    // should only apply shield
+    const gm = GameManager.getInstance();
     if (card.shield > 0) {
-      const gm = GameManager.getInstance();
       const multiple = await gm.checkLibraSetBalanced();
       this.addShield(card.shield * multiple);
       await delayedCallAsync(this.scene, 500);
       gm.setApplyingEffect(false);
     }
+    const multiply = await gm.checkLibraSetBalanced();
+    await gm.checkLibraStrike(multiply);
+    // TODO: check extra effects
   }
 
   public async applyDamage(damage: number, isIgnoreShield: boolean = false) {
