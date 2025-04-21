@@ -3,6 +3,7 @@ import { EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
 import {
   EBalanceSetType,
   EOpponentActionable,
+  EStatusType,
   ETurn,
   TOpponentMovable,
 } from "~/type";
@@ -31,7 +32,6 @@ const DEFAULT_MAAT_DATA = {
   SHIELD: 0,
 };
 const LEVEL_OPPONENT_INFO = [
-  { opponentIds: [null, "o_00005", "o_00004"] },
   { opponentIds: ["o_00000", "o_00000", "o_00000"] },
   { opponentIds: ["o_00001", "o_00002"] },
   { opponentIds: ["o_00001", "o_00003"] },
@@ -149,7 +149,7 @@ export class GameManager {
     const targetCard = this._inHandCards[targetIndex]!;
     const targetCardId = targetCard.metadata.id;
 
-    targetCard.destroy(true);
+    targetCard.destroy();
     this._inHandCards[targetIndex] = null;
     this._usedCardIds.push(targetCardId);
     scene.events.emit(EVENT_KEY.ON_USED_CARDS_UPDATED, {
@@ -260,11 +260,14 @@ export class GameManager {
   // Game states
   public async updateTurn(scene: Phaser.Scene) {
     if (this._currentTurn === ETurn.PLAYER) {
+      // status check
+      await this.maat!.executeEndTurnStatus();
       await this._checkTotalImbalance(scene);
       this._currentTurn = ETurn.OPPONENT;
       this._performOpponentTurn(scene);
       this._inHandCards.forEach((card) => card?.setControllable(false));
     } else {
+      // TODO: check all opponents end turn status
       this._currentTurn = ETurn.PLAYER;
       const isNewlyImbalanced = this._checkLibraSetImbalanced();
       if (isNewlyImbalanced) {
@@ -330,7 +333,7 @@ export class GameManager {
         break;
       }
       case EOpponentActionable.VENOM: {
-        this.maat!.applyVenom(value);
+        this.maat!.addStatus(EStatusType.VENOM, value);
         break;
       }
       case EOpponentActionable.INTERRUPT_ATK:
@@ -396,7 +399,7 @@ export class GameManager {
     for (const card of this._inHandCards) {
       if (!card) continue;
       inHandCardIds.push(card.metadata.id);
-      card.destroy(true);
+      card.destroy();
     }
     this._inHandCards = [null, null, null, null, null];
     this._usedCardIds.push(...inHandCardIds);
@@ -411,5 +414,6 @@ export class GameManager {
 
     // rest character
     this.maat!.updateShield(0);
+    this.maat!.removeAllStatus();
   }
 }

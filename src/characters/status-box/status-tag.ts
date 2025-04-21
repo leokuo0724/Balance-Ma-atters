@@ -19,7 +19,7 @@ const DESC_MAP = {
 
 export class StatusTag extends Phaser.GameObjects.Container {
   private _valueText: Phaser.GameObjects.Text;
-  public readonly _statusType: EStatusType;
+  public readonly statusType: EStatusType;
   private _value: number;
   public get value() {
     return this._value;
@@ -37,7 +37,7 @@ export class StatusTag extends Phaser.GameObjects.Container {
   ) {
     super(scene, x, y);
     scene.add.existing(this);
-    this._statusType = type;
+    this.statusType = type;
     this._value = value;
 
     const bg = scene.add.image(0, 0, ATLAS_KEY.UI_COMPONENT, TEXTURE_MAP[type]);

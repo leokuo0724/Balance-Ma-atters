@@ -5,13 +5,13 @@ import { BloodBar, GameOver, ShieldGroup } from "~/ui";
 import { delayedCallAsync, hexToDecimal, tweensAsync } from "~/utils";
 
 import { Damaged, FloatingHint } from "../effects";
-import { IBlood, IShield, ITarget } from "../interfaces";
+import { IBlood, IShield, IStatus, ITarget } from "../interfaces";
 import { StatusBox } from "../status-box";
 import { MaatSprite } from "./maat-sprite";
 
 export class Maat
   extends Phaser.GameObjects.Container
-  implements IBlood, IShield, ITarget
+  implements IBlood, IShield, ITarget, IStatus
 {
   public bloodBar: BloodBar;
   public totalBlood: number = 0;
@@ -76,10 +76,10 @@ export class Maat
     }
   }
 
-  public async applyDamage(damage: number) {
+  public async applyDamage(damage: number, isIgnoreShield: boolean = false) {
     // TODO: damage animation
     await this._damageAnim(damage);
-    if (this.currentShield > 0) {
+    if (this.currentShield > 0 && !isIgnoreShield) {
       this.currentShield -= damage;
       this.shieldGroup.updateValue(this.currentShield);
       if (this.currentShield < 0) {
@@ -105,7 +105,7 @@ export class Maat
   private _checkDeath() {
     if (this.currentBlood > 0) return;
     new GameOver(this.scene, "You lost the fight. Turns out punches hurt.");
-    this.destroy(true);
+    this.destroy();
   }
 
   private async _damageAnim(damage: number) {
@@ -135,7 +135,26 @@ export class Maat
     ).playAndFadeOut(undefined, 1500);
   }
 
-  public async applyVenom(value: number) {
-    this.statusBox.addStatus(EStatusType.VENOM, value);
+  public addStatus(type: EStatusType, value: number) {
+    this.statusBox.addStatus(type, value);
+  }
+
+  public async executeEndTurnStatus() {
+    await this.statusBox.executeEndTurnStatus();
+  }
+
+  public async takeStatusEffect(type: EStatusType, value: number) {
+    switch (type) {
+      case EStatusType.VENOM: {
+        this._maatSprite.setTint(hexToDecimal(COLOR_KEY.GREEN_6));
+        await this.applyDamage(value, true);
+        this._maatSprite.setTint(0xffffff);
+        break;
+      }
+    }
+  }
+
+  public removeAllStatus() {
+    this.statusBox.clear();
   }
 }
