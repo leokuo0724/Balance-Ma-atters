@@ -16,9 +16,10 @@ import {
   NextLevel,
   RestCardGroup,
   SmallLibraGroup,
+  TutorialOverlay,
   UsedCardGroup,
 } from "~/ui";
-import { getCanvasSize, hexToDecimal } from "~/utils";
+import { getCanvasCenter, getCanvasSize, hexToDecimal } from "~/utils";
 
 export class GameScene extends Phaser.Scene {
   private _onNextLevel: Function | null = null;
@@ -30,6 +31,7 @@ export class GameScene extends Phaser.Scene {
   create() {
     const gm = GameManager.getInstance();
     const [canvasWidth, canvasHeight] = getCanvasSize(this);
+    const [centerX, centerY] = getCanvasCenter(this);
 
     this.add
       .rectangle(
@@ -94,9 +96,11 @@ export class GameScene extends Phaser.Scene {
       canvasHeight - SIZE.BUTTON_LG[1] / 2 - 20,
       "End Turn",
     ).setDepth(DEPTH.CARD_DECK);
+    const tutorialOverlay = new TutorialOverlay(this, centerX, centerY);
 
     // gm.shuffleAvailableCardIds(this);
     // gm.drawCards(this);
+    gm.setupTutorialOverlay(tutorialOverlay);
     gm.nextTutorial(this);
     gm.setupMaat(maat);
     gm.setupLargeLibraGroup(largeLibraGroup);

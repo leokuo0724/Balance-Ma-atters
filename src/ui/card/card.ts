@@ -24,6 +24,8 @@ export class Card extends Phaser.GameObjects.Container {
   private _onDrag: Function | null = null;
   private _onDragEnd: Function | null = null;
 
+  private _basicDepth = DEPTH.CARD;
+
   constructor(scene: Phaser.Scene, x: number, y: number, id: string) {
     super(scene, x, y + 20);
     scene.add.existing(this);
@@ -147,7 +149,7 @@ export class Card extends Phaser.GameObjects.Container {
 
       this.x = dragX;
       this.y = dragY;
-      this.setDepth(DEPTH.DRAGGING_CARD);
+      this.setDepth(this._basicDepth + 1);
       if (!this._startDragging) {
         this.scene.events.emit(EVENT_KEY.ON_CARD_DRAG, {
           balances: this.metadata.balances,
@@ -199,7 +201,7 @@ export class Card extends Phaser.GameObjects.Container {
         this.scene.events.emit(EVENT_KEY.ON_CARD_DRAG_CANCEL, {
           balances: this.metadata.balances,
         });
-        this.setDepth(DEPTH.CARD);
+        this.setDepth(this._basicDepth);
         this.x = this._origX;
         this.y = this._origY;
       }
@@ -226,6 +228,11 @@ export class Card extends Phaser.GameObjects.Container {
       y: isControllable ? this._origY : "+=4",
       ease: Phaser.Math.Easing.Cubic.Out,
     });
+  }
+
+  public setBasicDepth(depth: number) {
+    this._basicDepth = depth;
+    this.setDepth(depth);
   }
 
   public _onDestroy(): void {

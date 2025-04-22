@@ -1,5 +1,5 @@
 import { ITarget, Maat, Opponent, OpponentSpawner } from "~/characters";
-import { EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
+import { DEPTH, EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
 import {
   EBalanceSetType,
   EOpponentActionable,
@@ -8,7 +8,13 @@ import {
   TOpponentMovable,
 } from "~/type";
 import { ETutorialStep } from "~/type/tutorial.type";
-import { Card, GameOver, LargeLibraGroup, TutorialDisplay } from "~/ui";
+import {
+  Card,
+  GameOver,
+  LargeLibraGroup,
+  TutorialDisplay,
+  TutorialOverlay,
+} from "~/ui";
 import { CardDeck } from "~/ui/card-deck-group/card-deck";
 import { SmallLibraSet } from "~/ui/small-libra-group/small-libra-set";
 import { delayedCallAsync, getCanvasCenter } from "~/utils";
@@ -79,21 +85,26 @@ export class GameManager {
   public get isApplyingEffect() {
     return this._isApplyingEffect;
   }
-  // Tutorial states
+  // Tutorial related
+  private _tutorialOverlay: TutorialOverlay | null = null;
   public get isTutorialLevel() {
     return this.level === 0;
   }
-  public currentTutorialSteps = 0;
-
-  public nextTutorial(scene: Phaser.Scene) {
+  public currentTutorialSteps = 1;
+  public setupTutorialOverlay(overlay: TutorialOverlay) {
+    this._tutorialOverlay = overlay;
+  }
+  public async nextTutorial(scene: Phaser.Scene) {
     this.currentTutorialSteps += 1;
+    this._tutorialOverlay!.updateByStep(this.currentTutorialSteps);
     switch (this.currentTutorialSteps) {
       case ETutorialStep.IDLE:
         const [x, y] = getCanvasCenter(scene);
         new TutorialDisplay(scene, x, y);
         break;
-      case ETutorialStep.DRAG_CARD_TO_ATTACK:
-        this._drawSingleCard("c_00000");
+      case ETutorialStep.INTRO_CARD:
+        await this._drawSingleCard("c_00004");
+        this._inHandCards[0]?.setBasicDepth(DEPTH.TUTORIAL_FOCUS);
         break;
     }
   }
