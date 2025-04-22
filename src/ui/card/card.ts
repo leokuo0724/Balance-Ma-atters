@@ -10,7 +10,7 @@ import {
 } from "~/constants";
 import { GameManager, WikiManager } from "~/manager";
 import { ETarget, ETurn, TCardMetadata } from "~/type";
-import { delayedCallAsync, getBalanceSetType, tweensAsync } from "~/utils";
+import { getBalanceSetType, tweensAsync } from "~/utils";
 
 import { BalanceLabel } from "./balance-label";
 
@@ -33,6 +33,7 @@ export class Card extends Phaser.GameObjects.Container {
     const gm = GameManager.getInstance();
     const wm = WikiManager.getInstance();
     this.metadata = wm.queryCardData(id);
+    // const isSelfApply = this.metadata.target === ETarget.SELF;
 
     const [cardWidth, cardHeight] = SIZE.CARD;
     const LEFT = -cardWidth / 2 + 8;
@@ -75,8 +76,9 @@ export class Card extends Phaser.GameObjects.Container {
         LEFT + 12,
         TOP + 14,
         ATLAS_KEY.UI_COMPONENT,
-        TEXTURE_KEY.SHIELD_ICON,
+        TEXTURE_KEY.SILVER_SHIELD_ICON,
       )
+      .setAlpha(0.5)
       .setVisible(isShield);
     const valueLabel = scene.add
       .text(

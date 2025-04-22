@@ -4,7 +4,7 @@
 			"image": "ui-component.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 403,
+				"w": 687,
 				"h": 256
 			},
 			"scale": 1,
@@ -52,27 +52,6 @@
 					}
 				},
 				{
-					"filename": "card-top.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 141,
-						"h": 170
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 141,
-						"h": 170
-					},
-					"frame": {
-						"x": 261,
-						"y": 1,
-						"w": 141,
-						"h": 170
-					}
-				},
-				{
 					"filename": "balanced-display-box.png",
 					"rotated": false,
 					"trimmed": false,
@@ -91,6 +70,27 @@
 						"y": 173,
 						"w": 152,
 						"h": 42
+					}
+				},
+				{
+					"filename": "card-top.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 141,
+						"h": 170
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 141,
+						"h": 170
+					},
+					"frame": {
+						"x": 261,
+						"y": 1,
+						"w": 141,
+						"h": 170
 					}
 				},
 				{
@@ -133,27 +133,6 @@
 						"y": 217,
 						"w": 30,
 						"h": 34
-					}
-				},
-				{
-					"filename": "blood-bar-box.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 128,
-						"h": 20
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 128,
-						"h": 20
-					},
-					"frame": {
-						"x": 272,
-						"y": 173,
-						"w": 128,
-						"h": 20
 					}
 				},
 				{
@@ -276,30 +255,9 @@
 						"h": 42
 					},
 					"frame": {
-						"x": 284,
-						"y": 195,
+						"x": 272,
+						"y": 173,
 						"w": 42,
-						"h": 42
-					}
-				},
-				{
-					"filename": "number-display-box.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 36,
-						"h": 42
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 36,
-						"h": 42
-					},
-					"frame": {
-						"x": 328,
-						"y": 195,
-						"w": 36,
 						"h": 42
 					}
 				},
@@ -318,8 +276,8 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 378,
-						"y": 195,
+						"x": 284,
+						"y": 217,
 						"w": 22,
 						"h": 22
 					}
@@ -339,10 +297,94 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 378,
-						"y": 219,
+						"x": 308,
+						"y": 217,
 						"w": 18,
 						"h": 22
+					}
+				},
+				{
+					"filename": "number-display-box.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 36,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 36,
+						"h": 42
+					},
+					"frame": {
+						"x": 316,
+						"y": 173,
+						"w": 36,
+						"h": 42
+					}
+				},
+				{
+					"filename": "blood-bar-box.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 20
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 20
+					},
+					"frame": {
+						"x": 328,
+						"y": 217,
+						"w": 128,
+						"h": 20
+					}
+				},
+				{
+					"filename": "card-bg_red.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 140,
+						"h": 170
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 140,
+						"h": 170
+					},
+					"frame": {
+						"x": 404,
+						"y": 1,
+						"w": 140,
+						"h": 170
+					}
+				},
+				{
+					"filename": "card-top_red.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 140,
+						"h": 170
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 140,
+						"h": 170
+					},
+					"frame": {
+						"x": 546,
+						"y": 1,
+						"w": 140,
+						"h": 170
 					}
 				}
 			]
@@ -351,6 +393,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:90e1b6cbff1603784341d6a7a0d1f3fb:4814dce83c83a612768599522308e233:531d510bb7e47c5a7810ed876d840ed4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:d92a3b5f2e062a3cac3b05477af56c16:7c2d33c193c06fb5ca2cc5108fca1c49:531d510bb7e47c5a7810ed876d840ed4$"
 	}
 }
