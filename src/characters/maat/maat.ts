@@ -67,13 +67,12 @@ export class Maat
 
   public async applyCardEffect(card: TCardMetadata) {
     const gm = GameManager.getInstance();
+    const multiply = await gm.checkLibraSetBalanced();
     if (card.shield > 0) {
-      const multiple = await gm.checkLibraSetBalanced();
-      this.addShield(card.shield * multiple);
+      this.addShield(card.shield * multiply);
       await delayedCallAsync(this.scene, 500);
       gm.setApplyingEffect(false);
     }
-    const multiply = await gm.checkLibraSetBalanced();
     await gm.checkLibraStrike(multiply);
     // TODO: check extra effects
   }

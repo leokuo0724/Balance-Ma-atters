@@ -19,11 +19,11 @@
   "o_00001": {
     "id": "o_00001",
     "name": "Desert Tortoise",
-    "blood": 20,
+    "blood": 80,
     "moves": [
       {
         "action": "shield",
-        "value": 5
+        "value": 10
       },
       null,
       {
@@ -36,56 +36,56 @@
   "o_00002": {
     "id": "o_00002",
     "name": "R\u00fcppell's fox",
-    "blood": 15,
+    "blood": 30,
     "moves": [
       null,
       {
         "action": "heal",
-        "value": 2
+        "value": 5
       },
       null,
       {
         "action": "damage",
-        "value": 5
+        "value": 10
       }
     ]
   },
   "o_00003": {
     "id": "o_00003",
     "name": "Meerkat",
-    "blood": 30,
+    "blood": 80,
     "moves": [
       {
         "action": "random_balance",
-        "value": 1
+        "value": 2
       },
       {
         "action": "random_balance",
-        "value": 1
+        "value": 2
       },
       {
         "action": "random_balance",
-        "value": 1
+        "value": 2
       },
       {
         "action": "random_balance",
-        "value": 1
+        "value": 2
       }
     ]
   },
   "o_00004": {
     "id": "o_00004",
     "name": "Snake",
-    "blood": 20,
+    "blood": 40,
     "moves": [
       {
-        "action": "damage",
+        "action": "venom",
         "value": 3
       },
       null,
       {
-        "action": "venom",
-        "value": 3
+        "action": "damage",
+        "value": 5
       },
       null
     ]
@@ -93,16 +93,22 @@
   "o_00005": {
     "id": "o_00005",
     "name": "Apophis",
-    "blood": 50,
+    "blood": 100,
     "moves": [
-      null,
+      {
+        "action": "venom",
+        "value": 3
+      },
+      {
+        "action": "random_balance",
+        "value": 2
+      },
       {
         "action": "summon",
         "value": 0
       },
-      null,
       {
-        "action": "venom",
+        "action": "heal",
         "value": 5
       }
     ]

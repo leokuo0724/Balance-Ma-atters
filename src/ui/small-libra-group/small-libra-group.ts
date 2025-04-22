@@ -1,5 +1,5 @@
 import { SIZE } from "~/constants";
-import { GameManager } from "~/manager";
+import { GameManager, INITIAL_LOCKED_BALANCE } from "~/manager";
 import { EBalanceSetType } from "~/type";
 
 import { SmallLibraSet } from "./small-libra-set";
@@ -23,7 +23,7 @@ export class SmallLibraGroup extends Phaser.GameObjects.Container {
         0,
         height * index + PADDING_Y * index,
         type,
-        [EBalanceSetType.SHT_LNG, EBalanceSetType.DUT_FIR].includes(type),
+        INITIAL_LOCKED_BALANCE.includes(type),
       );
       this.add(libraSet);
       gm.setupBalanceSet(type, libraSet);

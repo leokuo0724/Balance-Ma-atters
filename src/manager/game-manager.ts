@@ -37,6 +37,10 @@ const LEVEL_OPPONENT_INFO = [
   { opponentIds: ["o_00001", "o_00003"] },
   { opponentIds: ["o_00004", "o_00005", "o_00004"] },
 ];
+export const INITIAL_LOCKED_BALANCE = [
+  EBalanceSetType.SHT_LNG,
+  EBalanceSetType.DUT_FIR,
+];
 
 export class GameManager {
   // Cards
@@ -264,11 +268,13 @@ export class GameManager {
       await this.maat!.executeEndTurnStatus();
       await this._checkTotalImbalance(scene);
       this._currentTurn = ETurn.OPPONENT;
-      this._performOpponentTurn(scene);
+      scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: this._currentTurn });
+      await this._performOpponentTurn(scene);
       this._inHandCards.forEach((card) => card?.setControllable(false));
     } else {
       // TODO: check all opponents end turn status
       this._currentTurn = ETurn.PLAYER;
+      scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: this._currentTurn });
       const isNewlyImbalanced = this._checkLibraSetImbalanced();
       if (isNewlyImbalanced) {
         await delayedCallAsync(scene, 500);
@@ -291,13 +297,12 @@ export class GameManager {
       );
       this._inHandCards.forEach((card) => card?.setControllable(true));
     }
-    scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: this._currentTurn });
   }
 
   private async _performOpponentTurn(scene: Phaser.Scene) {
     const opponents = this.getOpponents();
     for (const opponent of opponents) {
-      await delayedCallAsync(scene, 300);
+      await delayedCallAsync(scene, 100);
       await opponent.performMovable();
     }
     await delayedCallAsync(scene, 500);

@@ -89,7 +89,9 @@ export class Opponent
   }
 
   public markAsCovered(isCovered: boolean) {
-    this._sprite.setTint(isCovered ? hexToDecimal(COLOR_KEY.RED_6) : 0xffffff);
+    this._sprite.setTint(
+      isCovered ? hexToDecimal(COLOR_KEY.YELLOW_6) : 0xffffff,
+    );
   }
 
   public async applyCardEffect(card: TCardMetadata) {
