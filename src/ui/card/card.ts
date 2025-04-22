@@ -18,6 +18,7 @@ export class Card extends Phaser.GameObjects.Container {
   private _origX: number;
   private _origY: number;
   public metadata: TCardMetadata;
+  private _isForTutorial = false;
 
   private _startDragging: boolean = false;
 
@@ -26,11 +27,18 @@ export class Card extends Phaser.GameObjects.Container {
 
   private _basicDepth = DEPTH.CARD;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, id: string) {
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    id: string,
+    isForTutorial: boolean = false,
+  ) {
     super(scene, x, y + 20);
     scene.add.existing(this);
     this._origX = x;
     this._origY = y;
+    this._isForTutorial = isForTutorial;
 
     const gm = GameManager.getInstance();
     const wm = WikiManager.getInstance();
@@ -144,6 +152,7 @@ export class Card extends Phaser.GameObjects.Container {
     ) => {
       if (gameObject !== this) return;
       const gm = GameManager.getInstance();
+      if (!gm.isAbleToDrag) return;
       if (gm.currentTurn !== ETurn.PLAYER) return;
       if (gm.isApplyingEffect) return;
 
@@ -197,6 +206,9 @@ export class Card extends Phaser.GameObjects.Container {
         gm.markAsUsed(this, this.scene);
         gm.setApplyingEffect(true);
         await target.applyCardEffect(this.metadata);
+        if (this._isForTutorial) {
+          gm.nextTutorial(this.scene);
+        }
       } else {
         this.scene.events.emit(EVENT_KEY.ON_CARD_DRAG_CANCEL, {
           balances: this.metadata.balances,

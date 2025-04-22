@@ -15,7 +15,7 @@ export class TutorialOverlay extends Phaser.GameObjects.Container {
 
     const [width, height] = getCanvasSize(scene);
     const bg = scene.add
-      .rectangle(0, 0, width, height, hexToDecimal(COLOR_KEY.BROWN_9), 0.6)
+      .rectangle(0, 0, width, height, hexToDecimal(COLOR_KEY.BROWN_9), 0.65)
       .setOrigin(0.5);
     this._text = scene.add
       .text(0, 0, "", {
@@ -24,7 +24,7 @@ export class TutorialOverlay extends Phaser.GameObjects.Container {
         color: COLOR_KEY.BEIGE_2,
         align: "left",
       })
-      .setOrigin(0.5);
+      .setOrigin(0);
     this._nextButton = new NextButton(
       this.scene,
       width / 2 - SIZE.BUTTON_LG[0] / 2 - 18,
@@ -40,11 +40,13 @@ export class TutorialOverlay extends Phaser.GameObjects.Container {
 
   public updateByStep(step: ETutorialStep) {
     const data = TUTORIAL_METADATA[step];
-    if (step === ETutorialStep.INTRO_CARD) {
-      this.setVisible(true);
-      this._text
-        .setText(data?.text ?? "")
-        .setPosition(data?.position.x, data?.position.y);
+    this.setVisible(true);
+    this._text
+      .setText(data?.text ?? "")
+      .setPosition(data?.position.x, data?.position.y)
+      .setAlign(data?.align ?? "left");
+    if (step === ETutorialStep.DRAG_CARD_TO_ATTACK) {
+      this._nextButton.setDisabled(true);
     }
   }
 }
@@ -52,6 +54,7 @@ export class TutorialOverlay extends Phaser.GameObjects.Container {
 type TTutorialMetadata = {
   text: string;
   position: Phaser.Types.Math.Vector2Like;
+  align: "left" | "center";
 };
 
 const TUTORIAL_METADATA: Record<ETutorialStep, TTutorialMetadata | null> = {
@@ -60,11 +63,35 @@ const TUTORIAL_METADATA: Record<ETutorialStep, TTutorialMetadata | null> = {
   [ETutorialStep.INTRO_CARD]: {
     text: "Here’s your card!\nTop-left corner is attack or shied value.",
     position: {
-      x: -320,
-      y: 70,
+      x: -510,
+      y: 54,
     },
+    align: "left",
   },
-  [ETutorialStep.DRAG_CARD_TO_ATTACK]: null,
+  [ETutorialStep.INTRO_SCALE_VALUE]: {
+    text: "The top-right corner shows scale values.\nThese numbers will shift your balance\nwhen the card is played.",
+    position: {
+      x: -352,
+      y: 108,
+    },
+    align: "left",
+  },
+  [ETutorialStep.DRAG_CARD_TO_ATTACK]: {
+    text: "Now, drag the card here\nto attack the enemy!",
+    position: {
+      x: 280,
+      y: 72,
+    },
+    align: "left",
+  },
+  [ETutorialStep.INTRO_LARGE_SCALE]: {
+    text: "Good job!\nPlayed values are stored in the center.\nBalance the big scale to unleash them on all enemies.",
+    position: {
+      x: -242,
+      y: -188,
+    },
+    align: "center",
+  },
 };
 
 class NextButton extends Button {

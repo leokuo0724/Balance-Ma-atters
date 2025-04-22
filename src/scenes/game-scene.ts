@@ -48,7 +48,7 @@ export class GameScene extends Phaser.Scene {
     const MARGIN_Y = 18;
     const MARGIN_X = 12;
     const [libraSetWidth, libraSetHeight] = SIZE.SMALL_LIBRA_SET;
-    new SmallLibraGroup(
+    const smallLibraGroup = new SmallLibraGroup(
       this,
       libraSetWidth / 2 + MARGIN_X,
       libraSetHeight / 2 + MARGIN_Y,
@@ -100,11 +100,12 @@ export class GameScene extends Phaser.Scene {
 
     // gm.shuffleAvailableCardIds(this);
     // gm.drawCards(this);
-    gm.setupTutorialOverlay(tutorialOverlay);
-    gm.nextTutorial(this);
     gm.setupMaat(maat);
+    gm.setupBalanceSetGroup(smallLibraGroup);
     gm.setupLargeLibraGroup(largeLibraGroup);
     gm.setupLevelOpponents();
+    gm.setupTutorialOverlay(tutorialOverlay);
+    gm.nextTutorial(this);
 
     this._onNextLevel = () => {
       new NextLevel(this, 0, 0, gm.level + 1, LEVEL_OPPONENT_INFO.length);

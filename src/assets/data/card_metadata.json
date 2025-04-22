@@ -521,5 +521,39 @@
       }
     ],
     "target": "self"
+  },
+  "c_00020": {
+    "id": "c_00020",
+    "title": "Tutorial Magic",
+    "description": "Just for tutorial :)",
+    "damage": 2,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "MAG",
+        "value": 2
+      },
+      {
+        "type": "ATK",
+        "value": 1
+      }
+    ],
+    "effects": [],
+    "target": "ops"
+  },
+  "c_00021": {
+    "id": "c_00021",
+    "title": "Tutorial Fist",
+    "description": "Just for tutorial :)",
+    "damage": 2,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "PHY",
+        "value": 2
+      }
+    ],
+    "effects": [],
+    "target": "ops"
   }
 }

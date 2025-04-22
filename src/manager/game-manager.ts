@@ -12,6 +12,7 @@ import {
   Card,
   GameOver,
   LargeLibraGroup,
+  SmallLibraGroup,
   TutorialDisplay,
   TutorialOverlay,
 } from "~/ui";
@@ -64,6 +65,7 @@ export class GameManager {
 
   // Libra
   public largeLibraGroup: LargeLibraGroup | null = null;
+  public balanceSetGroup: SmallLibraGroup | null = null;
   public balanceSetMap: Record<EBalanceSetType, SmallLibraSet | null> = {
     [EBalanceSetType.PHY_MAG]: null,
     [EBalanceSetType.DEF_ATK]: null,
@@ -85,6 +87,7 @@ export class GameManager {
   public get isApplyingEffect() {
     return this._isApplyingEffect;
   }
+
   // Tutorial related
   private _tutorialOverlay: TutorialOverlay | null = null;
   public get isTutorialLevel() {
@@ -93,6 +96,13 @@ export class GameManager {
   public currentTutorialSteps = 1;
   public setupTutorialOverlay(overlay: TutorialOverlay) {
     this._tutorialOverlay = overlay;
+  }
+  public get isAbleToDrag() {
+    if (!this.isTutorialLevel) return true;
+    if (this.currentTutorialSteps === ETutorialStep.DRAG_CARD_TO_ATTACK)
+      return true;
+    // TODO: check if the current step is able to drag card
+    return false;
   }
   public async nextTutorial(scene: Phaser.Scene) {
     this.currentTutorialSteps += 1;
@@ -103,14 +113,26 @@ export class GameManager {
         new TutorialDisplay(scene, x, y);
         break;
       case ETutorialStep.INTRO_CARD:
-        await this._drawSingleCard("c_00004");
+        await this._drawSingleCard("c_00020");
         this._inHandCards[0]?.setBasicDepth(DEPTH.TUTORIAL_FOCUS);
+        break;
+      case ETutorialStep.INTRO_SCALE_VALUE:
+        this.balanceSetGroup?.setDepth(DEPTH.TUTORIAL_FOCUS);
+        // FIXME: remember to restore the depth
+        break;
+      case ETutorialStep.DRAG_CARD_TO_ATTACK:
+        this.opponentSpawners[1].setDepth(DEPTH.TUTORIAL_FOCUS);
+        // FIXME: remember to restore the depth
+        break;
+      case ETutorialStep.INTRO_LARGE_SCALE:
+        this.largeLibraGroup?.setDepth(DEPTH.TUTORIAL_FOCUS);
+        // FIXME: remember to restore the depth
         break;
     }
   }
   /** For tutorial */
   private async _drawSingleCard(id: string) {
-    const newCard = await this._cardDecks[0].spawnCard(id);
+    const newCard = await this._cardDecks[0].spawnCard(id, true);
     this._inHandCards[0] = newCard;
   }
 
@@ -135,6 +157,9 @@ export class GameManager {
   }
   public setupBalanceSet(type: EBalanceSetType, set: SmallLibraSet) {
     this.balanceSetMap[type] = set;
+  }
+  public setupBalanceSetGroup(group: SmallLibraGroup) {
+    this.balanceSetGroup = group;
   }
   public setupLargeLibraGroup(libra: LargeLibraGroup) {
     this.largeLibraGroup = libra;
