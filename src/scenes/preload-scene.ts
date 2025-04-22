@@ -202,7 +202,7 @@ export class PreloadScene extends Phaser.Scene {
   private _setupLoadingBar() {
     const width = 248;
     const height = 30;
-    const padding = 3;
+    const padding = 4;
 
     const [centerX, centerY] = getCanvasCenter(this);
     const outerBox = this.add.graphics();

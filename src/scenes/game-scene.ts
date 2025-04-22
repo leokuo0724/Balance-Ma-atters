@@ -7,7 +7,7 @@ import {
   SCENE_KEY,
   SIZE,
 } from "~/constants";
-import { GameManager } from "~/manager";
+import { GameManager, LEVEL_OPPONENT_INFO } from "~/manager";
 import {
   CardDeckGroup,
   EndTurnButton,
@@ -95,14 +95,15 @@ export class GameScene extends Phaser.Scene {
       "End Turn",
     ).setDepth(DEPTH.CARD_DECK);
 
-    gm.shuffleAvailableCardIds(this);
-    gm.drawCards(this);
+    // gm.shuffleAvailableCardIds(this);
+    // gm.drawCards(this);
+    gm.nextTutorial(this);
     gm.setupMaat(maat);
     gm.setupLargeLibraGroup(largeLibraGroup);
     gm.setupLevelOpponents();
 
     this._onNextLevel = () => {
-      new NextLevel(this, 0, 0, gm.level + 1, 4); // XXX: Hardcoded 4
+      new NextLevel(this, 0, 0, gm.level + 1, LEVEL_OPPONENT_INFO.length);
     };
     this.events.on(EVENT_KEY.ON_NEXT_LEVEL, this._onNextLevel);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {

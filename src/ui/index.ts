@@ -9,3 +9,4 @@ export * from "./card-count-group";
 export * from "./button";
 export * from "./overlay";
 export * from "./simple-tooltip";
+export * from "./tutorial";

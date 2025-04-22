@@ -132,7 +132,7 @@ export class Maat
       this.scene,
       x,
       y - 60,
-      "PASS\nFIXING LIBRA...",
+      "PASS\nFIXING SCALE...",
     ).playAndFadeOut(undefined, 1500);
   }
 

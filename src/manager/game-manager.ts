@@ -7,10 +7,11 @@ import {
   ETurn,
   TOpponentMovable,
 } from "~/type";
-import { Card, GameOver, LargeLibraGroup } from "~/ui";
+import { ETutorialStep } from "~/type/tutorial.type";
+import { Card, GameOver, LargeLibraGroup, TutorialDisplay } from "~/ui";
 import { CardDeck } from "~/ui/card-deck-group/card-deck";
 import { SmallLibraSet } from "~/ui/small-libra-group/small-libra-set";
-import { delayedCallAsync } from "~/utils";
+import { delayedCallAsync, getCanvasCenter } from "~/utils";
 import { shuffleArray } from "~/utils/math.utility";
 
 const DEFAULT_AVAILABLE_CARD_IDS = [
@@ -26,25 +27,26 @@ const DEFAULT_AVAILABLE_CARD_IDS = [
   "c_00009",
   "c_00009",
   "c_00010",
-];
+] as const;
 const DEFAULT_MAAT_DATA = {
   BLOOD: 20,
   SHIELD: 0,
-};
-const LEVEL_OPPONENT_INFO = [
+} as const;
+export const LEVEL_OPPONENT_INFO = [
+  { opponentIds: [null, "o_00000", null] },
   { opponentIds: ["o_00000", "o_00000", "o_00000"] },
   { opponentIds: ["o_00001", "o_00002"] },
   { opponentIds: ["o_00001", "o_00003"] },
   { opponentIds: ["o_00004", "o_00005", "o_00004"] },
-];
-export const INITIAL_LOCKED_BALANCE = [
+] as const;
+export const INITIAL_LOCKED_BALANCE: EBalanceSetType[] = [
   EBalanceSetType.SHT_LNG,
   EBalanceSetType.DUT_FIR,
-];
+] as const;
 
 export class GameManager {
   // Cards
-  private _availableCardIds: string[] = DEFAULT_AVAILABLE_CARD_IDS;
+  private _availableCardIds: string[] = [...DEFAULT_AVAILABLE_CARD_IDS];
   private _usedCardIds: string[] = [];
   private _inHandCards: (Card | null)[] = [null, null, null, null, null];
   // Card Spawners
@@ -76,6 +78,29 @@ export class GameManager {
   private _isApplyingEffect: boolean = false;
   public get isApplyingEffect() {
     return this._isApplyingEffect;
+  }
+  // Tutorial states
+  public get isTutorialLevel() {
+    return this.level === 0;
+  }
+  public currentTutorialSteps = 0;
+
+  public nextTutorial(scene: Phaser.Scene) {
+    this.currentTutorialSteps += 1;
+    switch (this.currentTutorialSteps) {
+      case ETutorialStep.IDLE:
+        const [x, y] = getCanvasCenter(scene);
+        new TutorialDisplay(scene, x, y);
+        break;
+      case ETutorialStep.DRAG_CARD_TO_ATTACK:
+        this._drawSingleCard("c_00000");
+        break;
+    }
+  }
+  /** For tutorial */
+  private async _drawSingleCard(id: string) {
+    const newCard = await this._cardDecks[0].spawnCard(id);
+    this._inHandCards[0] = newCard;
   }
 
   private static instance: GameManager;
@@ -138,6 +163,7 @@ export class GameManager {
     if (!cardId) throw new Error("Card ID is null");
     return cardId;
   }
+
   public async drawCards(scene: Phaser.Scene) {
     for (let i = 0; i < this._inHandCards.length; i++) {
       if (this._inHandCards[i] !== null) continue;
@@ -147,6 +173,7 @@ export class GameManager {
       this._inHandCards[i] = newCard;
     }
   }
+
   public async markAsUsed(card: Card, scene: Phaser.Scene) {
     const targetIndex = this._inHandCards.findIndex((c) => c === card);
     if (targetIndex < 0) throw new Error("Card not found in hand");
@@ -160,6 +187,7 @@ export class GameManager {
       count: this._usedCardIds.length,
     });
   }
+
   public setCardDragTarget(target: ITarget | null) {
     this._cardDragTarget = target;
     // mark as covered
