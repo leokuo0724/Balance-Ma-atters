@@ -8,12 +8,13 @@ import maatTest from "~/assets/maat-test.png";
 import {
   ATLAS_KEY,
   COLOR_KEY,
+  FONT_KEY,
   SCENE_KEY,
   SIZE,
   TColorKey,
   TEXTURE_KEY,
 } from "~/constants";
-import { hexToDecimal } from "~/utils";
+import { delayedCallAsync, getCanvasCenter, hexToDecimal } from "~/utils";
 
 export class PreloadScene extends Phaser.Scene {
   constructor() {
@@ -21,6 +22,8 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   preload() {
+    this._setupLoadingBar();
+
     this.load.image("maat-test", maatTest);
     this.load.atlas(ATLAS_KEY.UI_COMPONENT, uiComponentPng, uiComponentJson);
     this.load.atlas(ATLAS_KEY.CHARACTER, characterPng, characterJson);
@@ -139,7 +142,8 @@ export class PreloadScene extends Phaser.Scene {
     );
   }
 
-  create() {
+  async create() {
+    await delayedCallAsync(this, 500);
     this.scene.start(SCENE_KEY.GAME);
   }
 
@@ -193,5 +197,55 @@ export class PreloadScene extends Phaser.Scene {
       .fillStyle(hexToDecimal(color), 1)
       .fillRoundedRect(0, 0, width, height, radius);
     graphics.generateTexture(key, width, height);
+  }
+
+  private _setupLoadingBar() {
+    const width = 248;
+    const height = 30;
+    const padding = 3;
+
+    const [centerX, centerY] = getCanvasCenter(this);
+    const outerBox = this.add.graphics();
+    outerBox.fillStyle(hexToDecimal(COLOR_KEY.BROWN_9), 1);
+    outerBox.fillRoundedRect(
+      centerX - width / 2,
+      centerY - height / 2,
+      width,
+      height,
+      8,
+    );
+    const innerBox = this.add.graphics();
+    innerBox.fillStyle(hexToDecimal(COLOR_KEY.BEIGE_3), 1);
+    innerBox.fillRoundedRect(
+      centerX - width / 2 + padding,
+      centerY - height / 2 + padding,
+      width - padding * 2,
+      height - padding * 2,
+      6,
+    );
+    this.make
+      .text({
+        x: centerX,
+        y: centerY + 48,
+        text: "LOADING",
+        style: {
+          fontSize: 24,
+          fontFamily: FONT_KEY.JERSEY_25,
+          color: COLOR_KEY.BEIGE_2,
+        },
+      })
+      .setOrigin(0.5);
+    const progressBar = this.add.graphics();
+    this.load.on("progress", function (value: number) {
+      progressBar.clear();
+      progressBar.fillStyle(hexToDecimal(COLOR_KEY.YELLOW_6), 1);
+      progressBar.fillRoundedRect(
+        centerX - width / 2 + padding,
+        centerY - height / 2 + padding,
+        (width - padding * 2) * value,
+        height - padding * 2,
+        6,
+      );
+    });
   }
 }

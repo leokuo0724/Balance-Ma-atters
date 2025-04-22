@@ -1,5 +1,12 @@
 import { Maat, OpponentSpawner } from "~/characters";
-import { DEPTH, EVENT_KEY, POSITION, SCENE_KEY, SIZE } from "~/constants";
+import {
+  COLOR_KEY,
+  DEPTH,
+  EVENT_KEY,
+  POSITION,
+  SCENE_KEY,
+  SIZE,
+} from "~/constants";
 import { GameManager } from "~/manager";
 import {
   CardDeckGroup,
@@ -11,7 +18,7 @@ import {
   SmallLibraGroup,
   UsedCardGroup,
 } from "~/ui";
-import { getCanvasSize } from "~/utils";
+import { getCanvasSize, hexToDecimal } from "~/utils";
 
 export class GameScene extends Phaser.Scene {
   private _onNextLevel: Function | null = null;
@@ -24,6 +31,16 @@ export class GameScene extends Phaser.Scene {
     const gm = GameManager.getInstance();
     const [canvasWidth, canvasHeight] = getCanvasSize(this);
 
+    this.add
+      .rectangle(
+        0,
+        0,
+        canvasWidth,
+        canvasHeight,
+        hexToDecimal(COLOR_KEY.BEIGE_3),
+      )
+      .setOrigin(0, 0)
+      .setDepth(DEPTH.BG);
     new Ground(this, 0, canvasHeight).setDepth(DEPTH.BG_GROUND);
 
     const MARGIN_Y = 18;

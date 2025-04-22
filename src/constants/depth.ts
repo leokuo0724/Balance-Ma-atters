@@ -1,4 +1,5 @@
 export const DEPTH = {
+  BG: 100,
   BG_DECORATION: 200,
   BG_GROUND: 300,
   CARD_DECK: 400,
