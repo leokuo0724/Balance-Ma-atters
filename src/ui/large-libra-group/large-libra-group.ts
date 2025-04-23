@@ -150,7 +150,7 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
         .text(centerX, centerY, texts[index], {
           fontFamily: FONT_KEY.JERSEY_25,
           fontSize: 48,
-          color: COLOR_KEY.YELLOW_5,
+          color: COLOR_KEY.RED_6,
           align: "center",
           stroke: COLOR_KEY.BROWN_8,
           strokeThickness: 8,
