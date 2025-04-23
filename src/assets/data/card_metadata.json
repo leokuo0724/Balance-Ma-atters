@@ -551,6 +551,10 @@
       {
         "type": "PHY",
         "value": 2
+      },
+      {
+        "type": "DEF",
+        "value": 1
       }
     ],
     "effects": [],

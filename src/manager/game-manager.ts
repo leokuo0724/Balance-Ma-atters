@@ -40,7 +40,7 @@ const DEFAULT_MAAT_DATA = {
   SHIELD: 0,
 } as const;
 export const LEVEL_OPPONENT_INFO = [
-  { opponentIds: [null, "o_00000", null] },
+  { opponentIds: [null, "o_00006", null] },
   { opponentIds: ["o_00000", "o_00000", "o_00000"] },
   { opponentIds: ["o_00001", "o_00002"] },
   { opponentIds: ["o_00001", "o_00003"] },
@@ -93,15 +93,17 @@ export class GameManager {
   public get isTutorialLevel() {
     return this.level === 0;
   }
-  public currentTutorialSteps = 1;
+  public currentTutorialSteps = 0;
   public setupTutorialOverlay(overlay: TutorialOverlay) {
     this._tutorialOverlay = overlay;
   }
   public get isAbleToDrag() {
     if (!this.isTutorialLevel) return true;
-    if (this.currentTutorialSteps === ETutorialStep.DRAG_CARD_TO_ATTACK)
-      return true;
-    // TODO: check if the current step is able to drag card
+    const draggableSteps = [
+      ETutorialStep.DRAG_CARD_TO_ATTACK,
+      ETutorialStep.DRAG_CARD_TO_ATTACK_2,
+    ];
+    if (draggableSteps.includes(this.currentTutorialSteps)) return true;
     return false;
   }
   public async nextTutorial(scene: Phaser.Scene) {
@@ -118,15 +120,22 @@ export class GameManager {
         break;
       case ETutorialStep.INTRO_SCALE_VALUE:
         this.balanceSetGroup?.setDepth(DEPTH.TUTORIAL_FOCUS);
-        // FIXME: remember to restore the depth
         break;
       case ETutorialStep.DRAG_CARD_TO_ATTACK:
         this.opponentSpawners[1].setDepth(DEPTH.TUTORIAL_FOCUS);
-        // FIXME: remember to restore the depth
         break;
       case ETutorialStep.INTRO_LARGE_SCALE:
         this.largeLibraGroup?.setDepth(DEPTH.TUTORIAL_FOCUS);
-        // FIXME: remember to restore the depth
+        break;
+      case ETutorialStep.DRAG_CARD_TO_ATTACK_2:
+        await this._drawSingleCard("c_00021");
+        this._inHandCards[0]?.setBasicDepth(DEPTH.TUTORIAL_FOCUS);
+        break;
+      case ETutorialStep.HAND_OVER:
+        this.balanceSetGroup?.setDepth(DEPTH.LIBRA_SET);
+        this.largeLibraGroup?.setDepth(DEPTH.LIBRA_SET);
+        this.opponentSpawners[1].setDepth(DEPTH.CHARACTER);
+        this._tutorialOverlay?.endTutorial();
         break;
     }
   }

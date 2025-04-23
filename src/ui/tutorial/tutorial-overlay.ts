@@ -1,3 +1,4 @@
+import FadeOutDestroy from "phaser3-rex-plugins/plugins/fade-out-destroy";
 import { COLOR_KEY, DEPTH, FONT_KEY, SIZE } from "~/constants";
 import { GameManager } from "~/manager";
 import { ETutorialStep } from "~/type/tutorial.type";
@@ -44,17 +45,35 @@ export class TutorialOverlay extends Phaser.GameObjects.Container {
     this._text
       .setText(data?.text ?? "")
       .setPosition(data?.position.x, data?.position.y)
-      .setAlign(data?.align ?? "left");
-    if (step === ETutorialStep.DRAG_CARD_TO_ATTACK) {
-      this._nextButton.setDisabled(true);
+      .setAlign(data?.align ?? "left")
+      .setOrigin(...(data?.origin ?? [0.5, 0.5]));
+    const lockButtonSteps = [
+      ETutorialStep.DRAG_CARD_TO_ATTACK,
+      ETutorialStep.DRAG_CARD_TO_ATTACK_2,
+      ETutorialStep.HAND_OVER,
+    ];
+    if (lockButtonSteps.includes(step)) {
+      this._nextButton.setDisabled(true, true);
     }
+    const restoreButtonSteps = [
+      ETutorialStep.INTRO_LARGE_SCALE,
+      ETutorialStep.IMBALANCE_REMINDER,
+    ];
+    if (restoreButtonSteps.includes(step)) {
+      this._nextButton.setDisabled(false);
+    }
+  }
+
+  public endTutorial() {
+    FadeOutDestroy(this, 800);
   }
 }
 
 type TTutorialMetadata = {
   text: string;
   position: Phaser.Types.Math.Vector2Like;
-  align: "left" | "center";
+  align: "left" | "center" | "right";
+  origin: [number, number];
 };
 
 const TUTORIAL_METADATA: Record<ETutorialStep, TTutorialMetadata | null> = {
@@ -64,9 +83,10 @@ const TUTORIAL_METADATA: Record<ETutorialStep, TTutorialMetadata | null> = {
     text: "Here’s your card!\nTop-left corner is attack or shied value.",
     position: {
       x: -510,
-      y: 54,
+      y: 100,
     },
     align: "left",
+    origin: [0, 1],
   },
   [ETutorialStep.INTRO_SCALE_VALUE]: {
     text: "The top-right corner shows scale values.\nThese numbers will shift your balance\nwhen the card is played.",
@@ -75,6 +95,7 @@ const TUTORIAL_METADATA: Record<ETutorialStep, TTutorialMetadata | null> = {
       y: 108,
     },
     align: "left",
+    origin: [0, 0],
   },
   [ETutorialStep.DRAG_CARD_TO_ATTACK]: {
     text: "Now, drag the card here\nto attack the enemy!",
@@ -83,15 +104,64 @@ const TUTORIAL_METADATA: Record<ETutorialStep, TTutorialMetadata | null> = {
       y: 72,
     },
     align: "left",
+    origin: [0, 0],
   },
   [ETutorialStep.INTRO_LARGE_SCALE]: {
     text: "Good job!\nPlayed values are stored in the center.\nBalance the big scale to unleash them on all enemies.",
     position: {
-      x: -242,
+      x: 0,
       y: -188,
     },
     align: "center",
+    origin: [0.5, 0],
   },
+  [ETutorialStep.INTRO_SMALL_SCALE]: {
+    text: "As for the small scales,\nbalancing them gives a multiplier\nto your played card.",
+    position: {
+      x: -360,
+      y: -210,
+    },
+    align: "left",
+    origin: [0, 0],
+  },
+  [ETutorialStep.DRAG_CARD_TO_ATTACK_2]: {
+    text: "Now, drag the card again\nto attack with perfect balance!",
+    position: {
+      x: 280,
+      y: 72,
+    },
+    align: "left",
+    origin: [0, 0],
+  },
+  [ETutorialStep.IMBALANCE_REMINDER]: {
+    text: "Nice job!\nBefore ending your turn,\ndon’t let the scales tip all the way.",
+    position: {
+      x: 0,
+      y: -150,
+    },
+    align: "center",
+    origin: [0.5, 0],
+  },
+  [ETutorialStep.IMBALANCE_INTRO]: {
+    text: "If a small scale fully tips,\nMa’at will skip her next turn to recover.\n\nIf the big scale fully tips,\nthe game ends.",
+    position: {
+      x: 0,
+      y: -150,
+    },
+    align: "center",
+    origin: [0.5, 0],
+  },
+  [ETutorialStep.FINAL_WORDS]: {
+    text: "Now it’s your turn!\nFace the chaos and\nrestore balance to the world.",
+    position: {
+      x: 580,
+      y: 220,
+    },
+    align: "right",
+    origin: [1, 1],
+  },
+  [ETutorialStep.HAND_OVER]: null,
+  [ETutorialStep.END]: null,
 };
 
 class NextButton extends Button {

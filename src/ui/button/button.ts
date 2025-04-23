@@ -77,7 +77,7 @@ export abstract class Button extends Phaser.GameObjects.Container {
     this.once(Phaser.GameObjects.Events.DESTROY, this._onDestroy, this);
   }
 
-  public setDisabled(isDisabled: boolean) {
+  public setDisabled(isDisabled: boolean, keepYPosition: boolean = false) {
     this.isDisabled = isDisabled;
     this._bg.setTexture(
       isDisabled
@@ -85,6 +85,7 @@ export abstract class Button extends Phaser.GameObjects.Container {
         : BUTTON_TYPE_TEXTURE_MAP.normal,
     );
     this._text.setColor(isDisabled ? COLOR_KEY.BEIGE_3 : COLOR_KEY.BEIGE_2);
+    if (isDisabled && keepYPosition) this._hoverTweens(false);
   }
   public setText(text: string) {
     this._text.setText(text);

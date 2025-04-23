@@ -112,5 +112,11 @@
         "value": 5
       }
     ]
+  },
+  "o_00006": {
+    "id": "o_00006",
+    "name": "Shabti",
+    "blood": 25,
+    "moves": [null, null, null, null]
   }
 }
