@@ -18,6 +18,7 @@ const OPPONENT_TEXTURE_MAP: Record<string, string> = {
   o_00000: TEXTURE_KEY.JACKAL,
 };
 
+// TODO: implement IStatus
 export class Opponent
   extends Phaser.GameObjects.Container
   implements IBlood, IShield, ITarget
@@ -30,6 +31,7 @@ export class Opponent
   public currentShield: number = 0;
 
   public belong: "self" | "opponent" = "opponent";
+  public dragAreaRect: Phaser.GameObjects.Rectangle;
 
   public statusBox: StatusBox;
 
@@ -49,6 +51,8 @@ export class Opponent
     scene.add.existing(this);
     this._defaultMoves = metadata.moves;
 
+    const [width, height] = SIZE.TARGET_RECT;
+
     this.bloodBar = new BloodBar(scene, 0, 12);
     this.shieldGroup = new ShieldGroup(scene, -84, 14);
     this.statusBox = new StatusBox(scene, -60, 40);
@@ -57,6 +61,9 @@ export class Opponent
       .sprite(0, 0, ATLAS_KEY.CHARACTER, OPPONENT_TEXTURE_MAP[metadata.id])
       .setOrigin(0.5, 1);
     this._nextMove = new NextMove(scene, 0, this._sprite.getTopCenter().y - 36);
+    this.dragAreaRect = scene.add
+      .rectangle(0, -12, width, height)
+      .setOrigin(0.5, 1);
 
     this.add([
       this._sprite,
@@ -64,12 +71,17 @@ export class Opponent
       this.shieldGroup,
       this._nextMove,
       this.statusBox,
+      this.dragAreaRect,
     ]);
-    this.setSize(...SIZE.TARGET_RECT);
+    this.setSize(width, height);
 
     this.updateBloodBar(metadata.blood, metadata.blood, metadata.blood);
     this.updateShield(0);
     this.updateMove();
+  }
+
+  public getDragArea() {
+    return this.dragAreaRect.getBounds();
   }
 
   public updateBloodBar(from: number, to: number, total: number): void {

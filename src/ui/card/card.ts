@@ -171,7 +171,7 @@ export class Card extends Phaser.GameObjects.Container {
       for (const target of targets) {
         const isTargetCovered = Phaser.Geom.Intersects.RectangleToRectangle(
           this.getBounds(),
-          target.getBounds(),
+          target.getDragArea(),
         );
         const isAppliable = this._checkIsAppliable(target);
         const isMatched = isTargetCovered && isAppliable;

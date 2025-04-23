@@ -21,6 +21,7 @@ export class Maat
   public currentShield: number = 0;
 
   public belong: "self" | "opponent" = "self";
+  public dragAreaRect: Phaser.GameObjects.Rectangle;
 
   public statusBox: StatusBox;
 
@@ -30,17 +31,27 @@ export class Maat
     super(scene, x, y);
     scene.add.existing(this);
 
+    const [width, height] = SIZE.TARGET_RECT;
+
     this._maatSprite = new MaatSprite(scene, 0, 0);
     this.bloodBar = new BloodBar(scene, 0, 12);
     this.shieldGroup = new ShieldGroup(scene, 84, 14);
     this.statusBox = new StatusBox(scene, -60, 40);
+    this.dragAreaRect = scene.add
+      .rectangle(0, -12, width, height)
+      .setOrigin(0.5, 1);
     this.add([
       this._maatSprite,
       this.bloodBar,
       this.shieldGroup,
       this.statusBox,
+      this.dragAreaRect,
     ]);
-    this.setSize(...SIZE.TARGET_RECT);
+    this.setSize(width, height);
+  }
+
+  public getDragArea() {
+    return this.dragAreaRect.getBounds();
   }
 
   public updateBloodBar(from: number, to: number, total: number): void {
