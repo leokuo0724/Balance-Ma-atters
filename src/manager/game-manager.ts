@@ -50,6 +50,7 @@ export const INITIAL_LOCKED_BALANCE: EBalanceSetType[] = [
   EBalanceSetType.SHT_LNG,
   EBalanceSetType.DUT_FIR,
 ] as const;
+const TUTORIAL_CARD_IDS = ["c_00020", "c_00021"];
 
 export class GameManager {
   // Cards
@@ -102,6 +103,7 @@ export class GameManager {
     const draggableSteps = [
       ETutorialStep.DRAG_CARD_TO_ATTACK,
       ETutorialStep.DRAG_CARD_TO_ATTACK_2,
+      ETutorialStep.HAND_OVER,
     ];
     if (draggableSteps.includes(this.currentTutorialSteps)) return true;
     return false;
@@ -227,6 +229,7 @@ export class GameManager {
 
     targetCard.destroy();
     this._inHandCards[targetIndex] = null;
+    if (TUTORIAL_CARD_IDS.includes(targetCardId)) return;
     this._usedCardIds.push(targetCardId);
     scene.events.emit(EVENT_KEY.ON_USED_CARDS_UPDATED, {
       count: this._usedCardIds.length,

@@ -161,7 +161,6 @@ const TUTORIAL_METADATA: Record<ETutorialStep, TTutorialMetadata | null> = {
     origin: [1, 1],
   },
   [ETutorialStep.HAND_OVER]: null,
-  [ETutorialStep.END]: null,
 };
 
 class NextButton extends Button {

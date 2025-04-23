@@ -11,5 +11,4 @@ export enum ETutorialStep {
   IMBALANCE_INTRO = 9,
   FINAL_WORDS = 10,
   HAND_OVER = 11,
-  END = 12,
 }
