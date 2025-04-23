@@ -32,6 +32,7 @@ export class Opponent
 
   public belong: "self" | "opponent" = "opponent";
   public dragAreaRect: Phaser.GameObjects.Rectangle;
+  private _spotlight: Phaser.GameObjects.Image;
 
   public statusBox: StatusBox;
 
@@ -64,6 +65,10 @@ export class Opponent
     this.dragAreaRect = scene.add
       .rectangle(0, -12, width, height)
       .setOrigin(0.5, 1);
+    this._spotlight = scene.add
+      .image(0, 0, ATLAS_KEY.UI_COMPONENT, TEXTURE_KEY.SPOTLIGHT)
+      .setOrigin(0.5, 1)
+      .setVisible(false);
 
     this.add([
       this._sprite,
@@ -72,6 +77,7 @@ export class Opponent
       this._nextMove,
       this.statusBox,
       this.dragAreaRect,
+      this._spotlight,
     ]);
     this.setSize(width, height);
 
@@ -101,9 +107,7 @@ export class Opponent
   }
 
   public markAsCovered(isCovered: boolean) {
-    this._sprite.setTint(
-      isCovered ? hexToDecimal(COLOR_KEY.YELLOW_6) : 0xffffff,
-    );
+    this._spotlight.setVisible(isCovered);
   }
 
   public async applyCardEffect(card: TCardMetadata) {

@@ -1,4 +1,4 @@
-import { COLOR_KEY, SIZE } from "~/constants";
+import { ATLAS_KEY, COLOR_KEY, SIZE, TEXTURE_KEY } from "~/constants";
 import { GameManager } from "~/manager";
 import { EStatusType, TCardMetadata } from "~/type";
 import { BloodBar, GameOver, ShieldGroup } from "~/ui";
@@ -22,6 +22,7 @@ export class Maat
 
   public belong: "self" | "opponent" = "self";
   public dragAreaRect: Phaser.GameObjects.Rectangle;
+  private _spotlight: Phaser.GameObjects.Image;
 
   public statusBox: StatusBox;
 
@@ -40,12 +41,17 @@ export class Maat
     this.dragAreaRect = scene.add
       .rectangle(0, -12, width, height)
       .setOrigin(0.5, 1);
+    this._spotlight = scene.add
+      .image(0, 0, ATLAS_KEY.UI_COMPONENT, TEXTURE_KEY.SPOTLIGHT)
+      .setOrigin(0.5, 1)
+      .setVisible(false);
     this.add([
       this._maatSprite,
       this.bloodBar,
       this.shieldGroup,
       this.statusBox,
       this.dragAreaRect,
+      this._spotlight,
     ]);
     this.setSize(width, height);
   }
@@ -71,9 +77,7 @@ export class Maat
   }
 
   public markAsCovered(isCovered: boolean) {
-    this._maatSprite.setTint(
-      isCovered ? hexToDecimal(COLOR_KEY.YELLOW_6) : 0xffffff,
-    );
+    this._spotlight.setVisible(isCovered);
   }
 
   public async applyCardEffect(card: TCardMetadata) {
