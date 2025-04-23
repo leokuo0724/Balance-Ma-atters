@@ -11,6 +11,7 @@ export const COLOR_KEY = {
   RED_6: "#ca6059",
   RED_8: "#994031",
   ORANGE_6: "#c16527",
+  YELLOW_5: "#ffb760",
   YELLOW_6: "#e78e4f",
   GREEN_6: "#6a986a",
   BLUE_6: "#505b79",

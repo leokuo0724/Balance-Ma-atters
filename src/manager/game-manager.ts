@@ -75,7 +75,7 @@ export class GameManager {
   };
 
   // Game states
-  public level: number = 0;
+  public level: number = 1; // 0: tutorial
   private _currentTurn: ETurn = ETurn.PLAYER;
   public get currentTurn() {
     return this._currentTurn;
@@ -107,6 +107,14 @@ export class GameManager {
     ];
     if (draggableSteps.includes(this.currentTutorialSteps)) return true;
     return false;
+  }
+  public async checkStartTutorial(scene: Phaser.Scene) {
+    if (this.isTutorialLevel) {
+      this.nextTutorial(scene);
+    } else {
+      this.shuffleAvailableCardIds(scene);
+      this.drawCards(scene);
+    }
   }
   public async nextTutorial(scene: Phaser.Scene) {
     this.currentTutorialSteps += 1;
@@ -470,9 +478,9 @@ export class GameManager {
     this.level += 1;
     this.setupLevelOpponents();
     // unlock libra set
-    if (this.level === 1) {
+    if (this.level === 2) {
       this.balanceSetMap[EBalanceSetType.SHT_LNG]!.unlock();
-    } else if (this.level === 2) {
+    } else if (this.level === 3) {
       this.balanceSetMap[EBalanceSetType.DUT_FIR]!.unlock();
     }
     // reset cards

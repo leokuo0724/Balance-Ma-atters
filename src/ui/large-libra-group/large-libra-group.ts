@@ -10,7 +10,13 @@ import {
 } from "~/constants";
 import { GameManager } from "~/manager";
 import { TCardBalance, TCardMetadata, TSimpleVector2 } from "~/type";
-import { getIsRightLibraValue, tweensAsync, tweensCounterAsync } from "~/utils";
+import {
+  delayedCallAsync,
+  getIsRightLibraValue,
+  hexToDecimal,
+  tweensAsync,
+  tweensCounterAsync,
+} from "~/utils";
 
 import {
   BalancedDisplay,
@@ -135,22 +141,25 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
     const { centerX, centerY } = this.getBounds();
     const value = this._jackpotValue;
 
-    for (const op of opponents) {
+    const texts = this._getStrikeTexts(opponents.length);
+    for (const [index, op] of opponents.entries()) {
       const bounds = op.getBounds();
       const { centerX: targetX, centerY: targetY } = bounds;
 
-      const valueObject = this.scene.add
-        .text(centerX, centerY, value.toString(), {
+      const strikeObject = this.scene.add
+        .text(centerX, centerY, texts[index], {
           fontFamily: FONT_KEY.JERSEY_25,
-          fontSize: 80,
-          color: COLOR_KEY.YELLOW_6,
+          fontSize: 48,
+          color: COLOR_KEY.YELLOW_5,
           align: "center",
+          stroke: COLOR_KEY.BROWN_8,
+          strokeThickness: 8,
         })
         .setScale(0.5)
         .setOrigin(0.5)
         .setDepth(DEPTH.EFFECT);
       await tweensAsync(this.scene, {
-        targets: valueObject,
+        targets: strikeObject,
         duration: 200,
         x: targetX - 8,
         y: "-=12",
@@ -158,17 +167,39 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
         ease: Phaser.Math.Easing.Quadratic.Out,
       });
       await tweensAsync(this.scene, {
-        targets: valueObject,
+        targets: strikeObject,
         duration: 200,
         x: targetX,
-        y: targetY,
+        y: targetY + 36,
         scale: 1,
-        ease: Phaser.Math.Easing.Quadratic.In,
+        ease: Phaser.Math.Easing.Bounce.Out,
       });
       op.dealtDamage(value, multiply);
-      FadeOutDestroy(valueObject, 500);
+      FadeOutDestroy(strikeObject, 1000);
+      await delayedCallAsync(this.scene, 300);
     }
     this.updateJackpotValue(0);
+  }
+
+  private _getStrikeTexts(length: number): string[] {
+    const single = [["Justice"], ["Truth"], ["Judged"]];
+    const double = [
+      ["Truth", "Strikes"],
+      ["Order", "Restored"],
+      ["Chaos", "Ends"],
+    ];
+    const triple = [
+      ["It", "Is", "Justice"],
+      ["You", "Are", "Judged"],
+      ["Balance", "Has", "Spoken"],
+      ["Truth", "Always", "Wins"],
+    ];
+    if (length < 1 || length > 3) throw new Error("Invalid opponent length");
+    return length === 1
+      ? Phaser.Math.RND.pick(single)
+      : length === 2
+        ? Phaser.Math.RND.pick(double)
+        : Phaser.Math.RND.pick(triple);
   }
 
   private _onDestroy() {
