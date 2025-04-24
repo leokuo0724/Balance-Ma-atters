@@ -120,7 +120,10 @@ export class Maat
 
   private _checkDeath() {
     if (this.currentBlood > 0) return;
-    new GameOver(this.scene, "You lost the fight. Turns out punches hurt.");
+    new GameOver(
+      this.scene,
+      "You lost the fight. Chaos wins this round. Again.",
+    );
     this.destroy();
   }
 

@@ -53,7 +53,7 @@
   "o_00003": {
     "id": "o_00003",
     "name": "Meerkat",
-    "blood": 80,
+    "blood": 60,
     "moves": [
       {
         "action": "random_balance",
