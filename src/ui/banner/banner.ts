@@ -28,7 +28,13 @@ export class Banner extends Phaser.GameObjects.Container {
     this.add([this._bg, this._text]);
   }
 
+  public setText(text: string) {
+    this._text.setText(text);
+  }
+
   public async transitionIn() {
+    this._text.setVisible(true);
+    this._bg.setVisible(true);
     await Promise.all([
       tweensAsync(this.scene, {
         targets: this._bg,
@@ -50,6 +56,34 @@ export class Banner extends Phaser.GameObjects.Container {
       y: `+=4`,
       duration: 100,
     });
+  }
+
+  public async transitionOut() {
+    await Promise.all([
+      tweensAsync(this.scene, {
+        targets: this._bg,
+        y: `+=${BIAS_Y}`,
+        duration: 300,
+        ease: Phaser.Math.Easing.Cubic.In,
+        alpha: 0,
+      }),
+      tweensAsync(this.scene, {
+        targets: this._text,
+        y: `+=${BIAS_Y + 4}`,
+        duration: 500,
+        ease: Phaser.Math.Easing.Cubic.In,
+        alpha: 0,
+      }),
+    ]);
+    await tweensAsync(this.scene, {
+      targets: this._text,
+      y: `-=${4}`,
+      duration: 100,
+    });
+    this._text.setAlpha(0);
+    this._bg.setAlpha(0);
+    this._text.setVisible(false);
+    this._bg.setVisible(false);
   }
 
   public async transitionDestroy() {

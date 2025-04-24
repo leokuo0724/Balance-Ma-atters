@@ -19,7 +19,7 @@
   "o_00001": {
     "id": "o_00001",
     "name": "Desert Tortoise",
-    "blood": 80,
+    "blood": 70,
     "moves": [
       {
         "action": "shield",
@@ -36,7 +36,7 @@
   "o_00002": {
     "id": "o_00002",
     "name": "R\u00fcppell's fox",
-    "blood": 30,
+    "blood": 40,
     "moves": [
       null,
       {
@@ -118,5 +118,22 @@
     "name": "Shabti",
     "blood": 25,
     "moves": [null, null, null, null]
+  },
+  "o_00007": {
+    "id": "o_00007",
+    "name": "Jackal",
+    "blood": 50,
+    "moves": [
+      {
+        "action": "damage",
+        "value": 5
+      },
+      null,
+      {
+        "action": "damage",
+        "value": 10
+      },
+      null
+    ]
   }
 }

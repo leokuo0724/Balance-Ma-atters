@@ -22,6 +22,7 @@ const OPPONENT_TEXTURE_MAP: Record<string, string> = {
   o_00004: TEXTURE_KEY.SNAKE,
   o_00005: TEXTURE_KEY.APOPHIS,
   o_00006: TEXTURE_KEY.SHABTI,
+  o_00007: TEXTURE_KEY.JACKAL,
 };
 
 // TODO: implement IStatus
@@ -152,13 +153,13 @@ export class Opponent
         this.totalBlood,
       );
     }
-    this._checkDeath();
+    await this._checkDeath();
   }
 
-  private _checkDeath() {
+  private async _checkDeath() {
     if (this.currentBlood > 0) return;
     const gm = GameManager.getInstance();
-    gm.defectedOpponent(this);
+    await gm.defectedOpponent(this);
   }
 
   public updateMove() {

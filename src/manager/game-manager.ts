@@ -42,13 +42,13 @@ const DEFAULT_MAAT_DATA = {
 export const LEVEL_OPPONENT_INFO = [
   { opponentIds: [null, "o_00006", null] },
   { opponentIds: ["o_00000", "o_00000", "o_00000"] },
-  { opponentIds: ["o_00001", "o_00002", "o_00000"] },
+  { opponentIds: ["o_00001", "o_00002", "o_00007"] },
   { opponentIds: ["o_00001", "o_00003", "o_00002"] },
   { opponentIds: ["o_00004", "o_00005", "o_00004"] },
 ] as const;
 export const INITIAL_LOCKED_BALANCE: EBalanceSetType[] = [
-  // EBalanceSetType.SHT_LNG,
-  // EBalanceSetType.DUT_FIR,
+  EBalanceSetType.SHT_LNG,
+  EBalanceSetType.DUT_FIR,
 ] as const;
 const TUTORIAL_CARD_IDS = ["c_00020", "c_00021"];
 
@@ -75,7 +75,7 @@ export class GameManager {
   };
 
   // Game states
-  public level: number = 4; // 0: tutorial
+  public level: number = 1; // 0: tutorial
   private _currentTurn: ETurn = ETurn.PLAYER;
   public get currentTurn() {
     return this._currentTurn;
@@ -309,7 +309,7 @@ export class GameManager {
     const maxValue = balances.length * MAX_SMALL_LIBRA_STEPS;
     const currentValue = this.getTotalBalance();
     if (Math.abs(currentValue) >= maxValue) {
-      new GameOver(scene, "The scales have tipped... and so have you.");
+      new GameOver(scene, "The scales have totally tipped... and so have you.");
     }
   }
 
@@ -328,7 +328,7 @@ export class GameManager {
       }
     });
   }
-  public defectedOpponent(opponent: Opponent) {
+  public async defectedOpponent(opponent: Opponent) {
     const targetIndex = this.opponentSpawners.findIndex(
       (spawner) => spawner.opponent === opponent,
     );
@@ -339,6 +339,7 @@ export class GameManager {
       this.opponentSpawners.filter((spawner) => spawner.opponent).length === 1;
     // TODO: check win
     if (isAllDefeated) {
+      await delayedCallAsync(opponent.scene, 800);
       opponent.scene.events.emit(EVENT_KEY.ON_NEXT_LEVEL);
     }
     this.opponentSpawners[targetIndex].opponent!.destroy();
@@ -353,12 +354,14 @@ export class GameManager {
       await this._checkTotalImbalance(scene);
       this._currentTurn = ETurn.OPPONENT;
       scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: this._currentTurn });
+      await delayedCallAsync(scene, 1000);
       await this._performOpponentTurn(scene);
       this._inHandCards.forEach((card) => card?.setControllable(false));
     } else {
       // TODO: check all opponents end turn status
       this._currentTurn = ETurn.PLAYER;
       scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: this._currentTurn });
+      await delayedCallAsync(scene, 1000);
       const isNewlyImbalanced = this._checkLibraSetImbalanced();
       if (isNewlyImbalanced) {
         await delayedCallAsync(scene, 500);

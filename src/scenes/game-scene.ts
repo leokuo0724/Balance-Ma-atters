@@ -8,6 +8,7 @@ import {
   SIZE,
 } from "~/constants";
 import { GameManager, LEVEL_OPPONENT_INFO } from "~/manager";
+import { ETurn } from "~/type";
 import {
   CardDeckGroup,
   EndTurnButton,
@@ -19,10 +20,12 @@ import {
   TutorialOverlay,
   UsedCardGroup,
 } from "~/ui";
+import { Banner } from "~/ui/banner";
 import { getCanvasCenter, getCanvasSize, hexToDecimal } from "~/utils";
 
 export class GameScene extends Phaser.Scene {
   private _onNextLevel: Function | null = null;
+  private _onTurnUpdated: Function | null = null;
 
   constructor() {
     super({ key: SCENE_KEY.GAME });
@@ -97,6 +100,9 @@ export class GameScene extends Phaser.Scene {
       "End Turn",
     ).setDepth(DEPTH.CARD_DECK);
     const tutorialOverlay = new TutorialOverlay(this, centerX, centerY);
+    const turnBanner = new Banner(this, centerX, centerY, "Your Turn").setDepth(
+      DEPTH.OVERLAY,
+    );
 
     gm.setupMaat(maat);
     gm.setupBalanceSetGroup(smallLibraGroup);
@@ -109,9 +115,19 @@ export class GameScene extends Phaser.Scene {
       new NextLevel(this, 0, 0, gm.level + 1, LEVEL_OPPONENT_INFO.length);
     };
     this.events.on(EVENT_KEY.ON_NEXT_LEVEL, this._onNextLevel);
+
+    this._onTurnUpdated = async ({ turn }: { turn: ETurn }) => {
+      turnBanner.setText(turn === ETurn.PLAYER ? "Your Turn" : "Enemy Turn");
+      await turnBanner.transitionIn();
+      await turnBanner.transitionOut();
+    };
+    this.events.on(EVENT_KEY.ON_TURN_UPDATED, this._onTurnUpdated);
+
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       if (this._onNextLevel)
         this.events.off(EVENT_KEY.ON_NEXT_LEVEL, this._onNextLevel);
+      if (this._onTurnUpdated)
+        this.events.off(EVENT_KEY.ON_TURN_UPDATED, this._onTurnUpdated);
     });
   }
 }
