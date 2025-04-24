@@ -42,13 +42,13 @@ const DEFAULT_MAAT_DATA = {
 export const LEVEL_OPPONENT_INFO = [
   { opponentIds: [null, "o_00006", null] },
   { opponentIds: ["o_00000", "o_00000", "o_00000"] },
-  { opponentIds: ["o_00001", "o_00002"] },
-  { opponentIds: ["o_00001", "o_00003"] },
+  { opponentIds: ["o_00001", "o_00002", "o_00000"] },
+  { opponentIds: ["o_00001", "o_00003", "o_00002"] },
   { opponentIds: ["o_00004", "o_00005", "o_00004"] },
 ] as const;
 export const INITIAL_LOCKED_BALANCE: EBalanceSetType[] = [
-  EBalanceSetType.SHT_LNG,
-  EBalanceSetType.DUT_FIR,
+  // EBalanceSetType.SHT_LNG,
+  // EBalanceSetType.DUT_FIR,
 ] as const;
 const TUTORIAL_CARD_IDS = ["c_00020", "c_00021"];
 
@@ -75,7 +75,7 @@ export class GameManager {
   };
 
   // Game states
-  public level: number = 1; // 0: tutorial
+  public level: number = 4; // 0: tutorial
   private _currentTurn: ETurn = ETurn.PLAYER;
   public get currentTurn() {
     return this._currentTurn;

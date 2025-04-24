@@ -26,7 +26,13 @@ export const TEXTURE_KEY = {
   SPOTLIGHT: "spotlight.png",
 
   // In character atlas
+  SHABTI: "shabti.png",
   JACKAL: "jackal.png",
+  TURTLE: "turtle.png",
+  FOX: "fox.png",
+  MEERKAT: "meerkat.png",
+  SNAKE: "snake.png",
+  APOPHIS: "apophis.png",
 
   SMALL_LIBRA_SET_BG: "small-libra-set-bg",
   SMALL_LIBRA_SET_BG_2: "small-libra-set-bg-2",

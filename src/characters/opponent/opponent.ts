@@ -1,4 +1,4 @@
-import { ATLAS_KEY, COLOR_KEY, SIZE, TEXTURE_KEY } from "~/constants";
+import { ATLAS_KEY, SIZE, TEXTURE_KEY } from "~/constants";
 import { GameManager } from "~/manager";
 import {
   EOpponentActionable,
@@ -7,7 +7,7 @@ import {
   TOpponentMove,
 } from "~/type";
 import { BloodBar, ShieldGroup } from "~/ui";
-import { delayedCallAsync, hexToDecimal, tweensAsync } from "~/utils";
+import { delayedCallAsync, tweensAsync } from "~/utils";
 
 import { Damaged, FloatingHint } from "../effects";
 import { IBlood, IShield, ITarget } from "../interfaces";
@@ -16,6 +16,12 @@ import { NextMove } from "./next-move";
 
 const OPPONENT_TEXTURE_MAP: Record<string, string> = {
   o_00000: TEXTURE_KEY.JACKAL,
+  o_00001: TEXTURE_KEY.TURTLE,
+  o_00002: TEXTURE_KEY.FOX,
+  o_00003: TEXTURE_KEY.MEERKAT,
+  o_00004: TEXTURE_KEY.SNAKE,
+  o_00005: TEXTURE_KEY.APOPHIS,
+  o_00006: TEXTURE_KEY.SHABTI,
 };
 
 // TODO: implement IStatus
@@ -59,7 +65,7 @@ export class Opponent
     this.statusBox = new StatusBox(scene, -60, 40);
 
     this._sprite = scene.add
-      .sprite(0, 0, ATLAS_KEY.CHARACTER, OPPONENT_TEXTURE_MAP[metadata.id])
+      .sprite(0, -10, ATLAS_KEY.CHARACTER, OPPONENT_TEXTURE_MAP[metadata.id])
       .setOrigin(0.5, 1);
     this._nextMove = new NextMove(scene, 0, this._sprite.getTopCenter().y - 36);
     this.dragAreaRect = scene.add

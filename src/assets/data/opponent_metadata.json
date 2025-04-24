@@ -28,7 +28,7 @@
       null,
       {
         "action": "damage",
-        "value": 5
+        "value": 10
       },
       null
     ]
@@ -60,8 +60,8 @@
         "value": 2
       },
       {
-        "action": "random_balance",
-        "value": 2
+        "action": "damage",
+        "value": 10
       },
       {
         "action": "random_balance",
@@ -76,16 +76,16 @@
   "o_00004": {
     "id": "o_00004",
     "name": "Snake",
-    "blood": 40,
+    "blood": 15,
     "moves": [
       {
-        "action": "venom",
+        "action": "damage",
         "value": 3
       },
       null,
       {
-        "action": "damage",
-        "value": 5
+        "action": "venom",
+        "value": 2
       },
       null
     ]

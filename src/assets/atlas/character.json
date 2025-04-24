@@ -1,41 +1,167 @@
 {
-  "textures": [
-    {
-      "image": "character.png",
-      "format": "RGBA8888",
-      "size": {
-        "w": 136,
-        "h": 160
-      },
-      "scale": 1,
-      "frames": [
-        {
-          "filename": "jackal.png",
-          "rotated": false,
-          "trimmed": false,
-          "sourceSize": {
-            "w": 134,
-            "h": 158
-          },
-          "spriteSourceSize": {
-            "x": 0,
-            "y": 0,
-            "w": 134,
-            "h": 158
-          },
-          "frame": {
-            "x": 1,
-            "y": 1,
-            "w": 134,
-            "h": 158
-          }
-        }
-      ]
-    }
-  ],
-  "meta": {
-    "app": "https://www.codeandweb.com/texturepacker",
-    "version": "3.0",
-    "smartupdate": "$TexturePacker:SmartUpdate:0b16408250aa26d7b01b6f46fee26913:dcf709aa0d86840449e47099258c6179:42e475aa4a03af306bdc7acb5ff91d19$"
-  }
+	"textures": [
+		{
+			"image": "character.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 843,
+				"h": 170
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "apophis.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 148,
+						"h": 168
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 148,
+						"h": 168
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 148,
+						"h": 168
+					}
+				},
+				{
+					"filename": "jackal.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 134,
+						"h": 148
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 134,
+						"h": 148
+					},
+					"frame": {
+						"x": 151,
+						"y": 1,
+						"w": 134,
+						"h": 148
+					}
+				},
+				{
+					"filename": "shabti.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 74,
+						"h": 148
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 74,
+						"h": 148
+					},
+					"frame": {
+						"x": 287,
+						"y": 1,
+						"w": 74,
+						"h": 148
+					}
+				},
+				{
+					"filename": "fox.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 142
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 142
+					},
+					"frame": {
+						"x": 363,
+						"y": 1,
+						"w": 100,
+						"h": 142
+					}
+				},
+				{
+					"filename": "turtle.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 140,
+						"h": 130
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 140,
+						"h": 130
+					},
+					"frame": {
+						"x": 465,
+						"y": 1,
+						"w": 140,
+						"h": 130
+					}
+				},
+				{
+					"filename": "meerkat.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 122,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 122,
+						"h": 128
+					},
+					"frame": {
+						"x": 607,
+						"y": 1,
+						"w": 122,
+						"h": 128
+					}
+				},
+				{
+					"filename": "snake.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 116,
+						"h": 126
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 0,
+						"w": 111,
+						"h": 126
+					},
+					"frame": {
+						"x": 731,
+						"y": 1,
+						"w": 111,
+						"h": 126
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:cf1dbc58a964214d3b8079b353243348:23978f931d6002ee4c22efe0275170dd:42e475aa4a03af306bdc7acb5ff91d19$"
+	}
 }
