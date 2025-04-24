@@ -58,12 +58,13 @@ export class StatusBox extends Phaser.GameObjects.Container {
 
   /** check 0, and rearrange */
   private rerender() {
-    this._storedTag.forEach((tag) => {
+    for (let i = 0; i < this._storedTag.length; i++) {
+      const tag = this._storedTag[i];
       if (tag && tag.value <= 0) {
         tag.destroy();
-        tag = null;
+        this._storedTag[i] = null;
       }
-    });
+    }
     this._storedTag = this._storedTag.filter(Boolean);
     this._storedTag.forEach((tag, index) => {
       tag?.setX(START_X + 2 * START_X * index + SPACING);
