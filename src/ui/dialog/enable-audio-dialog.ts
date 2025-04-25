@@ -36,7 +36,7 @@ class NoButton extends Button {
     const audioScene = getAudioScene(this.scene);
     audioScene.setMute(true);
     audioScene.playMainBgm();
-    this.scene.scene.start(SCENE_KEY.GAME);
+    this.scene.scene.start(SCENE_KEY.PROLOGUE);
   }
 }
 
@@ -49,6 +49,6 @@ class YesButton extends Button {
     const audioScene = getAudioScene(this.scene);
     audioScene.setMute(false);
     audioScene.playMainBgm();
-    this.scene.scene.start(SCENE_KEY.GAME);
+    this.scene.scene.start(SCENE_KEY.PROLOGUE);
   }
 }

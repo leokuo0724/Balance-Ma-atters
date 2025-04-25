@@ -3,8 +3,13 @@ import FadePlugin from "phaser3-rex-plugins/plugins/fade-plugin.js";
 import "~/style.css";
 
 import { COLOR_KEY } from "./constants";
-import { BootScene, GameScene, PreloadScene } from "./scenes";
-import { AudioScene } from "./scenes/audio-scene";
+import {
+  AudioScene,
+  BootScene,
+  GameScene,
+  PreloadScene,
+  PrologueScene,
+} from "./scenes";
 
 const config = {
   type: Phaser.AUTO,
@@ -16,7 +21,7 @@ const config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [BootScene, PreloadScene, AudioScene, GameScene],
+  scene: [BootScene, PreloadScene, AudioScene, PrologueScene, GameScene],
   plugins: {
     global: [{ key: "rexFade", plugin: FadePlugin, start: true }],
   },
