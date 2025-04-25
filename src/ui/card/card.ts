@@ -43,7 +43,6 @@ export class Card extends Phaser.GameObjects.Container {
     const gm = GameManager.getInstance();
     const wm = WikiManager.getInstance();
     this.metadata = wm.queryCardData(id);
-    // const isSelfApply = this.metadata.target === ETarget.SELF;
 
     const [cardWidth, cardHeight] = SIZE.CARD;
     const LEFT = -cardWidth / 2 + 8;
@@ -53,6 +52,12 @@ export class Card extends Phaser.GameObjects.Container {
       0,
       ATLAS_KEY.UI_COMPONENT,
       TEXTURE_KEY.CARD_BG,
+    );
+    const cardImage = scene.add.image(
+      0,
+      -8,
+      ATLAS_KEY.UI_COMPONENT,
+      this._getCardTexture(),
     );
 
     const cover = scene.add.image(
@@ -106,7 +111,15 @@ export class Card extends Phaser.GameObjects.Container {
       )
       .setOrigin(0.5);
 
-    this.add([bg, cover, titleLabel, descriptionLabel, shieldIcon, valueLabel]);
+    this.add([
+      bg,
+      cardImage,
+      cover,
+      titleLabel,
+      descriptionLabel,
+      shieldIcon,
+      valueLabel,
+    ]);
 
     this.metadata.balances.forEach((balance, index) => {
       const balanceSet = getBalanceSetType(balance.type);
@@ -131,6 +144,26 @@ export class Card extends Phaser.GameObjects.Container {
     scene.input.setDraggable(this);
 
     this._registerDragEvents();
+  }
+
+  private _getCardTexture() {
+    const id = this.metadata.id;
+    switch (id) {
+      case "c_00000":
+      case "c_00001":
+      case "c_00002":
+      case "c_00003":
+        return TEXTURE_KEY.CARD_FIST;
+      case "c_00004":
+      case "c_00005":
+      case "c_00006":
+        return TEXTURE_KEY.CARD_FEATHER;
+      case "c_00009":
+      case "c_00010":
+        return TEXTURE_KEY.CARD_SHIELD;
+      default:
+        return TEXTURE_KEY.CARD_FIST;
+    }
   }
 
   public async enter() {

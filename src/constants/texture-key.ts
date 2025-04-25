@@ -24,6 +24,9 @@ export const TEXTURE_KEY = {
   SILVER_SHIELD_ICON: "silver-shield-icon.png",
   VENOM: "venom.png",
   SPOTLIGHT: "spotlight.png",
+  CARD_FEATHER: "card-feather.png",
+  CARD_FIST: "card-fist.png",
+  CARD_SHIELD: "card-shield.png",
 
   // In character atlas
   SHABTI: "shabti.png",

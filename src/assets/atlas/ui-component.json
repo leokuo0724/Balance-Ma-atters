@@ -4,8 +4,8 @@
 			"image": "ui-component.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 687,
-				"h": 256
+				"w": 492,
+				"h": 389
 			},
 			"scale": 1,
 			"frames": [
@@ -52,27 +52,6 @@
 					}
 				},
 				{
-					"filename": "balanced-display-box.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 152,
-						"h": 42
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 152,
-						"h": 42
-					},
-					"frame": {
-						"x": 118,
-						"y": 173,
-						"w": 152,
-						"h": 42
-					}
-				},
-				{
 					"filename": "card-top.png",
 					"rotated": false,
 					"trimmed": false,
@@ -94,258 +73,6 @@
 					}
 				},
 				{
-					"filename": "shield-icon.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 36
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 36
-					},
-					"frame": {
-						"x": 118,
-						"y": 217,
-						"w": 30,
-						"h": 36
-					}
-				},
-				{
-					"filename": "silver-shield-icon.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 34
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 34
-					},
-					"frame": {
-						"x": 150,
-						"y": 217,
-						"w": 30,
-						"h": 34
-					}
-				},
-				{
-					"filename": "venom.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 28,
-						"h": 28
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 28,
-						"h": 28
-					},
-					"frame": {
-						"x": 182,
-						"y": 217,
-						"w": 28,
-						"h": 28
-					}
-				},
-				{
-					"filename": "libra-blue.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 22,
-						"h": 22
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 22,
-						"h": 22
-					},
-					"frame": {
-						"x": 212,
-						"y": 217,
-						"w": 22,
-						"h": 22
-					}
-				},
-				{
-					"filename": "ruler.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 164,
-						"h": 10
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 164,
-						"h": 10
-					},
-					"frame": {
-						"x": 212,
-						"y": 241,
-						"w": 164,
-						"h": 10
-					}
-				},
-				{
-					"filename": "libra-green.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 22,
-						"h": 22
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 22,
-						"h": 22
-					},
-					"frame": {
-						"x": 236,
-						"y": 217,
-						"w": 22,
-						"h": 22
-					}
-				},
-				{
-					"filename": "libra-red.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 22,
-						"h": 22
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 22,
-						"h": 22
-					},
-					"frame": {
-						"x": 260,
-						"y": 217,
-						"w": 22,
-						"h": 22
-					}
-				},
-				{
-					"filename": "libra-large.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 48,
-						"h": 48
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 3,
-						"w": 42,
-						"h": 42
-					},
-					"frame": {
-						"x": 272,
-						"y": 173,
-						"w": 42,
-						"h": 42
-					}
-				},
-				{
-					"filename": "libra-yellow.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 22,
-						"h": 22
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 22,
-						"h": 22
-					},
-					"frame": {
-						"x": 284,
-						"y": 217,
-						"w": 22,
-						"h": 22
-					}
-				},
-				{
-					"filename": "lock.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 22,
-						"h": 22
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 18,
-						"h": 22
-					},
-					"frame": {
-						"x": 308,
-						"y": 217,
-						"w": 18,
-						"h": 22
-					}
-				},
-				{
-					"filename": "number-display-box.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 36,
-						"h": 42
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 36,
-						"h": 42
-					},
-					"frame": {
-						"x": 316,
-						"y": 173,
-						"w": 36,
-						"h": 42
-					}
-				},
-				{
-					"filename": "blood-bar-box.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 128,
-						"h": 20
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 128,
-						"h": 20
-					},
-					"frame": {
-						"x": 328,
-						"y": 217,
-						"w": 128,
-						"h": 20
-					}
-				},
-				{
 					"filename": "card-bg_red.png",
 					"rotated": false,
 					"trimmed": false,
@@ -360,8 +87,8 @@
 						"h": 170
 					},
 					"frame": {
-						"x": 404,
-						"y": 1,
+						"x": 118,
+						"y": 173,
 						"w": 140,
 						"h": 170
 					}
@@ -381,10 +108,346 @@
 						"h": 170
 					},
 					"frame": {
-						"x": 546,
-						"y": 1,
+						"x": 260,
+						"y": 173,
 						"w": 140,
 						"h": 170
+					}
+				},
+				{
+					"filename": "card-feather.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 103,
+						"h": 87
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 103,
+						"h": 87
+					},
+					"frame": {
+						"x": 1,
+						"y": 257,
+						"w": 103,
+						"h": 87
+					}
+				},
+				{
+					"filename": "balanced-display-box.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 152,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 152,
+						"h": 42
+					},
+					"frame": {
+						"x": 1,
+						"y": 346,
+						"w": 152,
+						"h": 42
+					}
+				},
+				{
+					"filename": "ruler.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 164,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 164,
+						"h": 10
+					},
+					"frame": {
+						"x": 155,
+						"y": 345,
+						"w": 164,
+						"h": 10
+					}
+				},
+				{
+					"filename": "card-fist.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 71,
+						"h": 83
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 71,
+						"h": 83
+					},
+					"frame": {
+						"x": 404,
+						"y": 1,
+						"w": 71,
+						"h": 83
+					}
+				},
+				{
+					"filename": "blood-bar-box.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 20
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 20
+					},
+					"frame": {
+						"x": 155,
+						"y": 357,
+						"w": 128,
+						"h": 20
+					}
+				},
+				{
+					"filename": "card-shield.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 89,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 89,
+						"h": 89
+					},
+					"frame": {
+						"x": 402,
+						"y": 173,
+						"w": 89,
+						"h": 89
+					}
+				},
+				{
+					"filename": "libra-large.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 48,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 42,
+						"h": 42
+					},
+					"frame": {
+						"x": 402,
+						"y": 264,
+						"w": 42,
+						"h": 42
+					}
+				},
+				{
+					"filename": "number-display-box.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 36,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 36,
+						"h": 42
+					},
+					"frame": {
+						"x": 404,
+						"y": 86,
+						"w": 36,
+						"h": 42
+					}
+				},
+				{
+					"filename": "shield-icon.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 36
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 36
+					},
+					"frame": {
+						"x": 446,
+						"y": 264,
+						"w": 30,
+						"h": 36
+					}
+				},
+				{
+					"filename": "silver-shield-icon.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 34
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 34
+					},
+					"frame": {
+						"x": 402,
+						"y": 308,
+						"w": 30,
+						"h": 34
+					}
+				},
+				{
+					"filename": "venom.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 28,
+						"h": 28
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 28,
+						"h": 28
+					},
+					"frame": {
+						"x": 404,
+						"y": 130,
+						"w": 28,
+						"h": 28
+					}
+				},
+				{
+					"filename": "libra-blue.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 22
+					},
+					"frame": {
+						"x": 442,
+						"y": 86,
+						"w": 22,
+						"h": 22
+					}
+				},
+				{
+					"filename": "libra-green.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 22
+					},
+					"frame": {
+						"x": 285,
+						"y": 357,
+						"w": 22,
+						"h": 22
+					}
+				},
+				{
+					"filename": "libra-red.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 22
+					},
+					"frame": {
+						"x": 442,
+						"y": 110,
+						"w": 22,
+						"h": 22
+					}
+				},
+				{
+					"filename": "libra-yellow.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 22
+					},
+					"frame": {
+						"x": 434,
+						"y": 134,
+						"w": 22,
+						"h": 22
+					}
+				},
+				{
+					"filename": "lock.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 22,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 18,
+						"h": 22
+					},
+					"frame": {
+						"x": 434,
+						"y": 308,
+						"w": 18,
+						"h": 22
 					}
 				}
 			]
@@ -393,6 +456,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:d92a3b5f2e062a3cac3b05477af56c16:7c2d33c193c06fb5ca2cc5108fca1c49:531d510bb7e47c5a7810ed876d840ed4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:d88a277ad9ecec5e555d45b17ea4ce94:d98fa8af265e24c06685383a7aaa4e61:531d510bb7e47c5a7810ed876d840ed4$"
 	}
 }
