@@ -10,6 +10,7 @@ import {
 import { GameManager, LEVEL_OPPONENT_INFO } from "~/manager";
 import { ETurn } from "~/type";
 import {
+  Background,
   CardDeckGroup,
   EndTurnButton,
   Ground,
@@ -46,6 +47,7 @@ export class GameScene extends Phaser.Scene {
       )
       .setOrigin(0, 0)
       .setDepth(DEPTH.BG);
+    new Background(this, centerX, centerY + 12).setDepth(DEPTH.BG_DECORATION);
     new Ground(this, 0, canvasHeight).setDepth(DEPTH.BG_GROUND);
 
     const MARGIN_Y = 18;

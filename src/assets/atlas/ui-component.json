@@ -4,8 +4,8 @@
 			"image": "ui-component.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 492,
-				"h": 389
+				"w": 1320,
+				"h": 256
 			},
 			"scale": 1,
 			"frames": [
@@ -31,6 +31,27 @@
 					}
 				},
 				{
+					"filename": "fog.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1201,
+						"h": 60
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1201,
+						"h": 60
+					},
+					"frame": {
+						"x": 118,
+						"y": 1,
+						"w": 1201,
+						"h": 60
+					}
+				},
+				{
 					"filename": "card-bg.png",
 					"rotated": false,
 					"trimmed": false,
@@ -46,9 +67,51 @@
 					},
 					"frame": {
 						"x": 118,
-						"y": 1,
+						"y": 63,
 						"w": 141,
 						"h": 170
+					}
+				},
+				{
+					"filename": "blood-bar-box.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 20
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 20
+					},
+					"frame": {
+						"x": 118,
+						"y": 235,
+						"w": 128,
+						"h": 20
+					}
+				},
+				{
+					"filename": "ruler.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 164,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 164,
+						"h": 10
+					},
+					"frame": {
+						"x": 248,
+						"y": 235,
+						"w": 164,
+						"h": 10
 					}
 				},
 				{
@@ -67,7 +130,7 @@
 					},
 					"frame": {
 						"x": 261,
-						"y": 1,
+						"y": 63,
 						"w": 141,
 						"h": 170
 					}
@@ -87,8 +150,8 @@
 						"h": 170
 					},
 					"frame": {
-						"x": 118,
-						"y": 173,
+						"x": 404,
+						"y": 63,
 						"w": 140,
 						"h": 170
 					}
@@ -108,31 +171,31 @@
 						"h": 170
 					},
 					"frame": {
-						"x": 260,
-						"y": 173,
+						"x": 546,
+						"y": 63,
 						"w": 140,
 						"h": 170
 					}
 				},
 				{
-					"filename": "card-feather.png",
+					"filename": "pyramids.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 103,
-						"h": 87
+						"w": 406,
+						"h": 133
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 103,
-						"h": 87
+						"w": 406,
+						"h": 133
 					},
 					"frame": {
-						"x": 1,
-						"y": 257,
-						"w": 103,
-						"h": 87
+						"x": 688,
+						"y": 63,
+						"w": 406,
+						"h": 133
 					}
 				},
 				{
@@ -150,94 +213,10 @@
 						"h": 42
 					},
 					"frame": {
-						"x": 1,
-						"y": 346,
+						"x": 688,
+						"y": 198,
 						"w": 152,
 						"h": 42
-					}
-				},
-				{
-					"filename": "ruler.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 164,
-						"h": 10
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 164,
-						"h": 10
-					},
-					"frame": {
-						"x": 155,
-						"y": 345,
-						"w": 164,
-						"h": 10
-					}
-				},
-				{
-					"filename": "card-fist.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 71,
-						"h": 83
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 71,
-						"h": 83
-					},
-					"frame": {
-						"x": 404,
-						"y": 1,
-						"w": 71,
-						"h": 83
-					}
-				},
-				{
-					"filename": "blood-bar-box.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 128,
-						"h": 20
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 128,
-						"h": 20
-					},
-					"frame": {
-						"x": 155,
-						"y": 357,
-						"w": 128,
-						"h": 20
-					}
-				},
-				{
-					"filename": "card-shield.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 89,
-						"h": 89
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 89,
-						"h": 89
-					},
-					"frame": {
-						"x": 402,
-						"y": 173,
-						"w": 89,
-						"h": 89
 					}
 				},
 				{
@@ -255,8 +234,8 @@
 						"h": 42
 					},
 					"frame": {
-						"x": 402,
-						"y": 264,
+						"x": 842,
+						"y": 198,
 						"w": 42,
 						"h": 42
 					}
@@ -276,8 +255,8 @@
 						"h": 42
 					},
 					"frame": {
-						"x": 404,
-						"y": 86,
+						"x": 886,
+						"y": 198,
 						"w": 36,
 						"h": 42
 					}
@@ -297,8 +276,8 @@
 						"h": 36
 					},
 					"frame": {
-						"x": 446,
-						"y": 264,
+						"x": 924,
+						"y": 198,
 						"w": 30,
 						"h": 36
 					}
@@ -318,8 +297,8 @@
 						"h": 34
 					},
 					"frame": {
-						"x": 402,
-						"y": 308,
+						"x": 956,
+						"y": 198,
 						"w": 30,
 						"h": 34
 					}
@@ -339,8 +318,8 @@
 						"h": 28
 					},
 					"frame": {
-						"x": 404,
-						"y": 130,
+						"x": 988,
+						"y": 198,
 						"w": 28,
 						"h": 28
 					}
@@ -360,8 +339,8 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 442,
-						"y": 86,
+						"x": 988,
+						"y": 228,
 						"w": 22,
 						"h": 22
 					}
@@ -381,8 +360,8 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 285,
-						"y": 357,
+						"x": 1012,
+						"y": 228,
 						"w": 22,
 						"h": 22
 					}
@@ -402,8 +381,8 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 442,
-						"y": 110,
+						"x": 1018,
+						"y": 198,
 						"w": 22,
 						"h": 22
 					}
@@ -423,8 +402,8 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 434,
-						"y": 134,
+						"x": 1036,
+						"y": 222,
 						"w": 22,
 						"h": 22
 					}
@@ -444,10 +423,73 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 434,
-						"y": 308,
+						"x": 1042,
+						"y": 198,
 						"w": 18,
 						"h": 22
+					}
+				},
+				{
+					"filename": "card-shield.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 89,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 89,
+						"h": 89
+					},
+					"frame": {
+						"x": 1096,
+						"y": 63,
+						"w": 89,
+						"h": 89
+					}
+				},
+				{
+					"filename": "card-feather.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 103,
+						"h": 87
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 103,
+						"h": 87
+					},
+					"frame": {
+						"x": 1096,
+						"y": 154,
+						"w": 103,
+						"h": 87
+					}
+				},
+				{
+					"filename": "card-fist.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 71,
+						"h": 83
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 71,
+						"h": 83
+					},
+					"frame": {
+						"x": 1187,
+						"y": 63,
+						"w": 71,
+						"h": 83
 					}
 				}
 			]
@@ -456,6 +498,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:d88a277ad9ecec5e555d45b17ea4ce94:d98fa8af265e24c06685383a7aaa4e61:531d510bb7e47c5a7810ed876d840ed4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:b0b44bc89952a87cfb3fc3c8641aa770:88835ebf558a04940ac2546c4db65c56:531d510bb7e47c5a7810ed876d840ed4$"
 	}
 }
