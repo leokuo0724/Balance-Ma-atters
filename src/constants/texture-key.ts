@@ -59,4 +59,6 @@ export const TEXTURE_KEY = {
   BUTTON_LG_BG_NORMAL: "button-lg-bg-normal",
   BUTTON_LG_BG_HOVER: "button-lg-bg-hover",
   BUTTON_LG_BG_DISABLED: "button-lg-bg-disabled",
+  DIALOG_BG_OUTER: "dialog-bg-outer",
+  DIALOG_BG_INNER: "dialog-bg-inner",
 };

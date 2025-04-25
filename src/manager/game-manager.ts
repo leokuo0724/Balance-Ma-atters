@@ -75,7 +75,7 @@ export class GameManager {
   };
 
   // Game states
-  public level: number = 1; // 0: tutorial
+  public level: number = 0; // 0: tutorial
   private _currentTurn: ETurn = ETurn.PLAYER;
   public get currentTurn() {
     return this._currentTurn;

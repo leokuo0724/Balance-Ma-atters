@@ -14,6 +14,7 @@ import {
   TColorKey,
   TEXTURE_KEY,
 } from "~/constants";
+import { EnableAudioDialog } from "~/ui/dialog";
 import { delayedCallAsync, getCanvasCenter, hexToDecimal } from "~/utils";
 
 export class PreloadScene extends Phaser.Scene {
@@ -140,11 +141,28 @@ export class PreloadScene extends Phaser.Scene {
       4,
       COLOR_KEY.BEIGE_4,
     );
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.DIALOG_BG_OUTER,
+      SIZE.DIALOG[0] + 16,
+      SIZE.DIALOG[1] + 16,
+      12,
+      COLOR_KEY.BROWN_9,
+    );
+    this._drawRoundedRect(
+      graphics,
+      TEXTURE_KEY.DIALOG_BG_INNER,
+      ...SIZE.DIALOG,
+      8,
+      COLOR_KEY.BEIGE_2,
+    );
   }
 
   async create() {
     await delayedCallAsync(this, 500);
-    this.scene.start(SCENE_KEY.GAME);
+
+    const [x, y] = getCanvasCenter(this);
+    new EnableAudioDialog(this, x, y);
   }
 
   private _drawSmallLibraSetBg(
