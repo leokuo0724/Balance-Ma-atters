@@ -1,4 +1,4 @@
-import { ATLAS_KEY, SIZE, TEXTURE_KEY } from "~/constants";
+import { ATLAS_KEY, AUDIO_KEY, SIZE, TEXTURE_KEY } from "~/constants";
 import { GameManager } from "~/manager";
 import {
   EOpponentActionable,
@@ -7,7 +7,7 @@ import {
   TOpponentMove,
 } from "~/type";
 import { BloodBar, ShieldGroup } from "~/ui";
-import { delayedCallAsync, tweensAsync } from "~/utils";
+import { delayedCallAsync, getAudioScene, tweensAsync } from "~/utils";
 
 import { Damaged, FloatingHint } from "../effects";
 import { IBlood, IShield, ITarget } from "../interfaces";
@@ -109,6 +109,7 @@ export class Opponent
   }
 
   public addShield(added: number): void {
+    getAudioScene(this.scene).playSFX(AUDIO_KEY.EQUIP);
     this.currentShield += added;
     this.shieldGroup.updateValue(this.currentShield);
   }

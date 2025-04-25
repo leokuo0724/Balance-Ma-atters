@@ -1,6 +1,11 @@
-import { COLOR_KEY, DEPTH, EVENT_KEY, FONT_KEY } from "~/constants";
+import { AUDIO_KEY, COLOR_KEY, DEPTH, EVENT_KEY, FONT_KEY } from "~/constants";
 import { GameManager } from "~/manager";
-import { getCanvasCenter, getCanvasSize, hexToDecimal } from "~/utils";
+import {
+  getAudioScene,
+  getCanvasCenter,
+  getCanvasSize,
+  hexToDecimal,
+} from "~/utils";
 
 import { Button } from "../button";
 
@@ -67,6 +72,7 @@ class NextLevelButton extends Button {
     super(scene, x, y, "Next");
   }
   onClick(): void {
+    getAudioScene(this.scene).playSFX(AUDIO_KEY.CLICK);
     const gm = GameManager.getInstance();
     gm.setNextLevel(this.scene);
     this.scene.events.emit(EVENT_KEY.ON_NEXT_LEVEL_OPEN);

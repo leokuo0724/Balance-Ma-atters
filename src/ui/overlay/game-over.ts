@@ -1,5 +1,10 @@
-import { COLOR_KEY, DEPTH, FONT_KEY } from "~/constants";
-import { getCanvasCenter, getCanvasSize, hexToDecimal } from "~/utils";
+import { AUDIO_KEY, COLOR_KEY, DEPTH, FONT_KEY } from "~/constants";
+import {
+  getAudioScene,
+  getCanvasCenter,
+  getCanvasSize,
+  hexToDecimal,
+} from "~/utils";
 
 import { Button } from "../button";
 
@@ -40,6 +45,9 @@ export class GameOver extends Phaser.GameObjects.Container {
       duration: 800,
       ease: Phaser.Math.Easing.Bounce.Out,
     });
+    const audioScene = getAudioScene(scene);
+    audioScene.fadeOutMainBGM(2000);
+    audioScene.playSFX(AUDIO_KEY.FAIL);
   }
 }
 

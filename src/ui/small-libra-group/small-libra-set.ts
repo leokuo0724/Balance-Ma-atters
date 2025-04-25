@@ -1,6 +1,7 @@
 import { FloatingHint } from "~/characters";
 import {
   ATLAS_KEY,
+  AUDIO_KEY,
   COLOR_KEY,
   EVENT_KEY,
   FONT_KEY,
@@ -12,6 +13,7 @@ import { GameManager } from "~/manager";
 import { EBalanceSetType, TCardBalance } from "~/type";
 import {
   delayedCallAsync,
+  getAudioScene,
   getBalanceLeftRightSet,
   getBalanceLongText,
   getBalanceSetColor,
@@ -225,6 +227,7 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
 
   public async displayMultiplyHint(multiple: number) {
     const { right, centerY } = this.getBounds();
+    getAudioScene(this.scene).playSFX(AUDIO_KEY.MULTIPLY);
     new FloatingHint(
       this.scene,
       right + 28,
@@ -238,6 +241,7 @@ export class SmallLibraSet extends Phaser.GameObjects.Container {
     if (!this._brokenHint) return;
     await this.updateValue(0);
     this._brokenHint.setText("Fixed");
+    getAudioScene(this.scene).playSFX(AUDIO_KEY.FIXING);
     await this._brokenHint.playAndFadeOut(500);
     this._brokenHint = null;
   }

@@ -75,7 +75,7 @@ export class GameManager {
   };
 
   // Game states
-  public level: number = 0; // 0: tutorial
+  public level: number = 1; // 0: tutorial
   private _currentTurn: ETurn = ETurn.PLAYER;
   public get currentTurn() {
     return this._currentTurn;
@@ -87,6 +87,10 @@ export class GameManager {
   private _isApplyingEffect: boolean = false;
   public get isApplyingEffect() {
     return this._isApplyingEffect;
+  }
+  private _isBalanceChecked = true;
+  public get isBalanceChecked() {
+    return this._isBalanceChecked;
   }
 
   // Tutorial related

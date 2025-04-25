@@ -1,6 +1,6 @@
 import FadeOutDestroy from "phaser3-rex-plugins/plugins/fade-out-destroy";
-import { ATLAS_KEY, DEPTH } from "~/constants";
-import { generateFramesFromAtlas, playAnimAsync } from "~/utils";
+import { ATLAS_KEY, AUDIO_KEY, DEPTH } from "~/constants";
+import { generateFramesFromAtlas, getAudioScene, playAnimAsync } from "~/utils";
 
 export class Damaged extends Phaser.GameObjects.Sprite {
   public ANIM_KEY = "damaged";
@@ -28,6 +28,7 @@ export class Damaged extends Phaser.GameObjects.Sprite {
   }
 
   public async playAndFadeOut() {
+    getAudioScene(this.scene).playSFX(AUDIO_KEY.HIT);
     await playAnimAsync(this.anims, this.ANIM_KEY);
     FadeOutDestroy(this, 1000);
   }

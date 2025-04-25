@@ -1,6 +1,7 @@
-import { EVENT_KEY } from "~/constants";
+import { AUDIO_KEY, EVENT_KEY } from "~/constants";
 import { GameManager } from "~/manager";
 import { ETurn } from "~/type";
+import { getAudioScene } from "~/utils";
 
 import { Button } from "./button";
 
@@ -24,6 +25,7 @@ export class EndTurnButton extends Button {
   }
 
   onClick(): void {
+    getAudioScene(this.scene).playSFX(AUDIO_KEY.CLICK);
     const gm = GameManager.getInstance();
     gm.updateTurn(this.scene);
   }

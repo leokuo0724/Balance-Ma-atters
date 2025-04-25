@@ -5,7 +5,12 @@ import damagedPng from "~/assets/atlas/damaged.png";
 import uiComponentJson from "~/assets/atlas/ui-component.json";
 import uiComponentPng from "~/assets/atlas/ui-component.png";
 import bgm1Mp3 from "~/assets/audio/bgm-1.mp3";
+import clickMp3 from "~/assets/audio/click.mp3";
+import equipMp3 from "~/assets/audio/equip.mp3";
+import failMp3 from "~/assets/audio/fail.mp3";
+import fixingMp3 from "~/assets/audio/fixing.mp3";
 import hitMp3 from "~/assets/audio/hit.mp3";
+import multiplyMp3 from "~/assets/audio/multiply.mp3";
 import maatTest from "~/assets/maat-test.png";
 import {
   ATLAS_KEY,
@@ -30,6 +35,11 @@ export class PreloadScene extends Phaser.Scene {
 
     this.load.audio(AUDIO_KEY.BGM_1, bgm1Mp3);
     this.load.audio(AUDIO_KEY.HIT, hitMp3);
+    this.load.audio(AUDIO_KEY.CLICK, clickMp3);
+    this.load.audio(AUDIO_KEY.MULTIPLY, multiplyMp3);
+    this.load.audio(AUDIO_KEY.EQUIP, equipMp3);
+    this.load.audio(AUDIO_KEY.FIXING, fixingMp3);
+    this.load.audio(AUDIO_KEY.FAIL, failMp3);
 
     this.load.image("maat-test", maatTest);
     this.load.atlas(ATLAS_KEY.UI_COMPONENT, uiComponentPng, uiComponentJson);

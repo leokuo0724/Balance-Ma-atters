@@ -1,8 +1,19 @@
-import { ATLAS_KEY, COLOR_KEY, SIZE, TEXTURE_KEY } from "~/constants";
+import {
+  ATLAS_KEY,
+  AUDIO_KEY,
+  COLOR_KEY,
+  SIZE,
+  TEXTURE_KEY,
+} from "~/constants";
 import { GameManager } from "~/manager";
 import { EStatusType, TCardMetadata } from "~/type";
 import { BloodBar, GameOver, ShieldGroup } from "~/ui";
-import { delayedCallAsync, hexToDecimal, tweensAsync } from "~/utils";
+import {
+  delayedCallAsync,
+  getAudioScene,
+  hexToDecimal,
+  tweensAsync,
+} from "~/utils";
 
 import { Damaged, FloatingHint } from "../effects";
 import { IBlood, IShield, IStatus, ITarget } from "../interfaces";
@@ -72,6 +83,7 @@ export class Maat
   }
 
   public addShield(added: number): void {
+    getAudioScene(this.scene).playSFX(AUDIO_KEY.EQUIP);
     this.currentShield += added;
     this.shieldGroup.updateValue(this.currentShield);
   }
@@ -114,8 +126,8 @@ export class Maat
         this.currentBlood,
         this.totalBlood,
       );
-      this._checkDeath();
     }
+    this._checkDeath();
   }
 
   private _checkDeath() {
@@ -146,6 +158,7 @@ export class Maat
 
   public async fixingLibraHint() {
     const { x, y } = this.getWorldPoint();
+    getAudioScene(this.scene).playSFX(AUDIO_KEY.FIXING);
     new FloatingHint(
       this.scene,
       x,
