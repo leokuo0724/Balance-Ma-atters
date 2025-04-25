@@ -1,4 +1,5 @@
 import { COLOR_KEY, FONT_KEY, SCENE_KEY } from "~/constants";
+import { getAudioScene } from "~/utils";
 
 import { Button } from "../button";
 import { Dialog } from "./dialog";
@@ -32,6 +33,9 @@ class NoButton extends Button {
   }
 
   onClick(): void {
+    const audioScene = getAudioScene(this.scene);
+    audioScene.setMute(true);
+    audioScene.playMainBgm();
     this.scene.scene.start(SCENE_KEY.GAME);
   }
 }
@@ -42,7 +46,9 @@ class YesButton extends Button {
   }
 
   onClick(): void {
-    // TODO: start audio
+    const audioScene = getAudioScene(this.scene);
+    audioScene.setMute(false);
+    audioScene.playMainBgm();
     this.scene.scene.start(SCENE_KEY.GAME);
   }
 }

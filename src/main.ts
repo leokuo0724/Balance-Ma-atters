@@ -4,6 +4,7 @@ import "~/style.css";
 
 import { COLOR_KEY } from "./constants";
 import { BootScene, GameScene, PreloadScene } from "./scenes";
+import { AudioScene } from "./scenes/audio-scene";
 
 const config = {
   type: Phaser.AUTO,
@@ -15,7 +16,7 @@ const config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [BootScene, PreloadScene, GameScene],
+  scene: [BootScene, PreloadScene, AudioScene, GameScene],
   plugins: {
     global: [{ key: "rexFade", plugin: FadePlugin, start: true }],
   },

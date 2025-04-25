@@ -4,9 +4,12 @@ import damagedJson from "~/assets/atlas/damaged.json";
 import damagedPng from "~/assets/atlas/damaged.png";
 import uiComponentJson from "~/assets/atlas/ui-component.json";
 import uiComponentPng from "~/assets/atlas/ui-component.png";
+import bgm1Mp3 from "~/assets/audio/bgm-1.mp3";
+import hitMp3 from "~/assets/audio/hit.mp3";
 import maatTest from "~/assets/maat-test.png";
 import {
   ATLAS_KEY,
+  AUDIO_KEY,
   COLOR_KEY,
   FONT_KEY,
   SCENE_KEY,
@@ -24,6 +27,9 @@ export class PreloadScene extends Phaser.Scene {
 
   preload() {
     this._setupLoadingBar();
+
+    this.load.audio(AUDIO_KEY.BGM_1, bgm1Mp3);
+    this.load.audio(AUDIO_KEY.HIT, hitMp3);
 
     this.load.image("maat-test", maatTest);
     this.load.atlas(ATLAS_KEY.UI_COMPONENT, uiComponentPng, uiComponentJson);
@@ -160,6 +166,7 @@ export class PreloadScene extends Phaser.Scene {
 
   async create() {
     await delayedCallAsync(this, 500);
+    this.scene.launch(SCENE_KEY.AUDIO).sendToBack();
 
     const [x, y] = getCanvasCenter(this);
     new EnableAudioDialog(this, x, y);
