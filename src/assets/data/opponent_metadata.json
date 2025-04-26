@@ -2,7 +2,7 @@
   "o_00000": {
     "id": "o_00000",
     "name": "Jackal",
-    "blood": 10,
+    "blood": 1,
     "moves": [
       {
         "action": "damage",
@@ -19,7 +19,7 @@
   "o_00001": {
     "id": "o_00001",
     "name": "Desert Tortoise",
-    "blood": 70,
+    "blood": 7,
     "moves": [
       {
         "action": "shield",
@@ -36,7 +36,7 @@
   "o_00002": {
     "id": "o_00002",
     "name": "R\u00fcppell's fox",
-    "blood": 30,
+    "blood": 3,
     "moves": [
       null,
       {
@@ -53,7 +53,7 @@
   "o_00003": {
     "id": "o_00003",
     "name": "Meerkat",
-    "blood": 60,
+    "blood": 6,
     "moves": [
       {
         "action": "random_balance",
@@ -93,7 +93,7 @@
   "o_00005": {
     "id": "o_00005",
     "name": "Apophis",
-    "blood": 100,
+    "blood": 10,
     "moves": [
       {
         "action": "venom",
@@ -122,7 +122,7 @@
   "o_00007": {
     "id": "o_00007",
     "name": "Jackal",
-    "blood": 40,
+    "blood": 4,
     "moves": [
       {
         "action": "damage",
