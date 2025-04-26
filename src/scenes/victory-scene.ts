@@ -6,9 +6,10 @@ import {
   TEXTURE_KEY,
 } from "~/constants";
 import { GameManager } from "~/manager";
-import { Background, Ground, RestartButton } from "~/ui";
+import { Background, RestartButton } from "~/ui";
 import {
   delayedCallAsync,
+  formatTime,
   getAudioScene,
   getCanvasCenter,
   getCanvasSize,
@@ -130,6 +131,12 @@ export class VictoryScene extends Phaser.Scene {
 
   private async _play() {
     getAudioScene(this).switchToVictoryBgm();
+    // Update text
+    const gm = GameManager.getInstance();
+    const elapsedTime = formatTime(gm.startTime - Date.now());
+    this._timeRecordText.setText(`Time Taken: ${elapsedTime}`);
+    this._turnsRecordText.setText(`Turns Taken: ${gm.usedTurns}`);
+
     this.cameras.main.fadeIn(1000);
     await delayedCallAsync(this, 500);
 
@@ -170,8 +177,5 @@ export class VictoryScene extends Phaser.Scene {
       "Balance Ma’atters, after all.\nTold you so.",
       30,
     ).promise;
-
-    const gm = GameManager.getInstance();
-    // get game record
   }
 }

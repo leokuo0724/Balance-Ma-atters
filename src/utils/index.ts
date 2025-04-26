@@ -5,3 +5,4 @@ export * from "./balance.utility";
 export * from "./value.utility";
 export * from "./sprite.utility";
 export * from "./text.utility";
+export * from "./time.utility";

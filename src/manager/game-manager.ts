@@ -82,6 +82,14 @@ export class GameManager {
 
   // Game states
   public level: number = 0; // 0: tutorial
+  private _startTime: number = 0;
+  public get startTime() {
+    return this._startTime;
+  }
+  private _usedTurns: number = 0;
+  public get usedTurns() {
+    return this._usedTurns;
+  }
   private _currentTurn: ETurn = ETurn.PLAYER;
   public get currentTurn() {
     return this._currentTurn;
@@ -122,6 +130,7 @@ export class GameManager {
     if (this.isTutorialLevel) {
       this.nextTutorial(scene);
     } else {
+      this._startTime = Date.now();
       this.shuffleAvailableCardIds(scene);
       this.drawCards(scene);
     }
@@ -276,6 +285,12 @@ export class GameManager {
       return (sum += current?.value ?? 0);
     }, 0);
   }
+  // public isAnyLibraSetImbalanced() {
+  //   return Object.values(this.balanceSetMap).some(
+  //     (set) =>
+  //       !set?.locked && Math.abs(set?.value ?? 0) >= MAX_SMALL_LIBRA_STEPS,
+  //   );
+  // }
   // return multiply number
   public async checkLibraSetBalanced(): Promise<number> {
     let multiply = 1;
@@ -366,23 +381,26 @@ export class GameManager {
       await this.maat!.executeEndTurnStatus();
       await this._checkTotalImbalance(scene);
       this._currentTurn = ETurn.OPPONENT;
-      scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: this._currentTurn });
+      scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: ETurn.OPPONENT });
       await delayedCallAsync(scene, 1000);
       await this._performOpponentTurn(scene);
       this._inHandCards.forEach((card) => card?.setControllable(false));
     } else {
+      if (!this.isTutorialLevel) this._usedTurns += 1;
+
       // TODO: check all opponents end turn status
-      this._currentTurn = ETurn.PLAYER;
-      scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: this._currentTurn });
+      scene.events.emit(EVENT_KEY.ON_TURN_UPDATED, { turn: ETurn.PLAYER });
       await delayedCallAsync(scene, 1000);
       const isNewlyImbalanced = this._checkLibraSetImbalanced();
       if (isNewlyImbalanced) {
         await delayedCallAsync(scene, 500);
         await this.maat!.fixingLibraHint();
         await delayedCallAsync(scene, 2500);
+        this._currentTurn = ETurn.PLAYER; // FIXME: protect from dragging card while imbalanced scales
         this.updateTurn(scene);
         return;
       }
+      this._currentTurn = ETurn.PLAYER;
       await this._fixLibraSetImbalanced();
       const balanceSets = Object.values(this.balanceSetMap).filter(
         (set) => !set?.locked,
@@ -492,6 +510,14 @@ export class GameManager {
 
   public setNextLevel(scene: Phaser.Scene) {
     this.level += 1;
+    if (this.level === 1 && !this._startTime) {
+      // set start time
+      this._startTime = Date.now();
+    }
+    if (!this.isTutorialLevel) {
+      this._usedTurns += 1;
+    }
+
     this.setupLevelOpponents();
     // unlock libra set
     if (this.level === 2) {
