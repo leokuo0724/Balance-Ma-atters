@@ -48,7 +48,7 @@
   "c_00002": {
     "id": "c_00002",
     "title": "Dust Fist",
-    "description": "Damages and applies\nQuicksand.",
+    "description": "Deals damage with\na burst of sand.",
     "damage": 1,
     "shield": 0,
     "balances": [
@@ -80,7 +80,7 @@
   "c_00003": {
     "id": "c_00003",
     "title": "Fire Fist",
-    "description": "Damages and ignites\nthe enemy.",
+    "description": "Deals damage with\na burst of fire.",
     "damage": 1,
     "shield": 0,
     "balances": [
@@ -135,7 +135,7 @@
   "c_00005": {
     "id": "c_00005",
     "title": "Dust Power",
-    "description": "Applies Quicksand\nto the enemy.",
+    "description": "Strikes the enemy\nwith swirling sand.",
     "damage": 1,
     "shield": 0,
     "balances": [
@@ -167,7 +167,7 @@
   "c_00006": {
     "id": "c_00006",
     "title": "Fire Power",
-    "description": "Deals fire damage\nand ignites.",
+    "description": "Unleashes a fiery\nblast at the enemy.",
     "damage": 1,
     "shield": 0,
     "balances": [
