@@ -584,7 +584,7 @@
     "effects": [
       {
         "type": "card_draw",
-        "value": null
+        "value": 0
       }
     ],
     "target": "self"
@@ -613,7 +613,7 @@
     "effects": [
       {
         "type": "card_draw",
-        "value": null
+        "value": 0
       }
     ],
     "target": "ops"
@@ -642,7 +642,7 @@
     "effects": [
       {
         "type": "card_draw",
-        "value": null
+        "value": 0
       }
     ],
     "target": "self"
