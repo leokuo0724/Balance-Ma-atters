@@ -29,6 +29,8 @@ export const TEXTURE_KEY = {
   CARD_SHIELD: "card-shield.png",
   FOG: "fog.png",
   PYRAMIDS: "pyramids.png",
+  MAAT_SMILE: "maat-smile.png",
+  APOPHIS_CRY: "apophis-cry.png",
 
   // In character atlas
   SHABTI: "shabti.png",

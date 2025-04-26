@@ -4,4 +4,5 @@ export const SCENE_KEY = {
   PROLOGUE: "prologue",
   GAME: "game",
   AUDIO: "audio",
+  VICTORY: "victory",
 };

@@ -9,6 +9,7 @@ import {
   GameScene,
   PreloadScene,
   PrologueScene,
+  VictoryScene,
 } from "./scenes";
 
 const config = {
@@ -21,7 +22,14 @@ const config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [BootScene, PreloadScene, AudioScene, PrologueScene, GameScene],
+  scene: [
+    BootScene,
+    PreloadScene,
+    AudioScene,
+    PrologueScene,
+    GameScene,
+    VictoryScene,
+  ],
   plugins: {
     global: [{ key: "rexFade", plugin: FadePlugin, start: true }],
   },

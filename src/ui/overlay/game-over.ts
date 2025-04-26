@@ -6,7 +6,7 @@ import {
   hexToDecimal,
 } from "~/utils";
 
-import { Button } from "../button";
+import { Button, RestartButton } from "../button";
 
 export class GameOver extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene, desc: string) {
@@ -48,14 +48,5 @@ export class GameOver extends Phaser.GameObjects.Container {
     const audioScene = getAudioScene(scene);
     audioScene.fadeOutMainBGM(2000);
     audioScene.playSFX(AUDIO_KEY.FAIL);
-  }
-}
-
-class RestartButton extends Button {
-  constructor(scene: Phaser.Scene, x: number, y: number) {
-    super(scene, x, y, "Restart");
-  }
-  onClick(): void {
-    window.location.reload();
   }
 }
