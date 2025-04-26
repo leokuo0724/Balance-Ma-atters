@@ -43,7 +43,7 @@ const DEFAULT_AVAILABLE_CARD_IDS = [
   "c_00010",
 ] as const;
 const DEFAULT_MAAT_DATA = {
-  BLOOD: 20,
+  BLOOD: 30,
   SHIELD: 0,
 } as const;
 export const LEVEL_OPPONENT_INFO = [
