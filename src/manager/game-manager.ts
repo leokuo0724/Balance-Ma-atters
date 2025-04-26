@@ -29,6 +29,7 @@ import { delayedCallAsync, getCanvasCenter } from "~/utils";
 import { shuffleArray } from "~/utils/math.utility";
 
 const DEFAULT_AVAILABLE_CARD_IDS = [
+  "c_00024",
   "c_00000",
   "c_00000",
   "c_00001",
@@ -41,7 +42,6 @@ const DEFAULT_AVAILABLE_CARD_IDS = [
   "c_00009",
   "c_00009",
   "c_00010",
-  "c_00024",
 ] as const;
 const DEFAULT_MAAT_DATA = {
   BLOOD: 30,
@@ -538,14 +538,17 @@ export class GameManager {
       (scene as GameScene).showBossAppearance();
     }
     // reset cards
-    let inHandCardIds = [];
     for (const card of this._inHandCards) {
       if (!card) continue;
-      inHandCardIds.push(card.metadata.id);
       card.destroy();
     }
     this._inHandCards = [null, null, null, null, null];
-    this._usedCardIds.push(...inHandCardIds);
+    this._usedCardIds = [];
+    scene.events.emit(EVENT_KEY.ON_USED_CARDS_UPDATED, {
+      count: this._usedCardIds.length,
+    });
+    this._availableCardIds = [...DEFAULT_AVAILABLE_CARD_IDS];
+    this.shuffleAvailableCardIds(scene);
     this.drawCards(scene);
 
     // reset libra

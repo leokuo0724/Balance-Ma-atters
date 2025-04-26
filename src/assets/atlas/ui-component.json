@@ -638,6 +638,27 @@
 						"w": 103,
 						"h": 80
 					}
+				},
+				{
+					"filename": "card-tutorial.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 85,
+						"h": 103
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 0,
+						"w": 58,
+						"h": 103
+					},
+					"frame": {
+						"x": 1524,
+						"y": 265,
+						"w": 58,
+						"h": 103
+					}
 				}
 			]
 		}
@@ -645,6 +666,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:456650a81613d8880ad8508c4f20e6af:124d59a3413a9a5494aaaa3bcd29dda5:531d510bb7e47c5a7810ed876d840ed4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:081652dd99344af3eb388312c7c89090:f1880a3f728e38d1fd234c0f405b368b:531d510bb7e47c5a7810ed876d840ed4$"
 	}
 }

@@ -168,6 +168,9 @@ export class Card extends Phaser.GameObjects.Container {
         return TEXTURE_KEY.CARD_FEATHER_DRAW;
       case "c_00024":
         return TEXTURE_KEY.CARD_IMBALANCE_DRAW;
+      case "c_00020":
+      case "c_00021":
+        return TEXTURE_KEY.CARD_TUTORIAL;
       default:
         return TEXTURE_KEY.CARD_FIST;
     }
