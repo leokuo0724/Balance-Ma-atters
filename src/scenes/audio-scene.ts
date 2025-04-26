@@ -4,6 +4,7 @@ import { SCENE_KEY } from "~/constants/scene-key";
 export class AudioScene extends Phaser.Scene {
   private _bgm1!: Phaser.Sound.BaseSound;
   private _bgm2!: Phaser.Sound.BaseSound;
+  private _bgm3!: Phaser.Sound.BaseSound;
 
   constructor() {
     super({ key: SCENE_KEY.AUDIO });
@@ -14,6 +15,9 @@ export class AudioScene extends Phaser.Scene {
       loop: true,
     });
     this._bgm2 = this.sound.add(AUDIO_KEY.BGM_2, {
+      loop: true,
+    });
+    this._bgm3 = this.sound.add(AUDIO_KEY.BGM_3, {
       loop: true,
     });
   }
@@ -27,18 +31,28 @@ export class AudioScene extends Phaser.Scene {
   }
 
   public switchToBossBgm() {
-    this.fadeOutMainBGM(300);
+    this._fadeOutBgm(this._bgm1, 300);
     this._bgm2.play();
   }
 
-  public fadeOutMainBGM(duration = 1000) {
-    if (!this._bgm1.isPlaying) return;
+  public switchToVictoryBgm() {
+    this._bgm1.stop();
+    this._fadeOutBgm(this._bgm2, 300);
+    this._bgm3.play();
+  }
+
+  private _fadeOutBgm(target: Phaser.Sound.BaseSound, duration = 1000) {
+    if (!target.isPlaying) return;
     this.tweens.add({
-      targets: this._bgm1,
+      targets: target,
       volume: 0,
       duration,
-      onComplete: () => this._bgm1.stop(),
+      onComplete: () => target.stop(),
     });
+  }
+
+  public fadeOutMainBGM(duration = 1000) {
+    this._fadeOutBgm(this._bgm1, duration);
   }
 
   public playSFX(key: TAudioKey, config?: Phaser.Types.Sound.SoundConfig) {

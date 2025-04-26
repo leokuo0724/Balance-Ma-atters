@@ -9,6 +9,7 @@ import { GameManager } from "~/manager";
 import { Background, Ground, RestartButton } from "~/ui";
 import {
   delayedCallAsync,
+  getAudioScene,
   getCanvasCenter,
   getCanvasSize,
   hexToDecimal,
@@ -128,6 +129,7 @@ export class VictoryScene extends Phaser.Scene {
   }
 
   private async _play() {
+    getAudioScene(this).switchToVictoryBgm();
     this.cameras.main.fadeIn(1000);
     await delayedCallAsync(this, 500);
 

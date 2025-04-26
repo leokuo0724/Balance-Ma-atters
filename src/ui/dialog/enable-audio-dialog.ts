@@ -36,8 +36,7 @@ class NoButton extends Button {
     const audioScene = getAudioScene(this.scene);
     audioScene.setMute(true);
     audioScene.playMainBgm();
-    // this.scene.scene.start(SCENE_KEY.PROLOGUE);
-    this.scene.scene.start(SCENE_KEY.VICTORY);
+    this.scene.scene.start(SCENE_KEY.PROLOGUE);
   }
 }
 
