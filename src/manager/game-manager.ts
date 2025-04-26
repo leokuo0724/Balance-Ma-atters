@@ -1,5 +1,6 @@
 import { ITarget, Maat, Opponent, OpponentSpawner } from "~/characters";
 import { DEPTH, EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
+import { GameScene } from "~/scenes";
 import {
   EBalanceSetType,
   EOpponentActionable,
@@ -43,7 +44,8 @@ export const LEVEL_OPPONENT_INFO = [
   { opponentIds: [null, "o_00006", null] },
   { opponentIds: ["o_00000", "o_00000", "o_00000"] },
   { opponentIds: ["o_00001", "o_00002", "o_00007"] },
-  { opponentIds: ["o_00001", "o_00003", "o_00002"] },
+  // { opponentIds: ["o_00001", "o_00003", "o_00002"] },
+  { opponentIds: ["o_00000", null, null] },
   { opponentIds: ["o_00004", "o_00005", "o_00004"] },
 ] as const;
 export const INITIAL_LOCKED_BALANCE: EBalanceSetType[] = [
@@ -489,6 +491,9 @@ export class GameManager {
       this.balanceSetMap[EBalanceSetType.SHT_LNG]!.unlock();
     } else if (this.level === 3) {
       this.balanceSetMap[EBalanceSetType.DUT_FIR]!.unlock();
+    } else if (this.level === LEVEL_OPPONENT_INFO.length - 1) {
+      // BOSS
+      (scene as GameScene).showBossAppearance();
     }
     // reset cards
     let inHandCardIds = [];

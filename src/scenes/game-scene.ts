@@ -11,6 +11,7 @@ import { GameManager, LEVEL_OPPONENT_INFO } from "~/manager";
 import { ETurn } from "~/type";
 import {
   Background,
+  BossDisplay,
   CardDeckGroup,
   EndTurnButton,
   Ground,
@@ -25,6 +26,8 @@ import { Banner } from "~/ui/banner";
 import { getCanvasCenter, getCanvasSize, hexToDecimal } from "~/utils";
 
 export class GameScene extends Phaser.Scene {
+  private _bossDisplay!: BossDisplay;
+
   private _onNextLevel: Function | null = null;
   private _onTurnUpdated: Function | null = null;
 
@@ -105,6 +108,9 @@ export class GameScene extends Phaser.Scene {
     const turnBanner = new Banner(this, centerX, centerY, "Your Turn").setDepth(
       DEPTH.OVERLAY,
     );
+    this._bossDisplay = new BossDisplay(this, centerX, centerY).setDepth(
+      DEPTH.DISPLAY,
+    );
 
     gm.setupMaat(maat);
     gm.setupBalanceSetGroup(smallLibraGroup);
@@ -131,5 +137,10 @@ export class GameScene extends Phaser.Scene {
       if (this._onTurnUpdated)
         this.events.off(EVENT_KEY.ON_TURN_UPDATED, this._onTurnUpdated);
     });
+  }
+
+  public async showBossAppearance() {
+    this.cameras.main.shake(250, 0.05);
+    await this._bossDisplay.play();
   }
 }

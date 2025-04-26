@@ -16,12 +16,6 @@ import {
   typewriterText,
 } from "~/utils";
 
-// I'm Ma’at. I keep the world in balance.
-// At least I did, until Apophis knocked everything sideways.
-// So now I’m fixing it the classic way...
-// With cards. Obviously.
-// Let’s restore some order.
-
 const DIALOG = [
   "I'm Ma’at.\nI keep the world in balance.",
   "At least I did...\nuntil Apophis knocked everything sideways.",
@@ -107,6 +101,8 @@ export class PrologueScene extends Phaser.Scene {
     }
 
     if (this._currentDialogIndex >= DIALOG.length) {
+      if (this._onPointerDown)
+        this.input.off("pointerdown", this._onPointerDown);
       this.cameras.main.fadeOut(800);
       await delayedCallAsync(this, 800);
       this.scene.start(SCENE_KEY.GAME);
