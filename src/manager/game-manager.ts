@@ -370,10 +370,13 @@ export class GameManager {
     // XXX: we have to do that before destroy or scene will be undefined
     const isAllDefeated =
       this.opponentSpawners.filter((spawner) => spawner.opponent).length === 1;
-    // TODO: check win
     if (isAllDefeated) {
       await delayedCallAsync(opponent.scene, 800);
-      opponent.scene.events.emit(EVENT_KEY.ON_NEXT_LEVEL);
+      if (this.level === LEVEL_OPPONENT_INFO.length - 1) {
+        opponent.scene.scene.start(SCENE_KEY.VICTORY);
+      } else {
+        opponent.scene.events.emit(EVENT_KEY.ON_NEXT_LEVEL);
+      }
     }
     this.opponentSpawners[targetIndex].opponent!.destroy();
     this.opponentSpawners[targetIndex].opponent = null;

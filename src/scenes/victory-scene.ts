@@ -133,7 +133,7 @@ export class VictoryScene extends Phaser.Scene {
     getAudioScene(this).switchToVictoryBgm();
     // Update text
     const gm = GameManager.getInstance();
-    const elapsedTime = formatTime(gm.startTime - Date.now());
+    const elapsedTime = formatTime(Date.now() - gm.startTime);
     this._timeRecordText.setText(`Time Taken: ${elapsedTime}`);
     this._turnsRecordText.setText(`Turns Taken: ${gm.usedTurns}`);
 

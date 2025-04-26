@@ -33,7 +33,7 @@ export class BossDisplay extends Phaser.GameObjects.Container {
 
     const [width, height] = getCanvasSize(scene);
     this._bg = scene.add
-      .rectangle(0, 0, width, height, 0x994031, 0.7)
+      .rectangle(0, 0, width, height, 0x994031, 0.8)
       .setOrigin(0.5)
       .setScale(1, 0);
     this._nameText = scene.add

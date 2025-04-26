@@ -195,7 +195,7 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
       ["Balance", "Has", "Spoken"],
       ["Truth", "Always", "Wins"],
     ];
-    if (length < 1 || length > 3) throw new Error("Invalid opponent length");
+    if (length < 1 || length > 3) return [];
     return length === 1
       ? Phaser.Math.RND.pick(single)
       : length === 2

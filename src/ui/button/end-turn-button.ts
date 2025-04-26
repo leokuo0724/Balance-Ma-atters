@@ -27,6 +27,7 @@ export class EndTurnButton extends Button {
   onClick(): void {
     getAudioScene(this.scene).playSFX(AUDIO_KEY.CLICK);
     const gm = GameManager.getInstance();
+    if (gm.isApplyingEffect) return;
     gm.updateTurn(this.scene);
   }
 }
