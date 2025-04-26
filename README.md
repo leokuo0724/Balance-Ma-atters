@@ -2,6 +2,7 @@
 
 ![Cover](/public/github.png)
 
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey?style=for-the-badge)](https://creativecommons.org/licenses/by-nc/4.0/)
 ![Phaser](https://img.shields.io/badge/phaser-3.88.2-blue?style=for-the-badge)
 
 _A light-hearted card game about tipping — and fixing — the cosmic scales._
@@ -50,3 +51,9 @@ pnpm install
 ```bash
 pnpm dev
 ```
+
+## 📜 License
+
+This project is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).
+
+See full details in the [LICENSE.txt](./LICENSE.txt) file.
