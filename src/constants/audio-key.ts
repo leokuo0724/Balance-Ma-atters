@@ -1,5 +1,6 @@
 export const AUDIO_KEY = {
   BGM_1: "bgm-1",
+  BGM_2: "bgm-2",
   HIT: "hit",
   CLICK: "click",
   MULTIPLY: "multiply",

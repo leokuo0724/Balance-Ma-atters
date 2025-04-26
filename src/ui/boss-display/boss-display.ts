@@ -3,6 +3,7 @@ import { ATLAS_KEY, COLOR_KEY, FONT_KEY, TEXTURE_KEY } from "~/constants";
 import {
   TypewriterController,
   delayedCallAsync,
+  getAudioScene,
   getCanvasSize,
   tweensAsync,
   typewriterText,
@@ -73,6 +74,7 @@ export class BossDisplay extends Phaser.GameObjects.Container {
   }
 
   public async play() {
+    getAudioScene(this.scene).switchToBossBgm();
     this.setVisible(true);
     await delayedCallAsync(this.scene, 500);
     await Promise.all([

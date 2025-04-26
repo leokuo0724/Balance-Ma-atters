@@ -3,6 +3,7 @@ import { SCENE_KEY } from "~/constants/scene-key";
 
 export class AudioScene extends Phaser.Scene {
   private _bgm1!: Phaser.Sound.BaseSound;
+  private _bgm2!: Phaser.Sound.BaseSound;
 
   constructor() {
     super({ key: SCENE_KEY.AUDIO });
@@ -10,6 +11,9 @@ export class AudioScene extends Phaser.Scene {
 
   create() {
     this._bgm1 = this.sound.add(AUDIO_KEY.BGM_1, {
+      loop: true,
+    });
+    this._bgm2 = this.sound.add(AUDIO_KEY.BGM_2, {
       loop: true,
     });
   }
@@ -20,6 +24,11 @@ export class AudioScene extends Phaser.Scene {
 
   public playMainBgm() {
     this._bgm1.play();
+  }
+
+  public switchToBossBgm() {
+    this.fadeOutMainBGM(300);
+    this._bgm2.play();
   }
 
   public fadeOutMainBGM(duration = 1000) {
