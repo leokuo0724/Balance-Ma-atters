@@ -1,5 +1,10 @@
 import { ITarget, Maat, Opponent, OpponentSpawner } from "~/characters";
-import { DEPTH, EVENT_KEY, MAX_SMALL_LIBRA_STEPS } from "~/constants";
+import {
+  DEPTH,
+  EVENT_KEY,
+  MAX_SMALL_LIBRA_STEPS,
+  SCENE_KEY,
+} from "~/constants";
 import { GameScene } from "~/scenes";
 import {
   EBalanceSetType,
@@ -315,7 +320,9 @@ export class GameManager {
     const maxValue = balances.length * MAX_SMALL_LIBRA_STEPS;
     const currentValue = this.getTotalBalance();
     if (Math.abs(currentValue) >= maxValue) {
-      new GameOver(scene, "The scales have totally tipped... and so have you.");
+      scene.scene.start(SCENE_KEY.GAME_OVER, {
+        desc: "The scales have totally tipped... and so have you.",
+      });
     }
   }
 

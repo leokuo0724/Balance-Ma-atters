@@ -6,6 +6,7 @@ import { COLOR_KEY } from "./constants";
 import {
   AudioScene,
   BootScene,
+  GameOverScene,
   GameScene,
   PreloadScene,
   PrologueScene,
@@ -29,6 +30,7 @@ const config = {
     PrologueScene,
     GameScene,
     VictoryScene,
+    GameOverScene,
   ],
   plugins: {
     global: [{ key: "rexFade", plugin: FadePlugin, start: true }],

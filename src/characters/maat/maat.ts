@@ -2,6 +2,7 @@ import {
   ATLAS_KEY,
   AUDIO_KEY,
   COLOR_KEY,
+  SCENE_KEY,
   SIZE,
   TEXTURE_KEY,
 } from "~/constants";
@@ -132,10 +133,9 @@ export class Maat
 
   private _checkDeath() {
     if (this.currentBlood > 0) return;
-    new GameOver(
-      this.scene,
-      "You lost the fight. Chaos wins this round. Again.",
-    );
+    this.scene.scene.start(SCENE_KEY.GAME_OVER, {
+      desc: "You lost the fight. Chaos wins this round. Again.",
+    });
     this.destroy();
   }
 

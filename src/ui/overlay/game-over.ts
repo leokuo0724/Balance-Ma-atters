@@ -29,7 +29,7 @@ export class GameOver extends Phaser.GameObjects.Container {
     const subText = scene.add
       .text(0, 20, desc, {
         fontFamily: FONT_KEY.JERSEY_25,
-        fontSize: 32,
+        fontSize: 28,
         color: COLOR_KEY.BEIGE_2,
         align: "center",
       })
@@ -46,7 +46,7 @@ export class GameOver extends Phaser.GameObjects.Container {
       ease: Phaser.Math.Easing.Bounce.Out,
     });
     const audioScene = getAudioScene(scene);
-    audioScene.fadeOutMainBGM(2000);
+    audioScene.fadeOutBGM(2000);
     audioScene.playSFX(AUDIO_KEY.FAIL);
   }
 }

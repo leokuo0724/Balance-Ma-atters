@@ -51,8 +51,9 @@ export class AudioScene extends Phaser.Scene {
     });
   }
 
-  public fadeOutMainBGM(duration = 1000) {
+  public fadeOutBGM(duration = 1000) {
     this._fadeOutBgm(this._bgm1, duration);
+    this._fadeOutBgm(this._bgm2, duration);
   }
 
   public playSFX(key: TAudioKey, config?: Phaser.Types.Sound.SoundConfig) {

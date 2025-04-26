@@ -4,3 +4,4 @@ export * from "./game-scene";
 export * from "./audio-scene";
 export * from "./prologue-scene";
 export * from "./victory-scene";
+export * from "./game-over-scene";
