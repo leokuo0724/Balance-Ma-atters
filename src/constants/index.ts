@@ -8,3 +8,4 @@ export * from "./position";
 export * from "./event-key";
 export * from "./game.const";
 export * from "./audio-key";
+export * from "./localstorage";

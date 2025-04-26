@@ -4,6 +4,7 @@ import {
   EVENT_KEY,
   MAX_SMALL_LIBRA_STEPS,
   SCENE_KEY,
+  STORAGE_KEY,
 } from "~/constants";
 import { GameScene } from "~/scenes";
 import {
@@ -165,8 +166,12 @@ export class GameManager {
         this.largeLibraGroup?.setDepth(DEPTH.LIBRA_SET);
         this.opponentSpawners[1].setDepth(DEPTH.CHARACTER);
         this._tutorialOverlay?.endTutorial();
+        window.localStorage.setItem(STORAGE_KEY.TUTORIAL_VIEWED, "true");
         break;
     }
+  }
+  public setSkipTutorial() {
+    this.level = 1;
   }
   /** For tutorial */
   private async _drawSingleCard(id: string) {

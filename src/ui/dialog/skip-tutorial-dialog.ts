@@ -1,10 +1,10 @@
 import { COLOR_KEY, FONT_KEY, SCENE_KEY } from "~/constants";
-import { getAudioScene } from "~/utils";
+import { GameManager } from "~/manager";
 
 import { Button } from "../button";
 import { Dialog } from "./dialog";
 
-export class EnableAudioDialog extends Dialog {
+export class SkipTutorialDialog extends Dialog {
   leftButton: Button;
   rightButton: Button;
 
@@ -15,7 +15,7 @@ export class EnableAudioDialog extends Dialog {
     this.leftButton = new NoButton(scene, -100, BUTTON_BASELINE);
     this.rightButton = new YesButton(scene, 100, BUTTON_BASELINE);
     const description = scene.add
-      .text(0, -32, "Enable Audio?", {
+      .text(0, -32, "Skip Tutorial?", {
         fontFamily: FONT_KEY.JERSEY_25,
         fontSize: 32,
         color: COLOR_KEY.BROWN_8,
@@ -33,10 +33,7 @@ class NoButton extends Button {
   }
 
   onClick(): void {
-    const audioScene = getAudioScene(this.scene);
-    audioScene.setMute(true);
-    audioScene.playMainBgm();
-    this.scene.scene.start(SCENE_KEY.PROLOGUE);
+    this.scene.scene.start(SCENE_KEY.GAME);
   }
 }
 
@@ -46,9 +43,8 @@ class YesButton extends Button {
   }
 
   onClick(): void {
-    const audioScene = getAudioScene(this.scene);
-    audioScene.setMute(false);
-    audioScene.playMainBgm();
-    this.scene.scene.start(SCENE_KEY.PROLOGUE);
+    const gm = GameManager.getInstance();
+    gm.setSkipTutorial();
+    this.scene.scene.start(SCENE_KEY.GAME);
   }
 }

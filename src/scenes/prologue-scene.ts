@@ -3,8 +3,10 @@ import {
   COLOR_KEY,
   FONT_KEY,
   SCENE_KEY,
+  STORAGE_KEY,
   TEXTURE_KEY,
 } from "~/constants";
+import { SkipTutorialDialog } from "~/ui/dialog/skip-tutorial-dialog";
 import {
   TypewriterController,
   delayedCallAsync,
@@ -86,8 +88,8 @@ export class PrologueScene extends Phaser.Scene {
   private async updateDialog() {
     this._currentDialogIndex++;
     // Apophis image
+    const [centerX, centerY] = getCanvasCenter(this);
     if (this._currentDialogIndex === 1) {
-      const [centerX, centerY] = getCanvasCenter(this);
       const apophisImage = this.add
         .image(
           centerX + 260,
@@ -108,9 +110,16 @@ export class PrologueScene extends Phaser.Scene {
     if (this._currentDialogIndex >= DIALOG.length) {
       if (this._onPointerDown)
         this.input.off("pointerdown", this._onPointerDown);
-      this.cameras.main.fadeOut(800);
-      await delayedCallAsync(this, 800);
-      this.scene.start(SCENE_KEY.GAME);
+      const isTutorialViewed = window.localStorage.getItem(
+        STORAGE_KEY.TUTORIAL_VIEWED,
+      );
+      if (isTutorialViewed) {
+        new SkipTutorialDialog(this, centerX, centerY);
+      } else {
+        this.cameras.main.fadeOut(800);
+        await delayedCallAsync(this, 800);
+        this.scene.start(SCENE_KEY.GAME);
+      }
       return;
     }
     this._typewriter = typewriterText(
