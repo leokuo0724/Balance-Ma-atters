@@ -47,11 +47,12 @@ export class Card extends Phaser.GameObjects.Container {
     const [cardWidth, cardHeight] = SIZE.CARD;
     const LEFT = -cardWidth / 2 + 8;
     const TOP = -cardHeight / 2 + 8;
+    const isApplyRedCard = this.metadata.id === "c_00024";
     const bg = scene.add.image(
       0,
       0,
       ATLAS_KEY.UI_COMPONENT,
-      TEXTURE_KEY.CARD_BG,
+      isApplyRedCard ? TEXTURE_KEY.CARD_BG_RED : TEXTURE_KEY.CARD_BG,
     );
     const cardImage = scene.add.image(
       0,
@@ -64,7 +65,7 @@ export class Card extends Phaser.GameObjects.Container {
       0,
       0,
       ATLAS_KEY.UI_COMPONENT,
-      TEXTURE_KEY.CARD_TOP,
+      isApplyRedCard ? TEXTURE_KEY.CARD_TOP_RED : TEXTURE_KEY.CARD_TOP,
     );
     const titleLabel = scene.add
       .text(LEFT, 32, this.metadata.title, {
@@ -161,6 +162,12 @@ export class Card extends Phaser.GameObjects.Container {
       case "c_00009":
       case "c_00010":
         return TEXTURE_KEY.CARD_SHIELD;
+      case "c_00022":
+        return TEXTURE_KEY.CARD_SHIELD_DRAW;
+      case "c_00023":
+        return TEXTURE_KEY.CARD_FEATHER_DRAW;
+      case "c_00024":
+        return TEXTURE_KEY.CARD_IMBALANCE_DRAW;
       default:
         return TEXTURE_KEY.CARD_FIST;
     }

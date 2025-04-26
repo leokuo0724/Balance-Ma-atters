@@ -33,6 +33,9 @@ export const TEXTURE_KEY = {
   MAAT_SMILE: "maat-smile.png",
   APOPHIS_CRY: "apophis-cry.png",
   MAAT: "maat.png",
+  CARD_FEATHER_DRAW: "card-feather-draw.png",
+  CARD_SHIELD_DRAW: "card-shield-draw.png",
+  CARD_IMBALANCE_DRAW: "card-imbalance-draw.png",
 
   // In character atlas
   SHABTI: "shabti.png",

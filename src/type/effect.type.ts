@@ -14,6 +14,8 @@ export enum EEffect {
   PURIFY = "purify",
   CRITICAL_UP = "critical_up",
   BLIND = "blind",
+
+  CARD_DRAW = "card_draw",
 }
 
 export type TEffect = {

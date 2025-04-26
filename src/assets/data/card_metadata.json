@@ -559,5 +559,92 @@
     ],
     "effects": [],
     "target": "ops"
+  },
+  "c_00022": {
+    "id": "c_00022",
+    "title": "Dust Shield Draw",
+    "description": "Gain shield\nand draw cards",
+    "damage": 0,
+    "shield": 1,
+    "balances": [
+      {
+        "type": "PHY",
+        "value": 2
+      },
+      {
+        "type": "DEF",
+        "value": 2
+      },
+      {
+        "type": "SHT",
+        "value": 2
+      },
+      { "type": "DUT", "value": 2 }
+    ],
+    "effects": [
+      {
+        "type": "card_draw",
+        "value": null
+      }
+    ],
+    "target": "self"
+  },
+  "c_00023": {
+    "id": "c_00023",
+    "title": "Fire Power Draw",
+    "description": "Deal damage\nand draw cards",
+    "damage": 1,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "MAG",
+        "value": 2
+      },
+      {
+        "type": "ATK",
+        "value": 2
+      },
+      {
+        "type": "LNG",
+        "value": 2
+      },
+      { "type": "FIR", "value": 2 }
+    ],
+    "effects": [
+      {
+        "type": "card_draw",
+        "value": null
+      }
+    ],
+    "target": "ops"
+  },
+  "c_00024": {
+    "id": "c_00024",
+    "title": "Imbalance Draw",
+    "description": "Unbalance all scales\nand draw cards",
+    "damage": 0,
+    "shield": 0,
+    "balances": [
+      {
+        "type": "PHY",
+        "value": 8
+      },
+      {
+        "type": "DEF",
+        "value": 8
+      },
+      {
+        "type": "SHT",
+        "value": 8
+      },
+      { "type": "DUT", "value": 8 }
+    ],
+    "effects": [
+      {
+        "type": "card_draw",
+        "value": null
+      }
+    ],
+    "target": "self"
   }
 }

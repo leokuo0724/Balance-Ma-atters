@@ -1,6 +1,7 @@
 import { ATLAS_KEY, AUDIO_KEY, SIZE, TEXTURE_KEY } from "~/constants";
 import { GameManager } from "~/manager";
 import {
+  EEffect,
   EOpponentActionable,
   TCardMetadata,
   TOpponentMetadata,
@@ -122,7 +123,10 @@ export class Opponent
     if (card.damage && card.damage > 0) {
       const gm = GameManager.getInstance();
       const multiply = await gm.checkLibraSetBalanced();
-      // TODO: check effects
+      // TODO: extra effects
+      if (card.effects.some((e) => e.type === EEffect.CARD_DRAW)) {
+        gm.drawCards(this.scene);
+      }
       await this.dealtDamage(card.damage, multiply);
       await gm.checkLibraStrike(multiply);
       if (this.scene) await delayedCallAsync(this.scene, 500);

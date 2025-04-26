@@ -7,7 +7,7 @@ import {
   TEXTURE_KEY,
 } from "~/constants";
 import { GameManager } from "~/manager";
-import { EStatusType, TCardMetadata } from "~/type";
+import { EEffect, EStatusType, TCardMetadata } from "~/type";
 import { BloodBar, GameOver, ShieldGroup } from "~/ui";
 import {
   delayedCallAsync,
@@ -99,10 +99,13 @@ export class Maat
     if (card.shield > 0) {
       this.addShield(card.shield * multiply);
       await delayedCallAsync(this.scene, 500);
-      gm.setApplyingEffect(false);
+    }
+    gm.setApplyingEffect(false);
+    // TODO: extra effects
+    if (card.effects.some((e) => e.type === EEffect.CARD_DRAW)) {
+      gm.drawCards(this.scene);
     }
     await gm.checkLibraStrike(multiply);
-    // TODO: check extra effects
   }
 
   public async applyDamage(damage: number, isIgnoreShield: boolean = false) {

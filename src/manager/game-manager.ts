@@ -41,6 +41,7 @@ const DEFAULT_AVAILABLE_CARD_IDS = [
   "c_00009",
   "c_00009",
   "c_00010",
+  "c_00024",
 ] as const;
 const DEFAULT_MAAT_DATA = {
   BLOOD: 30,

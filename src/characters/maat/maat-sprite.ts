@@ -40,7 +40,7 @@ export class MaatSprite extends Phaser.GameObjects.Sprite {
         14,
         28,
       ),
-      frameRate: 30,
+      frameRate: 35,
     });
     this.anims.create({
       key: this.ANIM_KEY.LIBRA_STRIKE,

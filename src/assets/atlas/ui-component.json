@@ -535,7 +535,28 @@
 					}
 				},
 				{
-					"filename": "card-shield.png",
+					"filename": "card-feather-draw.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 104,
+						"h": 87
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 9,
+						"w": 102,
+						"h": 64
+					},
+					"frame": {
+						"x": 1388,
+						"y": 407,
+						"w": 102,
+						"h": 64
+					}
+				},
+				{
+					"filename": "card-shield-draw.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -556,6 +577,48 @@
 					}
 				},
 				{
+					"filename": "card-shield.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 104,
+						"h": 104
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 104,
+						"h": 99
+					},
+					"frame": {
+						"x": 1514,
+						"y": 164,
+						"w": 104,
+						"h": 99
+					}
+				},
+				{
+					"filename": "card-imbalance-draw.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 85,
+						"h": 84
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 85,
+						"h": 84
+					},
+					"frame": {
+						"x": 1419,
+						"y": 235,
+						"w": 85,
+						"h": 84
+					}
+				},
+				{
 					"filename": "card-feather.png",
 					"rotated": false,
 					"trimmed": true,
@@ -570,8 +633,8 @@
 						"h": 80
 					},
 					"frame": {
-						"x": 1514,
-						"y": 164,
+						"x": 1419,
+						"y": 321,
 						"w": 103,
 						"h": 80
 					}
@@ -582,6 +645,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:f8c15cc7297d04a27bc340c42cf55681:6aee7353de501d104f6e9be5685d2d9e:531d510bb7e47c5a7810ed876d840ed4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:456650a81613d8880ad8508c4f20e6af:124d59a3413a9a5494aaaa3bcd29dda5:531d510bb7e47c5a7810ed876d840ed4$"
 	}
 }
