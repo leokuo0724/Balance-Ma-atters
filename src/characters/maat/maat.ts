@@ -46,7 +46,7 @@ export class Maat
 
     const [width, height] = SIZE.TARGET_RECT;
 
-    this._maatSprite = new MaatSprite(scene, 0, 0);
+    this._maatSprite = new MaatSprite(scene, 0, -10);
     this.bloodBar = new BloodBar(scene, 0, 12);
     this.shieldGroup = new ShieldGroup(scene, 84, 14);
     this.statusBox = new StatusBox(scene, -60, 40);
@@ -184,6 +184,14 @@ export class Maat
         break;
       }
     }
+  }
+
+  public takeAMoveAnim() {
+    this._maatSprite.playPlayCard();
+  }
+
+  public libraStrikeAnim() {
+    this._maatSprite.playLibraStrike();
   }
 
   public removeAllStatus() {

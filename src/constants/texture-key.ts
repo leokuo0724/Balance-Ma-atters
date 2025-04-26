@@ -2,6 +2,7 @@ export const ATLAS_KEY = {
   UI_COMPONENT: "ui-component",
   CHARACTER: "character",
   DAMAGED: "damaged",
+  MAAT_SPRITE: "maat-sprite",
 };
 
 export const TEXTURE_KEY = {
@@ -31,6 +32,7 @@ export const TEXTURE_KEY = {
   PYRAMIDS: "pyramids.png",
   MAAT_SMILE: "maat-smile.png",
   APOPHIS_CRY: "apophis-cry.png",
+  MAAT: "maat.png",
 
   // In character atlas
   SHABTI: "shabti.png",

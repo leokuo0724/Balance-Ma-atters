@@ -52,6 +52,153 @@
 					}
 				},
 				{
+					"filename": "maat.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 441,
+						"h": 449
+					},
+					"spriteSourceSize": {
+						"x": 71,
+						"y": 81,
+						"w": 298,
+						"h": 368
+					},
+					"frame": {
+						"x": 426,
+						"y": 63,
+						"w": 298,
+						"h": 368
+					}
+				},
+				{
+					"filename": "balanced-display-box.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 152,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 152,
+						"h": 42
+					},
+					"frame": {
+						"x": 426,
+						"y": 433,
+						"w": 152,
+						"h": 42
+					}
+				},
+				{
+					"filename": "libra-large.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 48,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 42,
+						"h": 42
+					},
+					"frame": {
+						"x": 580,
+						"y": 433,
+						"w": 42,
+						"h": 42
+					}
+				},
+				{
+					"filename": "number-display-box.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 36,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 36,
+						"h": 42
+					},
+					"frame": {
+						"x": 624,
+						"y": 433,
+						"w": 36,
+						"h": 42
+					}
+				},
+				{
+					"filename": "shield-icon.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 36
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 36
+					},
+					"frame": {
+						"x": 662,
+						"y": 433,
+						"w": 30,
+						"h": 36
+					}
+				},
+				{
+					"filename": "silver-shield-icon.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 34
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 34
+					},
+					"frame": {
+						"x": 694,
+						"y": 433,
+						"w": 30,
+						"h": 34
+					}
+				},
+				{
+					"filename": "ruler.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 164,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 164,
+						"h": 10
+					},
+					"frame": {
+						"x": 694,
+						"y": 469,
+						"w": 164,
+						"h": 10
+					}
+				},
+				{
 					"filename": "spotlight.png",
 					"rotated": false,
 					"trimmed": false,
@@ -66,7 +213,7 @@
 						"h": 254
 					},
 					"frame": {
-						"x": 426,
+						"x": 726,
 						"y": 63,
 						"w": 115,
 						"h": 254
@@ -87,7 +234,7 @@
 						"h": 133
 					},
 					"frame": {
-						"x": 426,
+						"x": 726,
 						"y": 319,
 						"w": 406,
 						"h": 133
@@ -108,7 +255,7 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 426,
+						"x": 860,
 						"y": 454,
 						"w": 22,
 						"h": 22
@@ -129,7 +276,7 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 450,
+						"x": 884,
 						"y": 454,
 						"w": 22,
 						"h": 22
@@ -150,7 +297,7 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 474,
+						"x": 908,
 						"y": 454,
 						"w": 22,
 						"h": 22
@@ -171,7 +318,7 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 498,
+						"x": 932,
 						"y": 454,
 						"w": 22,
 						"h": 22
@@ -192,7 +339,7 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 522,
+						"x": 956,
 						"y": 454,
 						"w": 18,
 						"h": 22
@@ -213,31 +360,10 @@
 						"h": 20
 					},
 					"frame": {
-						"x": 542,
+						"x": 976,
 						"y": 454,
 						"w": 128,
 						"h": 20
-					}
-				},
-				{
-					"filename": "ruler.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 164,
-						"h": 10
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 164,
-						"h": 10
-					},
-					"frame": {
-						"x": 672,
-						"y": 454,
-						"w": 164,
-						"h": 10
 					}
 				},
 				{
@@ -255,7 +381,7 @@
 						"h": 236
 					},
 					"frame": {
-						"x": 543,
+						"x": 843,
 						"y": 63,
 						"w": 190,
 						"h": 236
@@ -276,73 +402,10 @@
 						"h": 216
 					},
 					"frame": {
-						"x": 735,
+						"x": 1035,
 						"y": 63,
 						"w": 192,
 						"h": 216
-					}
-				},
-				{
-					"filename": "shield-icon.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 36
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 36
-					},
-					"frame": {
-						"x": 735,
-						"y": 281,
-						"w": 30,
-						"h": 36
-					}
-				},
-				{
-					"filename": "card-bg.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 141,
-						"h": 170
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 141,
-						"h": 170
-					},
-					"frame": {
-						"x": 834,
-						"y": 281,
-						"w": 141,
-						"h": 170
-					}
-				},
-				{
-					"filename": "silver-shield-icon.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 34
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 34
-					},
-					"frame": {
-						"x": 767,
-						"y": 281,
-						"w": 30,
-						"h": 34
 					}
 				},
 				{
@@ -360,10 +423,31 @@
 						"h": 28
 					},
 					"frame": {
-						"x": 799,
+						"x": 1035,
 						"y": 281,
 						"w": 28,
 						"h": 28
+					}
+				},
+				{
+					"filename": "card-bg.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 141,
+						"h": 170
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 141,
+						"h": 170
+					},
+					"frame": {
+						"x": 1134,
+						"y": 281,
+						"w": 141,
+						"h": 170
 					}
 				},
 				{
@@ -381,31 +465,10 @@
 						"h": 170
 					},
 					"frame": {
-						"x": 929,
+						"x": 1229,
 						"y": 63,
 						"w": 141,
 						"h": 170
-					}
-				},
-				{
-					"filename": "balanced-display-box.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 152,
-						"h": 42
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 152,
-						"h": 42
-					},
-					"frame": {
-						"x": 929,
-						"y": 235,
-						"w": 152,
-						"h": 42
 					}
 				},
 				{
@@ -423,8 +486,8 @@
 						"h": 170
 					},
 					"frame": {
-						"x": 1072,
-						"y": 63,
+						"x": 1277,
+						"y": 235,
 						"w": 140,
 						"h": 170
 					}
@@ -444,73 +507,10 @@
 						"h": 170
 					},
 					"frame": {
-						"x": 977,
-						"y": 279,
+						"x": 1372,
+						"y": 63,
 						"w": 140,
 						"h": 170
-					}
-				},
-				{
-					"filename": "libra-large.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 48,
-						"h": 48
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 3,
-						"w": 42,
-						"h": 42
-					},
-					"frame": {
-						"x": 1083,
-						"y": 235,
-						"w": 42,
-						"h": 42
-					}
-				},
-				{
-					"filename": "card-shield.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 89,
-						"h": 89
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 89,
-						"h": 89
-					},
-					"frame": {
-						"x": 1119,
-						"y": 279,
-						"w": 89,
-						"h": 89
-					}
-				},
-				{
-					"filename": "number-display-box.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 36,
-						"h": 42
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 36,
-						"h": 42
-					},
-					"frame": {
-						"x": 1127,
-						"y": 235,
-						"w": 36,
-						"h": 42
 					}
 				},
 				{
@@ -528,10 +528,31 @@
 						"h": 87
 					},
 					"frame": {
-						"x": 1119,
-						"y": 370,
+						"x": 1514,
+						"y": 63,
 						"w": 103,
 						"h": 87
+					}
+				},
+				{
+					"filename": "card-shield.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 89,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 89,
+						"h": 89
+					},
+					"frame": {
+						"x": 1514,
+						"y": 152,
+						"w": 89,
+						"h": 89
 					}
 				},
 				{
@@ -549,7 +570,7 @@
 						"h": 83
 					},
 					"frame": {
-						"x": 1210,
+						"x": 1419,
 						"y": 235,
 						"w": 71,
 						"h": 83
@@ -561,6 +582,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:07b63186ab9ce5612979de3ca777de37:3e40d74f66e9029cd0eb01e75a204627:531d510bb7e47c5a7810ed876d840ed4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:1050415257f1e95501706afb87ba45f0:fc9cd3d2a902b11cf4a175d487d5b59d:531d510bb7e47c5a7810ed876d840ed4$"
 	}
 }

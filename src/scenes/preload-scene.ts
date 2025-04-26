@@ -2,6 +2,8 @@ import characterJson from "~/assets/atlas/character.json";
 import characterPng from "~/assets/atlas/character.png";
 import damagedJson from "~/assets/atlas/damaged.json";
 import damagedPng from "~/assets/atlas/damaged.png";
+import maatSpriteJson from "~/assets/atlas/maat-sprite.json";
+import maatSpritePng from "~/assets/atlas/maat-sprite.png";
 import uiComponentJson from "~/assets/atlas/ui-component.json";
 import uiComponentPng from "~/assets/atlas/ui-component.png";
 import bgm1Mp3 from "~/assets/audio/bgm-1.mp3";
@@ -45,7 +47,7 @@ export class PreloadScene extends Phaser.Scene {
     this.load.audio(AUDIO_KEY.FIXING, fixingMp3);
     this.load.audio(AUDIO_KEY.FAIL, failMp3);
 
-    this.load.image("maat-test", maatTest);
+    this.load.atlas(ATLAS_KEY.MAAT_SPRITE, maatSpritePng, maatSpriteJson);
     this.load.atlas(ATLAS_KEY.UI_COMPONENT, uiComponentPng, uiComponentJson);
     this.load.atlas(ATLAS_KEY.CHARACTER, characterPng, characterJson);
     this.load.atlas(ATLAS_KEY.DAMAGED, damagedPng, damagedJson);

@@ -238,6 +238,7 @@ export class Card extends Phaser.GameObjects.Container {
         gm.setCardDragTarget(null);
         gm.markAsUsed(this, this.scene);
         gm.setApplyingEffect(true);
+        gm.maat?.takeAMoveAnim();
         await target.applyCardEffect(this.metadata);
         if (this._isForTutorial) {
           gm.nextTutorial(this.scene);

@@ -1,4 +1,3 @@
-import { MaatSprite } from "~/characters/maat/maat-sprite";
 import {
   ATLAS_KEY,
   COLOR_KEY,
@@ -37,14 +36,20 @@ export class PrologueScene extends Phaser.Scene {
   async create() {
     const [width, height] = getCanvasSize(this);
     const padding = 24;
-    const maatSprite = new MaatSprite(this, padding, height - padding)
+    const maat = this.add
+      .image(
+        padding,
+        height - padding,
+        ATLAS_KEY.UI_COMPONENT,
+        TEXTURE_KEY.MAAT,
+      )
       .setOrigin(0, 1)
-      .setScale(2)
+
       .setAlpha(0)
       .setDepth(1);
-    const { x: maatX, y: maatY } = maatSprite.getBottomRight();
+    const { x: maatX, y: maatY } = maat.getBottomRight();
     this._text = this.add
-      .text(maatX + 48, maatY - 24, "", {
+      .text(maatX + 24, maatY - 24, "", {
         fontFamily: FONT_KEY.JERSEY_25,
         fontSize: 36,
         color: COLOR_KEY.BEIGE_2,
@@ -54,7 +59,7 @@ export class PrologueScene extends Phaser.Scene {
       .setOrigin(0, 1)
       .setDepth(1);
     tweensAsync(this, {
-      targets: maatSprite,
+      targets: maat,
       alpha: 1,
       duration: 500,
     });

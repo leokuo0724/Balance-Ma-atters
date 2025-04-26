@@ -141,6 +141,7 @@ export class LargeLibraGroup extends Phaser.GameObjects.Container {
     const { centerX, centerY } = this.getBounds();
     const value = this._jackpotValue;
 
+    await delayedCallAsync(this.scene, 300);
     const texts = this._getStrikeTexts(opponents.length);
     for (const [index, op] of opponents.entries()) {
       const bounds = op.getBounds();

@@ -49,8 +49,7 @@ export const LEVEL_OPPONENT_INFO = [
   { opponentIds: [null, "o_00006", null] },
   { opponentIds: ["o_00000", "o_00000", "o_00000"] },
   { opponentIds: ["o_00001", "o_00002", "o_00007"] },
-  // { opponentIds: ["o_00001", "o_00003", "o_00002"] },
-  { opponentIds: ["o_00000", null, null] },
+  { opponentIds: ["o_00001", "o_00003", "o_00002"] },
   { opponentIds: ["o_00004", "o_00005", "o_00004"] },
 ] as const;
 export const INITIAL_LOCKED_BALANCE: EBalanceSetType[] = [
@@ -293,6 +292,7 @@ export class GameManager {
   public async checkLibraStrike(multiply: number) {
     const totalBalance = this.getTotalBalance();
     if (totalBalance !== 0) return 0;
+    this.maat?.libraStrikeAnim();
     const opponents = this.getOpponents();
     await this.largeLibraGroup!.jackpotAttack(opponents, multiply);
   }

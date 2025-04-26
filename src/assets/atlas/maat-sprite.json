@@ -1,0 +1,1259 @@
+{
+	"textures": [
+		{
+			"image": "maat-sprite.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1725,
+				"h": 935
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "maat-sprite_00054.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 42,
+						"w": 152,
+						"h": 182
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 152,
+						"h": 182
+					}
+				},
+				{
+					"filename": "maat-sprite_00003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 37,
+						"y": 41,
+						"w": 148,
+						"h": 183
+					},
+					"frame": {
+						"x": 155,
+						"y": 1,
+						"w": 148,
+						"h": 183
+					}
+				},
+				{
+					"filename": "maat-sprite_00004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 38,
+						"y": 41,
+						"w": 147,
+						"h": 183
+					},
+					"frame": {
+						"x": 305,
+						"y": 1,
+						"w": 147,
+						"h": 183
+					}
+				},
+				{
+					"filename": "maat-sprite_00005.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 39,
+						"y": 41,
+						"w": 146,
+						"h": 183
+					},
+					"frame": {
+						"x": 454,
+						"y": 1,
+						"w": 146,
+						"h": 183
+					}
+				},
+				{
+					"filename": "maat-sprite_00006.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 39,
+						"y": 41,
+						"w": 146,
+						"h": 183
+					},
+					"frame": {
+						"x": 602,
+						"y": 1,
+						"w": 146,
+						"h": 183
+					}
+				},
+				{
+					"filename": "maat-sprite_00007.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 40,
+						"y": 41,
+						"w": 145,
+						"h": 183
+					},
+					"frame": {
+						"x": 750,
+						"y": 1,
+						"w": 145,
+						"h": 183
+					}
+				},
+				{
+					"filename": "maat-sprite_00008.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 40,
+						"y": 41,
+						"w": 145,
+						"h": 183
+					},
+					"frame": {
+						"x": 897,
+						"y": 1,
+						"w": 145,
+						"h": 183
+					}
+				},
+				{
+					"filename": "maat-sprite_00009.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 40,
+						"y": 41,
+						"w": 145,
+						"h": 183
+					},
+					"frame": {
+						"x": 1044,
+						"y": 1,
+						"w": 145,
+						"h": 183
+					}
+				},
+				{
+					"filename": "maat-sprite_00010.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 39,
+						"y": 41,
+						"w": 146,
+						"h": 183
+					},
+					"frame": {
+						"x": 1191,
+						"y": 1,
+						"w": 146,
+						"h": 183
+					}
+				},
+				{
+					"filename": "maat-sprite_00053.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 41,
+						"w": 150,
+						"h": 183
+					},
+					"frame": {
+						"x": 1339,
+						"y": 1,
+						"w": 150,
+						"h": 183
+					}
+				},
+				{
+					"filename": "maat-sprite_00055.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 41,
+						"w": 153,
+						"h": 183
+					},
+					"frame": {
+						"x": 1491,
+						"y": 1,
+						"w": 153,
+						"h": 183
+					}
+				},
+				{
+					"filename": "maat-sprite_00000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 40,
+						"w": 149,
+						"h": 184
+					},
+					"frame": {
+						"x": 1,
+						"y": 185,
+						"w": 149,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00014.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 40,
+						"w": 149,
+						"h": 184
+					},
+					"frame": {
+						"x": 1,
+						"y": 185,
+						"w": 149,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 40,
+						"w": 149,
+						"h": 184
+					},
+					"frame": {
+						"x": 152,
+						"y": 186,
+						"w": 149,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 37,
+						"y": 40,
+						"w": 148,
+						"h": 184
+					},
+					"frame": {
+						"x": 303,
+						"y": 186,
+						"w": 148,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00011.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 38,
+						"y": 40,
+						"w": 147,
+						"h": 184
+					},
+					"frame": {
+						"x": 453,
+						"y": 186,
+						"w": 147,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00012.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 37,
+						"y": 40,
+						"w": 148,
+						"h": 184
+					},
+					"frame": {
+						"x": 602,
+						"y": 186,
+						"w": 148,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00013.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 40,
+						"w": 149,
+						"h": 184
+					},
+					"frame": {
+						"x": 752,
+						"y": 186,
+						"w": 149,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00015.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 40,
+						"w": 149,
+						"h": 184
+					},
+					"frame": {
+						"x": 903,
+						"y": 186,
+						"w": 149,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00016.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 40,
+						"w": 147,
+						"h": 184
+					},
+					"frame": {
+						"x": 1054,
+						"y": 186,
+						"w": 147,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00028.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 40,
+						"w": 149,
+						"h": 184
+					},
+					"frame": {
+						"x": 1203,
+						"y": 186,
+						"w": 149,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00052.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 40,
+						"w": 149,
+						"h": 184
+					},
+					"frame": {
+						"x": 1203,
+						"y": 186,
+						"w": 149,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00058.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 40,
+						"w": 149,
+						"h": 184
+					},
+					"frame": {
+						"x": 1203,
+						"y": 186,
+						"w": 149,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00031.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 69,
+						"y": 27,
+						"w": 117,
+						"h": 184
+					},
+					"frame": {
+						"x": 1354,
+						"y": 186,
+						"w": 117,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00033.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 55,
+						"y": 18,
+						"w": 140,
+						"h": 184
+					},
+					"frame": {
+						"x": 1473,
+						"y": 186,
+						"w": 140,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00030.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 73,
+						"y": 31,
+						"w": 109,
+						"h": 185
+					},
+					"frame": {
+						"x": 1615,
+						"y": 186,
+						"w": 109,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00017.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 39,
+						"w": 147,
+						"h": 185
+					},
+					"frame": {
+						"x": 1,
+						"y": 371,
+						"w": 147,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00035.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 41,
+						"y": 9,
+						"w": 159,
+						"h": 184
+					},
+					"frame": {
+						"x": 150,
+						"y": 372,
+						"w": 159,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00056.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 40,
+						"w": 152,
+						"h": 184
+					},
+					"frame": {
+						"x": 311,
+						"y": 372,
+						"w": 152,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00057.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 40,
+						"w": 150,
+						"h": 184
+					},
+					"frame": {
+						"x": 465,
+						"y": 372,
+						"w": 150,
+						"h": 184
+					}
+				},
+				{
+					"filename": "maat-sprite_00018.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 35,
+						"y": 39,
+						"w": 151,
+						"h": 185
+					},
+					"frame": {
+						"x": 617,
+						"y": 372,
+						"w": 151,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00019.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 35,
+						"y": 39,
+						"w": 154,
+						"h": 185
+					},
+					"frame": {
+						"x": 770,
+						"y": 372,
+						"w": 154,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00020.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 34,
+						"y": 39,
+						"w": 158,
+						"h": 185
+					},
+					"frame": {
+						"x": 926,
+						"y": 372,
+						"w": 158,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00027.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 35,
+						"y": 39,
+						"w": 150,
+						"h": 185
+					},
+					"frame": {
+						"x": 1086,
+						"y": 372,
+						"w": 150,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00029.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 55,
+						"y": 35,
+						"w": 129,
+						"h": 185
+					},
+					"frame": {
+						"x": 1238,
+						"y": 372,
+						"w": 129,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00032.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 62,
+						"y": 22,
+						"w": 128,
+						"h": 185
+					},
+					"frame": {
+						"x": 1369,
+						"y": 372,
+						"w": 128,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00034.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 47,
+						"y": 13,
+						"w": 151,
+						"h": 185
+					},
+					"frame": {
+						"x": 1499,
+						"y": 373,
+						"w": 151,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00036.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 4,
+						"w": 165,
+						"h": 185
+					},
+					"frame": {
+						"x": 1,
+						"y": 558,
+						"w": 165,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00037.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 55,
+						"y": 4,
+						"w": 146,
+						"h": 185
+					},
+					"frame": {
+						"x": 168,
+						"y": 558,
+						"w": 146,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00038.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 73,
+						"y": 4,
+						"w": 128,
+						"h": 185
+					},
+					"frame": {
+						"x": 316,
+						"y": 558,
+						"w": 128,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00039.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 69,
+						"y": 4,
+						"w": 132,
+						"h": 185
+					},
+					"frame": {
+						"x": 446,
+						"y": 558,
+						"w": 132,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00040.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 62,
+						"y": 4,
+						"w": 139,
+						"h": 185
+					},
+					"frame": {
+						"x": 580,
+						"y": 559,
+						"w": 139,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00041.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 55,
+						"y": 4,
+						"w": 146,
+						"h": 185
+					},
+					"frame": {
+						"x": 721,
+						"y": 559,
+						"w": 146,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00042.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 47,
+						"y": 4,
+						"w": 154,
+						"h": 185
+					},
+					"frame": {
+						"x": 869,
+						"y": 559,
+						"w": 154,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00043.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 41,
+						"y": 4,
+						"w": 160,
+						"h": 185
+					},
+					"frame": {
+						"x": 1025,
+						"y": 559,
+						"w": 160,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00044.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 4,
+						"w": 165,
+						"h": 185
+					},
+					"frame": {
+						"x": 1187,
+						"y": 559,
+						"w": 165,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00046.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 73,
+						"y": 4,
+						"w": 128,
+						"h": 185
+					},
+					"frame": {
+						"x": 1354,
+						"y": 559,
+						"w": 128,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00045.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 55,
+						"y": 4,
+						"w": 146,
+						"h": 185
+					},
+					"frame": {
+						"x": 1484,
+						"y": 560,
+						"w": 146,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00047.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 69,
+						"y": 10,
+						"w": 129,
+						"h": 185
+					},
+					"frame": {
+						"x": 1,
+						"y": 745,
+						"w": 129,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00048.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 62,
+						"y": 16,
+						"w": 132,
+						"h": 185
+					},
+					"frame": {
+						"x": 132,
+						"y": 745,
+						"w": 132,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00049.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 55,
+						"y": 22,
+						"w": 134,
+						"h": 185
+					},
+					"frame": {
+						"x": 266,
+						"y": 745,
+						"w": 134,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00050.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 47,
+						"y": 28,
+						"w": 137,
+						"h": 185
+					},
+					"frame": {
+						"x": 402,
+						"y": 745,
+						"w": 137,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00051.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 41,
+						"y": 34,
+						"w": 143,
+						"h": 185
+					},
+					"frame": {
+						"x": 541,
+						"y": 746,
+						"w": 143,
+						"h": 185
+					}
+				},
+				{
+					"filename": "maat-sprite_00021.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 34,
+						"y": 38,
+						"w": 161,
+						"h": 186
+					},
+					"frame": {
+						"x": 686,
+						"y": 746,
+						"w": 161,
+						"h": 186
+					}
+				},
+				{
+					"filename": "maat-sprite_00022.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 33,
+						"y": 38,
+						"w": 164,
+						"h": 186
+					},
+					"frame": {
+						"x": 849,
+						"y": 746,
+						"w": 164,
+						"h": 186
+					}
+				},
+				{
+					"filename": "maat-sprite_00023.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 33,
+						"y": 38,
+						"w": 166,
+						"h": 186
+					},
+					"frame": {
+						"x": 1015,
+						"y": 746,
+						"w": 166,
+						"h": 186
+					}
+				},
+				{
+					"filename": "maat-sprite_00026.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 34,
+						"y": 38,
+						"w": 162,
+						"h": 186
+					},
+					"frame": {
+						"x": 1183,
+						"y": 746,
+						"w": 162,
+						"h": 186
+					}
+				},
+				{
+					"filename": "maat-sprite_00024.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 33,
+						"y": 37,
+						"w": 167,
+						"h": 187
+					},
+					"frame": {
+						"x": 1347,
+						"y": 747,
+						"w": 167,
+						"h": 187
+					}
+				},
+				{
+					"filename": "maat-sprite_00025.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 220,
+						"h": 224
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 37,
+						"w": 169,
+						"h": 187
+					},
+					"frame": {
+						"x": 1516,
+						"y": 747,
+						"w": 169,
+						"h": 187
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:ecbfbe530893c307d1488077cfa852bb:e9528adcd9126ff69e12f9c90ed2b043:f6a7a159489cc02e19efb99c00482a70$"
+	}
+}
